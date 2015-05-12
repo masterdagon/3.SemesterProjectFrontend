@@ -21,7 +21,6 @@ function createUser(userName, email, pw,callback) {
             callback(err,newuser)
         }
     });
-
 }
 
 function findUser(userName,callback){
@@ -32,7 +31,6 @@ function findUser(userName,callback){
             callback(null, theUser)
         }
     })
-
 }
 
 function getAirlineUrls(callback){
@@ -52,6 +50,7 @@ function getAirlineUrls(callback){
 
 module.exports = {
     createUser : createUser,
-    getAirlineUrls : getAirlineUrls
+    getAirlineUrls : getAirlineUrls,
+    findUser : findUser
 };
 
