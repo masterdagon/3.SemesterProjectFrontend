@@ -28,6 +28,15 @@ function createUser(userName, email, pw, callback) {
     });
 }
 
+function updateUserTickets(userName,flightInstanceID,reservationID,callback){
+    var item = {flightInstanceID:flightInstanceID,reservationID:reservationID};
+    user.findOneAndUpdate({userName: userName},{
+        $push: {tickets: item}
+    },function(err,user){
+        callback(err,user);
+    })
+}
+
 function compare(userName, pw, callback) {
     user.findOne({userName: userName}, function (err, foundUser) {
         if (err) {
@@ -69,6 +78,7 @@ module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
     findUser: findUser,
+    updateUserTickets: updateUserTickets,
     compare: compare
 };
 

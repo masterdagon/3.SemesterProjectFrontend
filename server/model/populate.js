@@ -7,6 +7,10 @@ var facade = require('./Facade');
 //    console.log(user)
 //})
 
-facade.compare('Dennis','Abcd1231',function(err, res){
+facade.compare('Dennis','Abcd1234',function(err, res){
     console.log(res);
+})
+
+facade.updateUserTickets('Dennis',123,123,function(err,user){
+    console.log(user)
 })
