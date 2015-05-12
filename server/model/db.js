@@ -21,7 +21,7 @@ if( typeof global.TEST_DATABASE != "undefined" ) {
   dbURI = global.TEST_DATABASE;
 }
 else{
-  dbURI = 'mongodb://localhost/testdb';
+  dbURI = 'mongodb://localhost/SemesterProject';
 }
 
 mongoose.connect(dbURI);
@@ -47,14 +47,24 @@ process.on('SIGINT', function() {
 });
 
 
-/** User SCHEMA **/
-/** Replace this Schema with your own(s) **/
-var usersSchema = new mongoose.Schema({
-  userName : String,
+/** Customer SCHEMA **/
+var CustomerSchema = new mongoose.Schema({
+  userName : {type: String, unique: true},
   email: {type: String, unique: true},
   pw: String,
+  tickets: [{
+      flightInstanceID: String,
+      ReservationsID: Number
+  }],
   created: { type: Date, default: new Date() }
 });
+mongoose.model( 'Customer', CustomerSchema,"customer" );
 
-mongoose.model( 'User', usersSchema,"testusers" );
+var AirlineSchema = new mongoose.Schema({
+    group : {type: String, unique: true},
+    url: {type: String, unique: true},
+    created: { type: Date, default: new Date() }
+});
+
+mongoose.model( 'Airline', AirlineSchema,"airline" );
 
