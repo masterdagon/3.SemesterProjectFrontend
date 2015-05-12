@@ -18,7 +18,7 @@ function createUser(userName, email, pw) {
 }
 
 function findUser(userName,callback){
-    wiki.findOne({userName: userName}, function (err, theUser) {
+    user.findOne({userName: userName}, function (err, theUser) {
         if (err) {
             callback(err)
         } else {
