@@ -17,3 +17,5 @@ function createUser(userName, email, pw) {
     user.save(newuser);
 }
 
+function findCustomer(){}
+
