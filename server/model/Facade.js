@@ -3,6 +3,7 @@
  */
 
 var db = require("./db");
+var bcrypt =require('bcryptjs');
 var mongoose = require('mongoose');
 var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
@@ -14,12 +15,17 @@ function createUser(userName, email, pw,callback) {
         pw: pw,
         tickets: []
     });
-    newuser.save(function(err){
-        if(err){
-            callback(err);
-        }else{
-            callback(err,newuser)
-        }
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash("my password", salt, function(err, hash) {
+            newuser.pw = hash;
+            newuser.save(function(err){
+                if(err){
+                    callback(err);
+                }else{
+                    callback(err,newuser)
+                }
+            });
+        });
     });
 }
 
