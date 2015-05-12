@@ -4,7 +4,7 @@
 
 var db = require("./db");
 var mongoose = require('mongoose');
-var user = mongoose.model('Customer');
+var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
 
 function createUser(userName, email, pw) {
@@ -13,7 +13,13 @@ function createUser(userName, email, pw) {
         email: email,
         pw: pw,
         tickets: []
-    }
+    };
     user.save(newuser);
 }
+
+
+
+module.exports = {
+    createUser : createUser
+};
 
