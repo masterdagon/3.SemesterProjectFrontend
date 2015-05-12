@@ -38,6 +38,7 @@ function updateUserTickets(userName,flightInstanceID,reservationID,callback){
 }
 
 function compare(userName, pw, callback) {
+function comparePW(userName, pw, callback) {
     user.findOne({userName: userName}, function (err, foundUser) {
         if (err) {
             callback(err);
@@ -74,10 +75,26 @@ function getAirlineUrls(callback) {
 
 }
 
+function createAirline(name,url,callback){
+    var newAirline = new airline({
+        name : name,
+        url : url
+    });
+    newAirline.save(function(err){
+        if(err){
+            callback(err);
+        }else{
+            callback(err,newAirline)
+        }
+    })
+}
+
 module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
     findUser: findUser,
+    comparePW: comparePW,
+    createAirline : createAirline
     updateUserTickets: updateUserTickets,
     compare: compare
 };
