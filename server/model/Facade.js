@@ -31,20 +31,25 @@ function createUser(userName, email, pw, callback) {
 function compare(userName, pw, callback) {
     var pwencrypt = null;
     bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(pw, salt, function (err, hash) {
-            pwencrypt = hash
-        })
-    });
-
-    user.findOne({userName: userName}, function (err, foundUser) {
-        if (err) {
+        if(err){
             callback(err);
-        } else {
-            bcrypt.compare(pwencrypt, foundUser.pw, function (err, res) {
-                callback(err, res);
+        }else {
+            bcrypt.hash(pw, salt, function (err, hash) {
+                pwencrypt = hash
+            });
+            user.findOne({userName: userName}, function (err, foundUser) {
+                if (err) {
+                    callback(err);
+                } else {
+                    bcrypt.compare(pwencrypt, foundUser.pw, function (err, res) {
+                        callback(err, res);
+                    })
+                }
             })
         }
-    })
+        });
+
+
 }
 
 function findUser(userName, callback) {
