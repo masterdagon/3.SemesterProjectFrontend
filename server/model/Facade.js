@@ -3,32 +3,51 @@
  */
 
 var db = require("./db");
-var bcrypt =require('bcryptjs');
+var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
 
-function createUser(userName, email, pw,callback) {
-    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(pw, salt, function(err, hash) {
+function createUser(userName, email, pw, callback) {
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(pw, salt, function (err, hash) {
             var newuser = new user({
                 userName: userName,
                 email: email,
                 pw: hash,
                 tickets: []
             });
-            newuser.save(function(err){
-                if(err){
+            newuser.save(function (err) {
+                if (err) {
                     callback(err);
-                }else{
-                    callback(err,newuser)
+                } else {
+                    callback(err, newuser)
                 }
             });
         });
     });
 }
 
-function findUser(userName,callback){
+function compare(userName, pw, callback) {
+    var pwencrypt = null;
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(pw, salt, function (err, hash) {
+            pwencrypt = hash
+        })
+    });
+
+    user.findOne({userName: userName}, function (err, foundUser) {
+        if (err) {
+            callback(err);
+        } else {
+            bcrypt.compare(pwencrypt, foundUser.pw, function (err, res) {
+                callback(err, res);
+            })
+        }
+    })
+}
+
+function findUser(userName, callback) {
     user.findOne({userName: userName}, function (err, theUser) {
         if (err) {
             callback(err)
@@ -38,24 +57,25 @@ function findUser(userName,callback){
     })
 }
 
-function getAirlineUrls(callback){
+function getAirlineUrls(callback) {
     var urls = [];
-    airline.find({},function(err,airlines){
-        if(err){
+    airline.find({}, function (err, airlines) {
+        if (err) {
             callback(err);
-        }else{
-            for(var item in airlines){
+        } else {
+            for (var item in airlines) {
                 urls.push(item.url);
             }
-            callback(err,urls);
+            callback(err, urls);
         }
     });
 
 }
 
 module.exports = {
-    createUser : createUser,
-    getAirlineUrls : getAirlineUrls,
-    findUser : findUser
+    createUser: createUser,
+    getAirlineUrls: getAirlineUrls,
+    findUser: findUser,
+    compare : compare
 };
 
