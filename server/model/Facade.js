@@ -65,10 +65,25 @@ function getAirlineUrls(callback) {
 
 }
 
+function createAirline(name,url,callback){
+    var newAirline = new airline({
+        name : name,
+        url : url
+    });
+    newAirline.save(function(err){
+        if(err){
+            callback(err);
+        }else{
+            callback(err,newAirline)
+        }
+    })
+}
+
 module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
     findUser: findUser,
-    comparePW: comparePW
+    comparePW: comparePW,
+    createAirline : createAirline
 };
 

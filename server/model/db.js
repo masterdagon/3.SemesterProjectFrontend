@@ -61,7 +61,7 @@ var UserSchema = new mongoose.Schema({
 mongoose.model( 'User', UserSchema);
 
 var AirlineSchema = new mongoose.Schema({
-    group : {type: String, unique: true},
+    name : {type: String, unique: true},
     url: {type: String, unique: true},
     created: { type: Date, default: new Date() }
 });
