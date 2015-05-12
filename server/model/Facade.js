@@ -17,11 +17,20 @@ function createUser(userName, email, pw) {
     user.save(newuser);
 }
 
+function findUser(userName,callback){
+    wiki.findOne({userName: userName}, function (err, theUser) {
+        if (err) {
+            callback(err)
+        } else {
+            callback(null, theUser)
+        }
+    })
+
+}
+
 
 
 module.exports = {
     createUser : createUser
 };
-
-function findCustomer(){}
 
