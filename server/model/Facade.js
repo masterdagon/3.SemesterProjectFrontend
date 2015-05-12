@@ -9,15 +9,14 @@ var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
 
 function createUser(userName, email, pw,callback) {
-    var newuser = new user({
-        userName: userName,
-        email: email,
-        pw: pw,
-        tickets: []
-    });
     bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash("my password", salt, function(err, hash) {
-            newuser.pw = hash;
+        bcrypt.hash(pw, salt, function(err, hash) {
+            var newuser = new user({
+                userName: userName,
+                email: email,
+                pw: hash,
+                tickets: []
+            });
             newuser.save(function(err){
                 if(err){
                     callback(err);
