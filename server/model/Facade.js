@@ -28,7 +28,7 @@ function createUser(userName, email, pw, callback) {
     });
 }
 
-function compare(userName, pw, callback) {
+function comparePW(userName, pw, callback) {
     user.findOne({userName: userName}, function (err, foundUser) {
         if (err) {
             callback(err);
@@ -69,6 +69,6 @@ module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
     findUser: findUser,
-    compare: compare
+    comparePW: comparePW
 };
 
