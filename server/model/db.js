@@ -48,7 +48,7 @@ process.on('SIGINT', function() {
 
 
 /** Customer SCHEMA **/
-var CustomerSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
   userName : {type: String, unique: true},
   email: {type: String, unique: true},
   pw: String,
@@ -58,7 +58,7 @@ var CustomerSchema = new mongoose.Schema({
   }],
   created: { type: Date, default: new Date() }
 });
-mongoose.model( 'User', CustomerSchema,"user" );
+mongoose.model( 'User', CustomerSchema);
 
 var AirlineSchema = new mongoose.Schema({
     group : {type: String, unique: true},
@@ -66,5 +66,5 @@ var AirlineSchema = new mongoose.Schema({
     created: { type: Date, default: new Date() }
 });
 
-mongoose.model( 'Airline', AirlineSchema,"airline" );
+mongoose.model( 'Airline', AirlineSchema);
 
