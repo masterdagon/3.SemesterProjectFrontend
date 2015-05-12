@@ -58,7 +58,7 @@ var UserSchema = new mongoose.Schema({
   }],
   created: { type: Date, default: new Date() }
 });
-mongoose.model( 'User', CustomerSchema);
+mongoose.model( 'User', UserSchema);
 
 var AirlineSchema = new mongoose.Schema({
     group : {type: String, unique: true},
