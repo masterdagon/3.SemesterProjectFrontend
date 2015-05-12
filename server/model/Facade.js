@@ -7,14 +7,20 @@ var mongoose = require('mongoose');
 var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
 
-function createUser(userName, email, pw) {
-    var newuser = {
+function createUser(userName, email, pw,callback) {
+    var newuser = new user({
         userName: userName,
         email: email,
         pw: pw,
         tickets: []
-    };
-    user.save(newuser);
+    });
+    newuser.save(function(err){
+        if(err){
+            callback(err);
+        }else{
+            callback(err,newuser)
+        }
+    });
 }
 
 function findUser(userName,callback){
@@ -25,12 +31,26 @@ function findUser(userName,callback){
             callback(null, theUser)
         }
     })
+}
+
+function getAirlineUrls(callback){
+    var urls = [];
+    airline.find({},function(err,airlines){
+        if(err){
+            callback(err);
+        }else{
+            for(var item in airlines){
+                urls.push(item.url);
+            }
+            callback(err,urls);
+        }
+    });
 
 }
 
-
-
 module.exports = {
-    createUser : createUser
+    createUser : createUser,
+    getAirlineUrls : getAirlineUrls,
+    findUser : findUser
 };
 
