@@ -37,7 +37,6 @@ function updateUserTickets(userName,flightInstanceID,reservationID,callback){
     })
 }
 
-function compare(userName, pw, callback) {
 function comparePW(userName, pw, callback) {
     user.findOne({userName: userName}, function (err, foundUser) {
         if (err) {
@@ -94,8 +93,7 @@ module.exports = {
     getAirlineUrls: getAirlineUrls,
     findUser: findUser,
     comparePW: comparePW,
-    createAirline : createAirline
-    updateUserTickets: updateUserTickets,
-    compare: compare
+    createAirline : createAirline,
+    updateUserTickets: updateUserTickets
 };
 
