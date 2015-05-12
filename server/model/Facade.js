@@ -27,9 +27,20 @@ function createUser(userName, email, pw, callback) {
         });
     });
 }
+function removeUserTickets(userName,ticketID,callback){
+    user.findOneAndUpdate({userName: userName},
+        {$pull: {tickets: {_id: ticketID}}}, function(err, data){
+        console.log(err, data);
+    });
+}
 
-function updateUserTickets(userName,flightInstanceID,reservationID,callback){
-    var item = {flightInstanceID:flightInstanceID,reservationID:reservationID};
+function updateUserTickets(userName,airline,flightInstanceID,reservationID,callback){
+    var item = {
+        airline: airline,
+        flightInstanceID: flightInstanceID,
+        ReservationsID: reservationID
+    };
+
     user.findOneAndUpdate({userName: userName},{
         $push: {tickets: item}
     },function(err,user){
@@ -94,6 +105,7 @@ module.exports = {
     findUser: findUser,
     comparePW: comparePW,
     createAirline : createAirline,
-    updateUserTickets: updateUserTickets
+    updateUserTickets: updateUserTickets,
+    removeUserTickets: removeUserTickets
 };
 
