@@ -101,8 +101,25 @@ function createAirline(name, url, callback) {
         }
     })
 }
-function post_reservation_flightID(name,flightId,callback){
-
+function post_reservation_flightID(name,flightId,customer,callback){
+    airline.findOne({name : name},function(err,airline){
+            if(err){
+            callback(err)
+        }else{
+            var path = airline.url + flightId;
+            request({
+                url: 'http://localhost:3000/api/persons',
+                method : 'POST',
+                json: {"Passengers": customer}
+                    }, function (error, response, body) {
+                if (!err && res.statusCode == 200) {
+                    callback(null,body);
+                }else{
+                    callback(err);
+                }
+                })
+        }
+    });
 }
 
 function get_Departure_Date(departure, date, callback) {
