@@ -32,3 +32,8 @@ facade.createAirline('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com
     console.log(err)
     console.log(airline)
 });
+
+facade.createAirline('gruppe 7','http://Airline7-team007.rhcloud.com/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
