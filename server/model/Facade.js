@@ -196,6 +196,23 @@ function get_Reservation(name,reservationId, callback) {
     });
 }
 
+function delete_Reservation(name,reservationId,callback){
+    airline.findOne({name : name},function(err,airline) {
+        if (err) {
+            callback(err)
+        } else {
+            var path = airline.url + reservationId;
+            request.del(path,function(err,res,body){
+                if(!err && res.statusCode == 200){
+                    callback(null,body)
+                }else{
+                    callback(err);
+                }
+            })
+        }
+    })
+}
+
 module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
@@ -208,5 +225,7 @@ module.exports = {
     get_Departure_Arrival_Date : get_Departure_Arrival_Date,
     get_Reservation : get_Reservation,
     post_reservation_flightID: post_reservation_flightID
+    get_Reservation : get_Reservation,
+    delete_Reservation : delete_Reservation
 };
 
