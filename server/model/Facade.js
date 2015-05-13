@@ -31,7 +31,7 @@ function createUser(userName, email, pw, callback) {
 function removeUserTickets(userName,ticketID,callback){
     user.findOneAndUpdate({userName: userName},
         {$pull: {tickets: {_id: ticketID}}}, function(err, data){
-        console.log(err, data);
+        callback(err, data);
     });
 }
 
@@ -87,6 +87,8 @@ function getAirlineUrls(callback) {
 }
 
 function createAirline(name,url,callback){
+    console.log('name= '+name)
+    console.log('url= '+url)
     var newAirline = new airline({
         name : name,
         url : url
