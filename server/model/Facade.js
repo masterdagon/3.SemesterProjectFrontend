@@ -7,6 +7,7 @@ var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 var user = mongoose.model('User');
 var airline = mongoose.model('Airline');
+var request = require('request');
 
 function createUser(userName, email, pw, callback) {
     bcrypt.genSalt(10, function (err, salt) {
@@ -99,6 +100,25 @@ function createAirline(name,url,callback){
     })
 }
 
+function get_Departure_Date(departure,date,callback){
+    getAirlineUrls(function(err,urls){
+        var storage = [];
+        for(var x = 0;x<urls.length;x++){
+            var path = urls[x] + departure + "/" + date;
+            request(path,function(err,res,body){
+                if(err){
+                    callback(err)
+                }else{
+                    storage.push(body);
+                    if(x==urls.length-1){
+                        callback(err,storage);
+                    }
+                }
+            })
+        }
+    })
+}
+
 module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
@@ -106,6 +126,7 @@ module.exports = {
     comparePW: comparePW,
     createAirline : createAirline,
     updateUserTickets: updateUserTickets,
-    removeUserTickets: removeUserTickets
+    removeUserTickets: removeUserTickets,
+    get_Departure_Date : get_Departure_Date
 };
 
