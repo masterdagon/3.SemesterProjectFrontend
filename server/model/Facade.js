@@ -101,33 +101,36 @@ function createAirline(name, url, callback) {
         }
     })
 }
-function post_reservation_flightID(name,flightId,customer,callback){
-    airline.findOne({name : name},function(err,airline){
-            if(err){
+function post_reservation_flightID(name,flightId,customer,callback) {
+    airline.findOne({name: name}, function (err, airline) {
+        if (err) {
             callback(err)
-        }else{
+        } else {
             var path = airline.url + flightId;
-                console.log(path)
+            console.log(path)
             request({
                 url: path,
-                method : 'POST',
-                json: {"Passengers": [{
-                    "firstName": 'Dennis',
-                    "lastName" : 'Jensen',
-                    "city" : 'Hundested',
-                    "country" : 'Denmark',
-                    "street" : 'Jernbanegade'
-                }]},
-                function (err, res, body) {
+                method: 'POST',
+                json: {
+                    "Passengers": [{
+                        "firstName": 'Dennis',
+                        "lastName": 'Jensen',
+                        "city": 'Hundested',
+                        "country": 'Denmark',
+                        "street": 'Jernbanegade'
+                    }]
+                },
+                function (err, res, body){
                 console.log(body)
                 if (!err && res.statusCode == 200) {
-                    callback(null,body);
-                }else{
+                    callback(null, body);
+                } else {
                     callback(err);
                 }
-                })
+            }
+        });
         }
-    });
+    })
 }
 
 function get_Departure_Date(departure, date, callback) {
