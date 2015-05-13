@@ -77,8 +77,8 @@ function getAirlineUrls(callback) {
         if (err) {
             callback(err);
         } else {
-            for (var item in airlines) {
-                urls.push(item.url);
+            for (var i in airlines) {
+                urls.push(airlines[i].url);
             }
             callback(err, urls);
         }
@@ -103,18 +103,25 @@ function createAirline(name,url,callback){
 }
 
 function get_Departure_Date(departure,date,callback){
+    var count =0;
     getAirlineUrls(function(err,urls){
         var storage = [];
         for(var x = 0;x<urls.length;x++){
             var path = urls[x] + departure + "/" + date;
+            console.log(path)
+            console.log(x)
+            console.log(urls.length-1)
             request(path,function(err,res,body){
                 if(err){
                     callback(err)
                 }else{
                     storage.push(body);
-                    if(x==urls.length-1){
-                        callback(err,storage);
+                    console.log(count)
+                    console.log(urls.length-1)
+                    if(count==urls.length-1){
+                        callback(null,storage);
                     }
+                    count++
                 }
             })
         }
