@@ -22,3 +22,13 @@ var facade = require('./Facade');
 //facade.findUser('Dennis',function(err,user){
 //    console.log(user);
 //})
+//
+facade.createAirline('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
+facade.createAirline('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
