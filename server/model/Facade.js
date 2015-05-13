@@ -101,7 +101,7 @@ function createAirline(name, url, callback) {
         }
     })
 }
-function post_reservation_flightID(name,flightId,customer,callback) {
+function post_reservation_flightID(name, flightId, customer, callback) {
     airline.findOne({name: name}, function (err, airline) {
         if (err) {
             callback(err)
@@ -119,8 +119,7 @@ function post_reservation_flightID(name,flightId,customer,callback) {
                         "country": 'Denmark',
                         "street": 'Jernbanegade'
                     }]
-                },
-                function (err, res, body){
+                },function (err, res, body){
                 console.log(body)
                 if (!err && res.statusCode == 200) {
                     callback(null, body);
@@ -128,7 +127,7 @@ function post_reservation_flightID(name,flightId,customer,callback) {
                     callback(err);
                 }
             }
-        });
+            });
         }
     })
 }
@@ -139,12 +138,12 @@ function get_Departure_Date(departure, date, callback) {
             callback(err)
         } else {
             var storage = [];
-            var count=0;
-            airlines.forEach(function(airline){
+            var count = 0;
+            airlines.forEach(function (airline) {
                 var path = airline.url + departure + "/" + date;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        var flight ={name: airline.name, flights: body};
+                        var flight = {name: airline.name, flights: body};
                         storage.push(flight);
                         if (count == airlines.length - 1) {
                             callback(null, storage);
@@ -157,18 +156,18 @@ function get_Departure_Date(departure, date, callback) {
     })
 }
 
-function get_Departure_Arrival_Date(departure,arrival, date, callback) {
+function get_Departure_Arrival_Date(departure, arrival, date, callback) {
     getAirlineUrls(function (err, airlines) {
         if (err) {
             callback(err)
         } else {
             var storage = [];
-            var count=0;
-            airlines.forEach(function(airline){
+            var count = 0;
+            airlines.forEach(function (airline) {
                 var path = airline.url + departure + "/" + arrival + "/" + date;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        var flight ={name: airline.name, flights: body};
+                        var flight = {name: airline.name, flights: body};
                         storage.push(flight);
                         if (count == airlines.length - 1) {
                             callback(null, storage);
@@ -182,16 +181,16 @@ function get_Departure_Arrival_Date(departure,arrival, date, callback) {
     })
 }
 
-function get_Reservation(name,reservationId, callback) {
-    airline.findOne({name : name},function(err,airline){
-        if(err){
+function get_Reservation(name, reservationId, callback) {
+    airline.findOne({name: name}, function (err, airline) {
+        if (err) {
             callback(err)
-        }else{
+        } else {
             var path = airline.url + reservationId;
             request(path, function (err, res, body) {
                 if (!err && res.statusCode == 200) {
-                    callback(null,body);
-                }else{
+                    callback(null, body);
+                } else {
                     callback(err);
                 }
             })
@@ -199,16 +198,16 @@ function get_Reservation(name,reservationId, callback) {
     });
 }
 
-function delete_Reservation(name,reservationId,callback){
-    airline.findOne({name : name},function(err,airline) {
+function delete_Reservation(name, reservationId, callback) {
+    airline.findOne({name: name}, function (err, airline) {
         if (err) {
             callback(err)
         } else {
             var path = airline.url + reservationId;
-            request.del(path,function(err,res,body){
-                if(!err && res.statusCode == 200){
-                    callback(null,body)
-                }else{
+            request.del(path, function (err, res, body) {
+                if (!err && res.statusCode == 200) {
+                    callback(null, body)
+                } else {
                     callback(err);
                 }
             })
@@ -225,10 +224,10 @@ module.exports = {
     updateUserTickets: updateUserTickets,
     removeUserTickets: removeUserTickets,
     get_Departure_Date: get_Departure_Date,
-    get_Departure_Arrival_Date : get_Departure_Arrival_Date,
-    get_Reservation : get_Reservation,
+    get_Departure_Arrival_Date: get_Departure_Arrival_Date,
+    get_Reservation: get_Reservation,
     post_reservation_flightID: post_reservation_flightID
-    get_Reservation : get_Reservation,
-    delete_Reservation : delete_Reservation
+    get_Reservation: get_Reservation,
+    delete_Reservation: delete_Reservation
 };
 
