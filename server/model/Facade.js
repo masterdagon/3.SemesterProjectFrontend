@@ -119,15 +119,15 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                         "country": 'Denmark',
                         "street": 'Jernbanegade'
                     }]
-                },function (err, res, body){
+                }},function (err, res, body){
                 console.log(body)
                 if (!err && res.statusCode == 200) {
                     callback(null, body);
                 } else {
                     callback(err);
                 }
-            }
-            });
+                }
+            );
         }
     })
 }
@@ -226,7 +226,7 @@ module.exports = {
     get_Departure_Date: get_Departure_Date,
     get_Departure_Arrival_Date: get_Departure_Arrival_Date,
     get_Reservation: get_Reservation,
-    post_reservation_flightID: post_reservation_flightID
+    post_reservation_flightID: post_reservation_flightID,
     get_Reservation: get_Reservation,
     delete_Reservation: delete_Reservation
 };
