@@ -107,11 +107,19 @@ function post_reservation_flightID(name,flightId,customer,callback){
             callback(err)
         }else{
             var path = airline.url + flightId;
+                console.log(path)
             request({
-                url: 'http://localhost:3000/api/persons',
+                url: path,
                 method : 'POST',
-                json: {"Passengers": customer}
-                    }, function (error, response, body) {
+                json: {"Passengers": [{
+                    "firstName": 'Dennis',
+                    "lastName" : 'Jensen',
+                    "city" : 'Hundested',
+                    "country" : 'Denmark',
+                    "street" : 'Jernbanegade'
+                }]},
+                function (err, res, body) {
+                console.log(body)
                 if (!err && res.statusCode == 200) {
                     callback(null,body);
                 }else{
@@ -198,6 +206,7 @@ module.exports = {
     removeUserTickets: removeUserTickets,
     get_Departure_Date: get_Departure_Date,
     get_Departure_Arrival_Date : get_Departure_Arrival_Date,
-    get_Reservation : get_Reservation
+    get_Reservation : get_Reservation,
+    post_reservation_flightID: post_reservation_flightID
 };
 
