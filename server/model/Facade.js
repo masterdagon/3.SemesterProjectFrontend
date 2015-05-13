@@ -77,10 +77,10 @@ function getAirlineUrls(callback) {
         if (err) {
             callback(err);
         } else {
-            for (var i in airlines) {
-                urls.push(airlines[i].url);
-            }
-            callback(err, urls);
+            //for (var i in airlines) {
+            //    urls.push(airlines[i].url);
+            //}
+            callback(err, airlines);
         }
     });
 
@@ -104,26 +104,28 @@ function createAirline(name, url, callback) {
 
 function get_Departure_Date(departure, date, callback) {
     var count = 0;
-    getAirlineUrls(function (err, urls) {
+    getAirlineUrls(function (err, airlines) {
         if (err) {
             callback(err)
         } else {
             var storage = [];
-            for (var x = 0; x < urls.length; x++) {
-                var path = urls[x] + departure + "/" + date;
+            for (var x = 0; x < airlines.length; x++) {
+                var path = airlines[x].url + departure + "/" + date;
                 console.log(path)
                 console.log(x)
-                console.log(urls.length - 1)
+                console.log(airlines.length - 1)
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        storage.push(body);
+                        var flight ={name: airlines[count].name, flights: body};
+                        storage.push(flight);
                         console.log(count)
-                        console.log(urls.length - 1)
-                        if (count == urls.length - 1) {
+                        console.log(airlines.length - 1)
+                        if (count == airlines.length - 1) {
                             callback(null, storage);
                         }
-                        count++
+
                     }
+                    count++
                 })
             }
         }
