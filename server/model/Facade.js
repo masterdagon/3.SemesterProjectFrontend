@@ -127,6 +127,31 @@ function get_Departure_Date(departure, date, callback) {
     })
 }
 
+function get_Departure_Arrival_Date(departure,arrival, date, callback) {
+    getAirlineUrls(function (err, airlines) {
+        if (err) {
+            callback(err)
+        } else {
+            var storage = [];
+            var count=0;
+            airlines.forEach(function(airline){
+                var path = airline.url + departure + "/" + arrival + "/" + date;
+                request(path, function (err, res, body) {
+                    if (!err && res.statusCode == 200) {
+                        var flight ={name: airline.name, flights: body};
+                        storage.push(flight);
+                        if (count == airlines.length - 1) {
+                            callback(null, storage);
+                        }
+                    }
+                    count++;
+                })
+            })
+        }
+
+    })
+}
+
 module.exports = {
     createUser: createUser,
     getAirlineUrls: getAirlineUrls,
@@ -135,6 +160,7 @@ module.exports = {
     createAirline: createAirline,
     updateUserTickets: updateUserTickets,
     removeUserTickets: removeUserTickets,
-    get_Departure_Date: get_Departure_Date
+    get_Departure_Date: get_Departure_Date,
+    get_Departure_Arrival_Date : get_Departure_Arrival_Date
 };
 
