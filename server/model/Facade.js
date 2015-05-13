@@ -103,31 +103,42 @@ function createAirline(name, url, callback) {
 }
 
 function get_Departure_Date(departure, date, callback) {
-    var count = 0;
     getAirlineUrls(function (err, airlines) {
         if (err) {
             callback(err)
         } else {
             var storage = [];
-            for (var x = 0; x < airlines.length; x++) {
-                var path = airlines[x].url + departure + "/" + date;
+            count=0;
+            airlines.forEach(function(airline){
+                var path = airline.url + departure + "/" + date;
                 console.log(path)
-                console.log(x)
-                console.log(airlines.length - 1)
+                console.log(count)
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        var flight ={name: airlines[count].name, flights: body};
+                        var flight ={name: airline.name, flights: body};
                         storage.push(flight);
-                        console.log(count)
-                        console.log(airlines.length - 1)
                         if (count == airlines.length - 1) {
                             callback(null, storage);
                         }
-
                     }
-                    count++
                 })
-            }
+                count++;
+            })
+
+            //for (var count = 0; count < airlines.length; count++) {
+            //    var path = airlines[count].url + departure + "/" + date;
+            //    request(path, function (err, res, body) {
+            //        console.log(count)
+            //        if (!err && res.statusCode == 200) {
+            //            console.log(count)
+            //            var flight ={name: airlines[count].name, flights: body};
+            //            storage.push(flight);
+            //            if (count == airlines.length - 1) {
+            //                callback(null, storage);
+            //            }
+            //        }
+            //    })
+            //}
         }
 
     })
