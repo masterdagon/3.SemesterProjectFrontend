@@ -188,7 +188,9 @@ function get_Departure_Arrival_Date(departure, arrival, date, callback) {
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
                         var flight = {name: airline.name, flights: JSON.parse(body)};
-                        storage.push(flight);
+                        if(flight.flights.length > 0){
+                            storage.push(flight);
+                        }
                         if (count == airlines.length - 1) {
                             callback(null, storage);
                         }
