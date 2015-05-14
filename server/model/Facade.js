@@ -160,7 +160,6 @@ function get_Departure_Date(departure, date, callback) {
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
                         var flight = {name: airline.name, flights: JSON.parse(body)};
-                        storage.push(flight);
                         if(flight.flights.length > 0){
                             storage.push(flight);
                         }
@@ -220,7 +219,7 @@ function get_Reservation(name, reservationId, callback) {
                 if (!err && res.statusCode == 200) {
                     callback(null, JSON.parse(body));
                 } else {
-                    callback(err);
+                    callback(JSON.parse(body));
                 }
             })
         }
@@ -229,15 +228,19 @@ function get_Reservation(name, reservationId, callback) {
 
 function delete_Reservation(name, reservationId, callback) {
     airline.findOne({name: name}, function (err, airline) {
-        if (err) {
-            callback(err)
+        if (!airline) {
+            callback({code: 3, message: 'Invalid ReservationID', description:'the reservation could not be found' })
         } else {
             var path = airline.url + reservationId;
             request.del(path, function (err, res, body) {
-                if (!err && res.statusCode == 200) {
-                    callback(null, JSON.parse(body))
-                } else {
-                    callback(err);
+                if(err){
+                    callback(err)
+                }else{
+                    if (!err && res.statusCode == 200) {
+                        callback(null, JSON.parse(body))
+                    } else {
+                        callback(JSON.parse(body));
+                    }
                 }
             })
         }

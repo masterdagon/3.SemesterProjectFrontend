@@ -67,10 +67,10 @@ var facade = require('./Facade');
 //    console.log(err)
 //    console.log(data)
 //
-//facade.delete_Reservation('gruppe 7',552,function(err,reserv){
-//    console.log(err)
-//    console.log(reserv)
-//})
+facade.delete_Reservation('gruppe 7',552,function(err,reserv){
+    console.log(err)
+    console.log(reserv)
+})
 //
 //})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
 //    console.log(flights)
