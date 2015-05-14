@@ -45,14 +45,29 @@ facade.createAdmin('Martin','mailtest','Abcd1234',function(err, user){
 //facade.get_Departure_Date('BER',1431512436091,function(err,flights){
 //    console.log(flights)
 //})
+//var customer =[{
+//    firstName: 'Dennis',
+//    lastName : 'Jensen',
+//    city : 'Hundested',
+//    country : 'Denmark',
+//    street : 'Jernbanegade'
+//},{
+//    firstName: 'Martin',
+//    lastName : 'Nielsen',
+//    city : 'Lynge',
+//    country : 'Denmark',
+//    street : 'Amtsvejen'
+//}]
 
-//facade.post_reservation_flightID('gruppe 7','5',null,function(err,data){
+//facade.post_reservation_flightID('gruppe 7','5',customer,function(err,data){
 //    console.log(err)
 //    console.log(data)
 //
-//})
-
 //facade.delete_Reservation('gruppe 7',552,function(err,reserv){
 //    console.log(err)
 //    console.log(reserv)
 //})
+//
+//})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
+//    console.log(flights)
+//});

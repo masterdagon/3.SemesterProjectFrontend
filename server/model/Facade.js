@@ -78,7 +78,7 @@ function comparePW(userName, pw, callback) {
             callback(err);
         } else {
             bcrypt.compare(pw, foundUser.pw, function (err, res) {
-                callback(err, res, foundUser);
+                callback(err, res);
             })
         }
     })
@@ -132,23 +132,24 @@ function post_reservation_flightID(name, flightId, customer, callback) {
             var path = airline.url + flightId;
             console.log(path)
             request({
-                url: path,
-                method: 'POST',
-                json: {
+                    url: path,
+                    method: 'POST',
+                    json: {
                         "Passengers": [{
-                        "firstName": 'Dennis',
-                        "lastName": 'Jensen',
-                        "city": 'Hundested',
-                        "country": 'Denmark',
-                        "street": 'Jernbanegade'
-                    }]
-                }},function (err, res, body){
-                console.log(body)
-                if (!err && res.statusCode == 200) {
-                    callback(null, body);
-                } else {
-                    callback(err);
-                }
+                            "firstName": 'Dennis',
+                            "lastName": 'Jensen',
+                            "city": 'Hundested',
+                            "country": 'Denmark',
+                            "street": 'Jernbanegade'
+                        }]
+                    }
+                }, function (err, res, body) {
+                    console.log(body)
+                    if (!err && res.statusCode == 200) {
+                        callback(null, body);
+                    } else {
+                        callback(err);
+                    }
                 }
             );
         }
@@ -251,7 +252,6 @@ module.exports = {
     get_Reservation: get_Reservation,
     post_reservation_flightID: post_reservation_flightID,
     get_Reservation: get_Reservation,
-    delete_Reservation: delete_Reservation,
-    createAdmin: createAdmin
+    delete_Reservation: delete_Reservation
 };
 
