@@ -162,6 +162,9 @@ function get_Departure_Date(departure, date, callback) {
                         var flight = {name: airline.name, flights: JSON.parse(body)};
                         storage.push(flight);
                     }
+                    if(flight.flights.length > 0){
+                        storage.push(flight);
+                    }
                     count++;
                     if (count == airlines.length) {
                         if(storage.length>0){
@@ -191,11 +194,15 @@ function get_Departure_Arrival_Date(departure, arrival, date, callback) {
                         if(flight.flights.length > 0){
                             storage.push(flight);
                         }
-                        if (count == airlines.length - 1) {
-                            callback(null, storage);
-                        }
                     }
                     count++;
+                    if (count == airlines.length) {
+                        if(storage.length>0){
+                            callback(null, storage);
+                        }else{
+                            callback(JSON.parse(body));
+                        }
+                    }
                 })
             })
         }
