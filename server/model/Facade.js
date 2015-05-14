@@ -119,7 +119,7 @@ function findUser(userName, callback) {
 }
 
 function createServer(name, url, callback) {
-    var newServer = new airline({
+    var newServer = new server({
         name: name,
         url: url
     });
@@ -283,10 +283,9 @@ function delete_Reservation(name, reservationId, callback) {
 module.exports = {
     createUser: createUser,
     createAdmin: createAdmin,
-    getAirlineUrls: getAirlineUrls,
     findUser: findUser,
     comparePW: comparePW,
-    createAirline: createAirline,
+    createServer: createServer,
     updateUserTickets: updateUserTickets,
     removeUserTickets: removeUserTickets,
     get_Departure_Date: get_Departure_Date,
