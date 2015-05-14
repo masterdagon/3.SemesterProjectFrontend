@@ -163,6 +163,7 @@ function get_Departure_Date(departure, date, callback) {
                         if(flight.flights.length > 0){
                             storage.push(flight);
                         }
+
                     }
                     count++;
                     if (count == airlines.length) {

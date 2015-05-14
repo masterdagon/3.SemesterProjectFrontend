@@ -20,7 +20,8 @@ router.get('/f/:departure/:date',function(req,res){
 
         facade.get_Departure_Date(departure, date, function (err, array) {
             if (err) {
-
+                res.status = 404;
+                res.end(JSON.stringify(err));
             } else {
                 res.header("Content-type", "application/json");
                 res.end(JSON.stringify(array));
@@ -40,7 +41,8 @@ router.get('/f/:departure/:arrival/:date',function(req,res){
         var date = req.params.date;
         facade.get_Departure_Arrival_Date(departure, arrival, date, function (err, array) {
             if (err) {
-
+                res.status = 404;
+                res.end(JSON.stringify(err));
             } else {
                 res.header("Content-type", "application/json");
                 res.end(JSON.stringify(array));
@@ -59,7 +61,8 @@ router.get('/r/:name/:reservationID',function(req,res){
         var name = req.params.name;
         facade.get_Reservation(name, rID, function (err, json) {
             if (err) {
-
+                res.status = 404;
+                res.end(JSON.stringify(err));
             } else {
                 res.header("Content-type", "application/json");
                 res.end(JSON.stringify(json));
@@ -79,7 +82,8 @@ router.post('/r/:name/:flightID',function(req,res){
         var customers = req.body;
         facade.post_reservation_flightID(name, fID, customers, function (err, json) {
             if (err) {
-
+                res.status = 404;
+                res.end(JSON.stringify(err));
             } else {
                 res.header("Content-type", "application/json");
                 res.end(JSON.stringify(json));
@@ -98,7 +102,8 @@ router.delete('/r/:name/:reservationID',function(req,res){
         var rID = req.params.reservationID;
         facade.delete_Reservation(name, rID, function (err, json) {
             if (err) {
-
+                res.status = 404;
+                res.end(JSON.stringify(err));
             } else {
                 res.header("Content-type", "application/json");
                 res.end(JSON.stringify(json));
