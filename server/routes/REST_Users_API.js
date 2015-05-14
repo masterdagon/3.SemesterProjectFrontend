@@ -7,7 +7,7 @@ router.get('/test', function(req, res) {
     res.end('{"msg" : "Test Message fetched from the server, You are logged on as a User since you could fetch this data"}');
 });
 
-router.get('/f/:departure/:date'),function(req,res){
+router.get('/f/:departure/:date',function(req,res){
     var departure = req.params.departure;
     var date = req.params.date;
     console.log("Departure: " + departure);
@@ -18,10 +18,10 @@ router.get('/f/:departure/:date'),function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.parse(array));
+            res.end(JSON.stringify(array));
         }
     })
-};
+});
 
 router.get('/f/:departure/:arrival/:date',function(req,res){
     var departure = req.params.departure;
@@ -32,7 +32,7 @@ router.get('/f/:departure/:arrival/:date',function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.parse(array));
+            res.end(JSON.stringify(array));
         }
     })
 });
@@ -45,7 +45,7 @@ router.get('/r/:name/:reservationID',function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.parse(json));
+            res.end(JSON.stringify(json));
         }
     })
 });
@@ -53,13 +53,13 @@ router.get('/r/:name/:reservationID',function(req,res){
 router.post('/r/:name/:flightID',function(req,res){
     var fID = req.params.flightID;
     var name = req.params.name;
-    var customers = JSON.parse(req.body);
+    var customers = req.body;
     facade.post_reservation_flightID(name,fID,customers,function(err,json){
         if(err){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.parse(json));
+            res.end(JSON.stringify(json));
         }
     })
 });
@@ -72,7 +72,7 @@ router.delete('/r/:name/:reservationID',function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.parse(json));
+            res.end(JSON.stringify(json));
         }
     })
 });

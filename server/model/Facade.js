@@ -134,15 +134,7 @@ function post_reservation_flightID(name, flightId, customer, callback) {
             request({
                     url: path,
                     method: 'POST',
-                    json: {
-                        "Passengers": [{
-                            "firstName": 'Dennis',
-                            "lastName": 'Jensen',
-                            "city": 'Hundested',
-                            "country": 'Denmark',
-                            "street": 'Jernbanegade'
-                        }]
-                    }
+                    json: customer
                 }, function (err, res, body) {
                     console.log(body)
                     if (!err && res.statusCode == 200) {
@@ -167,7 +159,7 @@ function get_Departure_Date(departure, date, callback) {
                 var path = airline.url + departure + "/" + date;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        var flight = {name: airline.name, flights: body};
+                        var flight = {name: airline.name, flights: JSON.parse(body)};
                         storage.push(flight);
                         if (count == airlines.length - 1) {
                             callback(null, storage);
@@ -191,7 +183,7 @@ function get_Departure_Arrival_Date(departure, arrival, date, callback) {
                 var path = airline.url + departure + "/" + arrival + "/" + date;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        var flight = {name: airline.name, flights: body};
+                        var flight = {name: airline.name, flights: JSON.parse(body)};
                         storage.push(flight);
                         if (count == airlines.length - 1) {
                             callback(null, storage);
@@ -213,7 +205,7 @@ function get_Reservation(name, reservationId, callback) {
             var path = airline.url + reservationId;
             request(path, function (err, res, body) {
                 if (!err && res.statusCode == 200) {
-                    callback(null, body);
+                    callback(null, JSON.parse(body));
                 } else {
                     callback(err);
                 }
@@ -230,7 +222,7 @@ function delete_Reservation(name, reservationId, callback) {
             var path = airline.url + reservationId;
             request.del(path, function (err, res, body) {
                 if (!err && res.statusCode == 200) {
-                    callback(null, body)
+                    callback(null, JSON.parse(body))
                 } else {
                     callback(err);
                 }
