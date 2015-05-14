@@ -7,7 +7,7 @@ router.get('/test', function(req, res) {
     res.end('{"msg" : "Test Message fetched from the server, You are logged on as a User since you could fetch this data"}');
 });
 
-router.get('/:departure/:date'),function(req,res){
+router.get('/f/:departure/:date'),function(req,res){
     var departure = req.params.departure;
     var date = req.params.date;
     facade.get_Departure_Date(departure,date,function(err,array){
@@ -20,7 +20,7 @@ router.get('/:departure/:date'),function(req,res){
     })
 };
 
-router.get('/:departure/:arrival/:date',function(req,res){
+router.get('/f/:departure/:arrival/:date',function(req,res){
     var departure = req.params.departure;
     var arrival = req.params.arrival;
     var date = req.params.date;
@@ -34,7 +34,7 @@ router.get('/:departure/:arrival/:date',function(req,res){
     })
 });
 
-router.get('/:name/:reservationID',function(req,res){
+router.get('/r/:name/:reservationID',function(req,res){
     var rID = req.params.reservationID;
     var name = req.params.name;
     facade.get_Reservation(name,rID,function(err,json){
@@ -47,7 +47,7 @@ router.get('/:name/:reservationID',function(req,res){
     })
 });
 
-router.post('/:name/:flightID',function(req,res){
+router.post('/r/:name/:flightID',function(req,res){
     var fID = req.params.flightID;
     var name = req.params.name;
     var customers = JSON.parse(req.body);
@@ -61,7 +61,7 @@ router.post('/:name/:flightID',function(req,res){
     })
 });
 
-router.delete('/:name/:reservationID',function(req,res){
+router.delete('/r/:name/:reservationID',function(req,res){
     var name = req.params.name;
     var rID = req.params.reservationID;
     facade.delete_Reservation(name,rID,function(err,json){
