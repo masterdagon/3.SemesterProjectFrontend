@@ -61,7 +61,7 @@ router.post('/:name/:flightID',function(req,res){
     })
 });
 
-router.del('/:name/:reservationID',function(req,res){
+router.delete('/:name/:reservationID',function(req,res){
     var name = req.params.name;
     var rID = req.params.reservationID;
     facade.delete_Reservation(name,rID,function(err,json){

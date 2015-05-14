@@ -23,42 +23,42 @@ var facade = require('./Facade');
 //    console.log(user);
 //})
 
-//facade.createAirline('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-//
-//facade.createAirline('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-//
-//facade.createAirline('gruppe 7','http://Airline7-team007.rhcloud.com/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
+facade.createAirline('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
+facade.createAirline('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
+facade.createAirline('gruppe 7','http://Airline7-team007.rhcloud.com/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
 
 //facade.get_Departure_Date('BER',1431512436091,function(err,flights){
 //    console.log(flights)
 //})
-var customer =[{
-    firstName: 'Dennis',
-    lastName : 'Jensen',
-    city : 'Hundested',
-    country : 'Denmark',
-    street : 'Jernbanegade'
-},{
-    firstName: 'Martin',
-    lastName : 'Nielsen',
-    city : 'Lynge',
-    country : 'Denmark',
-    street : 'Amtsvejen'
-}]
+//var customer =[{
+//    firstName: 'Dennis',
+//    lastName : 'Jensen',
+//    city : 'Hundested',
+//    country : 'Denmark',
+//    street : 'Jernbanegade'
+//},{
+//    firstName: 'Martin',
+//    lastName : 'Nielsen',
+//    city : 'Lynge',
+//    country : 'Denmark',
+//    street : 'Amtsvejen'
+//}]
 
-facade.post_reservation_flightID('gruppe 7','5',customer,function(err,data){
-    console.log(err)
-    console.log(data)
-
-})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
-    console.log(flights)
-});
+//facade.post_reservation_flightID('gruppe 7','5',customer,function(err,data){
+//    console.log(err)
+//    console.log(data)
+//
+//})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
+//    console.log(flights)
+//});
