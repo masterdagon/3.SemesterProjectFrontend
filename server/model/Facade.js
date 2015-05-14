@@ -94,18 +94,6 @@ function findUser(userName, callback) {
     })
 }
 
-function getServerUrls(callback) {
-    var urls = [];
-    server.find({}, function (err, server) {
-        if (err) {
-            callback(err);
-        } else {
-            callback(err, server);
-        }
-    });
-
-}
-
 function createServer(name, url, callback) {
     console.log('name= ' + name)
     console.log('url= ' + url)
@@ -151,7 +139,7 @@ function post_reservation_flightID(name, flightId, customer, callback) {
 }
 
 function get_Departure_Date(departure, date, callback) {
-    getServerUrls(function (err, servers) {
+    server.find({}, function (err, servers) {
         if (err) {
             callback(err)
         } else {
@@ -186,7 +174,7 @@ function get_Departure_Date(departure, date, callback) {
 }
 
 function get_Departure_Arrival_Date(departure, arrival, date, callback) {
-    getAirlineUrls(function (err, servers) {
+    server.find({}, function (err, servers) {
         if (err) {
             callback(err)
         } else {
@@ -216,8 +204,7 @@ function get_Departure_Arrival_Date(departure, arrival, date, callback) {
                 })
             })
         }
-
-    })
+    });
 }
 
 function get_Reservation(name, reservationId, callback) {
@@ -269,7 +256,8 @@ function delete_Reservation(name, reservationId, callback) {
 
 module.exports = {
     createUser: createUser,
-    getServerUrls: getServerUrls,
+    createAdmin: createAdmin,
+    getAirlineUrls: getAirlineUrls,
     findUser: findUser,
     comparePW: comparePW,
     createServer: createServer,
