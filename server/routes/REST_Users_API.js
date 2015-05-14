@@ -8,73 +8,103 @@ router.get('/test', function(req, res) {
 });
 
 router.get('/f/:departure/:date',function(req,res){
-    var departure = req.params.departure;
-    var date = req.params.date;
-    console.log("Departure: " + departure);
-    console.log("Date: " + date);
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" database not available)");
+        return;
+    }else {
+        var departure = req.params.departure;
+        var date = req.params.date;
+        console.log("Departure: " + departure);
+        console.log("Date: " + date);
 
-    facade.get_Departure_Date(departure,date,function(err,array){
-        if(err){
+        facade.get_Departure_Date(departure, date, function (err, array) {
+            if (err) {
 
-        }else{
-            res.header("Content-type","application/json");
-            res.end(JSON.stringify(array));
-        }
-    })
+            } else {
+                res.header("Content-type", "application/json");
+                res.end(JSON.stringify(array));
+            }
+        })
+    }
 });
 
 router.get('/f/:departure/:arrival/:date',function(req,res){
-    var departure = req.params.departure;
-    var arrival = req.params.arrival;
-    var date = req.params.date;
-    facade.get_Departure_Arrival_Date(departure,arrival,date,function(err,array){
-        if(err){
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" database not available)");
+        return;
+    }else {
+        var departure = req.params.departure;
+        var arrival = req.params.arrival;
+        var date = req.params.date;
+        facade.get_Departure_Arrival_Date(departure, arrival, date, function (err, array) {
+            if (err) {
 
-        }else{
-            res.header("Content-type","application/json");
-            res.end(JSON.stringify(array));
-        }
-    })
+            } else {
+                res.header("Content-type", "application/json");
+                res.end(JSON.stringify(array));
+            }
+        })
+    }
 });
 
 router.get('/r/:name/:reservationID',function(req,res){
-    var rID = req.params.reservationID;
-    var name = req.params.name;
-    facade.get_Reservation(name,rID,function(err,json){
-        if(err){
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" database not available)");
+        return;
+    }else {
+        var rID = req.params.reservationID;
+        var name = req.params.name;
+        facade.get_Reservation(name, rID, function (err, json) {
+            if (err) {
 
-        }else{
-            res.header("Content-type","application/json");
-            res.end(JSON.stringify(json));
-        }
-    })
+            } else {
+                res.header("Content-type", "application/json");
+                res.end(JSON.stringify(json));
+            }
+        })
+    }
 });
 
 router.post('/r/:name/:flightID',function(req,res){
-    var fID = req.params.flightID;
-    var name = req.params.name;
-    var customers = req.body;
-    facade.post_reservation_flightID(name,fID,customers,function(err,json){
-        if(err){
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" database not available)");
+        return;
+    }else {
+        var fID = req.params.flightID;
+        var name = req.params.name;
+        var customers = req.body;
+        facade.post_reservation_flightID(name, fID, customers, function (err, json) {
+            if (err) {
 
-        }else{
-            res.header("Content-type","application/json");
-            res.end(JSON.stringify(json));
-        }
-    })
+            } else {
+                res.header("Content-type", "application/json");
+                res.end(JSON.stringify(json));
+            }
+        })
+    }
 });
 
 router.delete('/r/:name/:reservationID',function(req,res){
-    var name = req.params.name;
-    var rID = req.params.reservationID;
-    facade.delete_Reservation(name,rID,function(err,json){
-        if(err){
+    if(typeof global.mongo_error !== "undefined"){
+        res.status(500);
+        res.end("Error: "+global.mongo_error+" database not available)");
+        return;
+    }else {
+        var name = req.params.name;
+        var rID = req.params.reservationID;
+        facade.delete_Reservation(name, rID, function (err, json) {
+            if (err) {
 
-        }else{
-            res.header("Content-type","application/json");
-            res.end(JSON.stringify(json));
-        }
-    })
+            } else {
+                res.header("Content-type", "application/json");
+                res.end(JSON.stringify(json));
+            }
+        })
+    }
 });
 
 module.exports = router;
