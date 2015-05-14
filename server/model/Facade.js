@@ -229,22 +229,27 @@ function get_Reservation(name, reservationId, callback) {
 
 function delete_Reservation(name, reservationId, callback) {
     airline.findOne({name: name}, function (err, airline) {
-        if (!airline) {
-            callback({code: 3, message: 'Invalid ReservationID', description:'the reservation could not be found' })
-        } else {
-            var path = airline.url + reservationId;
-            request.del(path, function (err, res, body) {
-                if(err){
-                    callback(err)
-                }else{
-                    if (!err && res.statusCode == 200) {
-                        callback(null, JSON.parse(body))
-                    } else {
-                        callback(JSON.parse(body));
+        if(!err){
+            if (!airline) {
+                callback({code: 3, message: 'Invalid ReservationID', description:'the reservation could not be found' })
+            } else {
+                var path = airline.url + reservationId;
+                request.del(path, function (err, res, body) {
+                    if(err){
+                        callback(err)
+                    }else{
+                        if (!err && res.statusCode == 200) {
+                            callback(null, JSON.parse(body))
+                        } else {
+                            callback(JSON.parse(body));
+                        }
                     }
-                }
-            })
+                })
+            }
+        }else{
+            callback(err)
         }
+
     })
 }
 
