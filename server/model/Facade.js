@@ -109,23 +109,24 @@ function post_reservation_flightID(name, flightId, customer, callback) {
             var path = airline.url + flightId;
             console.log(path)
             request({
-                url: path,
-                method: 'POST',
-                json: {
-                    "Passengers": [{
-                        "firstName": 'Dennis',
-                        "lastName": 'Jensen',
-                        "city": 'Hundested',
-                        "country": 'Denmark',
-                        "street": 'Jernbanegade'
-                    }]
-                }},function (err, res, body){
-                console.log(body)
-                if (!err && res.statusCode == 200) {
-                    callback(null, body);
-                } else {
-                    callback(err);
-                }
+                    url: path,
+                    method: 'POST',
+                    json: {
+                        "Passengers": [{
+                            "firstName": 'Dennis',
+                            "lastName": 'Jensen',
+                            "city": 'Hundested',
+                            "country": 'Denmark',
+                            "street": 'Jernbanegade'
+                        }]
+                    }
+                }, function (err, res, body) {
+                    console.log(body)
+                    if (!err && res.statusCode == 200) {
+                        callback(null, body);
+                    } else {
+                        callback(err);
+                    }
                 }
             );
         }

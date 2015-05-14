@@ -1,4 +1,5 @@
 var express = require('express');
+var facade = require('../model/Facade');
 
 var router = express.Router();
 router.get('/test', function(req, res) {
