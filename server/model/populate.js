@@ -41,9 +41,11 @@ var facade = require('./Facade');
 //    console.log(err)
 //    console.log(airline)
 //});
-
+//
 //facade.get_Departure_Date('JKA',1431512436091,function(err,flights){
-//    console.log(err)
+//    if(err){
+//        console.log(err)
+//    }
 //    console.log(flights)
 //})
 
