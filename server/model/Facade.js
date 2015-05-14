@@ -257,7 +257,6 @@ function delete_Reservation(name, reservationId, callback) {
 module.exports = {
     createUser: createUser,
     createAdmin: createAdmin,
-    getAirlineUrls: getAirlineUrls,
     findUser: findUser,
     comparePW: comparePW,
     createServer: createServer,
