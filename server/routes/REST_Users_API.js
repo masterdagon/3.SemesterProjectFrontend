@@ -10,6 +10,9 @@ router.get('/test', function(req, res) {
 router.get('/f/:departure/:date'),function(req,res){
     var departure = req.params.departure;
     var date = req.params.date;
+    console.log("Departure: " + departure);
+    console.log("Date: " + date);
+
     facade.get_Departure_Date(departure,date,function(err,array){
         if(err){
 
