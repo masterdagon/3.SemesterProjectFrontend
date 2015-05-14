@@ -19,7 +19,12 @@ router.post('/authenticate', function (req, res) {
                     id: user._id
                 };
                 // We are sending the profile inside the token
-                var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, {expiresInMinutes: 60 * 5});
+                if(user.role == 'user'){
+                    var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, {expiresInMinutes: 60 * 5});
+                }
+                if(user.role == 'admin'){
+                    var token = jwt.sign(profile, require("../security/secrets").secretTokenAdmin, { expiresInMinutes: 60*5 });
+                }
                 res.json({token: token});
                 return;
             }
