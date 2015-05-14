@@ -53,8 +53,16 @@ function createAdmin(userName, email, pw, callback) {
 
 function removeUserTickets(userName, ticketID, callback) {
     user.findOneAndUpdate({userName: userName},
-        {$pull: {tickets: {_id: ticketID}}}, function (err, data) {
-            callback(err, data);
+        {$pull: {tickets: {_id: ticketID}}}, function (err, user) {
+            if(err){
+                callback(err);
+            }else{
+                if(!user){
+                    callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+                }else{
+                    callback(null, user);
+                }
+            }
         });
 }
 
@@ -68,7 +76,15 @@ function updateUserTickets(userName, airline, flightInstanceID, reservationID, c
     user.findOneAndUpdate({userName: userName}, {
         $push: {tickets: item}
     }, function (err, user) {
-        callback(err, user);
+        if(err){
+            callback(err);
+        }else{
+            if(!user){
+                callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+            }else{
+                callback(null, user);
+            }
+        }
     })
 }
 
@@ -77,9 +93,13 @@ function comparePW(userName, pw, callback) {
         if (err) {
             callback(err);
         } else {
-            bcrypt.compare(pw, foundUser.pw, function (err, res) {
-                callback(err, res);
-            })
+            if(!foundUser){
+                callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+            }else{
+                bcrypt.compare(pw, foundUser.pw, function (err, res) {
+                    callback(err, res);
+                })
+            }
         }
     })
 }
@@ -89,14 +109,16 @@ function findUser(userName, callback) {
         if (err) {
             callback(err)
         } else {
-            callback(null, theUser)
+            if(!theUser){
+                callback(null, theUser)
+            }else{
+                callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+            }
         }
     })
 }
 
 function createServer(name, url, callback) {
-    console.log('name= ' + name)
-    console.log('url= ' + url)
     var newServer = new airline({
         name: name,
         url: url
@@ -109,6 +131,7 @@ function createServer(name, url, callback) {
         }
     })
 }
+
 function post_reservation_flightID(name, flightId, customer, callback) {
     server.findOne({name: name}, function (err, server) {
         if (!err) {
@@ -122,11 +145,14 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                         method: 'POST',
                         json: customer
                     }, function (err, res, body) {
-                        console.log(body)
-                        if (!err && res.statusCode == 200) {
-                            callback(null, body);
-                        } else {
+                        if(err){
                             callback(err);
+                        }else{
+                            if (res.statusCode == 200) {
+                                callback(null, JSON.parse(body));
+                            } else {
+                                callback(JSON.parse(body));
+                            }
                         }
                     }
                 );
