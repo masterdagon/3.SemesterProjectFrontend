@@ -15,7 +15,7 @@ router.get('/:departure/:date'),function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.stringify(array));
+            res.end(JSON.parse(array));
         }
     })
 };
@@ -29,7 +29,7 @@ router.get('/:departure/:arrival/:date',function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.stringify(array));
+            res.end(JSON.parse(array));
         }
     })
 });
@@ -42,7 +42,34 @@ router.get('/:name/:reservationID',function(req,res){
 
         }else{
             res.header("Content-type","application/json");
-            res.end(JSON.stringify(json));
+            res.end(JSON.parse(json));
+        }
+    })
+});
+
+router.post('/:name/:flightID',function(req,res){
+    var fID = req.params.flightID;
+    var name = req.params.name;
+    var customers = JSON.parse(req.body);
+    facade.post_reservation_flightID(name,fID,customers,function(err,json){
+        if(err){
+
+        }else{
+            res.header("Content-type","application/json");
+            res.end(JSON.parse(json));
+        }
+    })
+});
+
+router.del('/:name/:reservationID',function(req,res){
+    var name = req.params.name;
+    var rID = req.params.reservationID;
+    facade.delete_Reservation(name,rID,function(err,json){
+        if(err){
+
+        }else{
+            res.header("Content-type","application/json");
+            res.end(JSON.parse(json));
         }
     })
 });
