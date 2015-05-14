@@ -16,6 +16,7 @@ function createUser(userName, email, pw, callback) {
                 userName: userName,
                 email: email,
                 pw: hash,
+                role: 'user',
                 tickets: []
             });
             newuser.save(function (err) {
@@ -28,6 +29,28 @@ function createUser(userName, email, pw, callback) {
         });
     });
 }
+
+function createAdmin(userName, email, pw, callback) {
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(pw, salt, function (err, hash) {
+            var newuser = new user({
+                userName: userName,
+                email: email,
+                pw: hash,
+                role: 'admin',
+                tickets: []
+            });
+            newuser.save(function (err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(err, newuser)
+                }
+            });
+        });
+    });
+}
+
 function removeUserTickets(userName, ticketID, callback) {
     user.findOneAndUpdate({userName: userName},
         {$pull: {tickets: {_id: ticketID}}}, function (err, data) {
@@ -55,7 +78,7 @@ function comparePW(userName, pw, callback) {
             callback(err);
         } else {
             bcrypt.compare(pw, foundUser.pw, function (err, res) {
-                callback(err, res);
+                callback(err, res, foundUser);
             })
         }
     })
@@ -112,7 +135,7 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                 url: path,
                 method: 'POST',
                 json: {
-                    "Passengers": [{
+                        "Passengers": [{
                         "firstName": 'Dennis',
                         "lastName": 'Jensen',
                         "city": 'Hundested',
@@ -228,6 +251,7 @@ module.exports = {
     get_Reservation: get_Reservation,
     post_reservation_flightID: post_reservation_flightID,
     get_Reservation: get_Reservation,
-    delete_Reservation: delete_Reservation
+    delete_Reservation: delete_Reservation,
+    createAdmin: createAdmin
 };
 

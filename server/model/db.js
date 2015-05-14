@@ -52,6 +52,7 @@ var UserSchema = new mongoose.Schema({
   userName : {type: String, unique: true},
   email: {type: String, unique: true},
   pw: String,
+  role: String,
   tickets: [{
       airline: String,
       flightInstanceID: String,
