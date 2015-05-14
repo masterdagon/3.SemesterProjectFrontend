@@ -7,9 +7,9 @@ var facade = require('./Facade');
 //    console.log(user)
 //})
 
-facade.createAdmin('Martin','mailtest','Abcd1234',function(err, user){
-    console.log(user)
-})
+//facade.createAdmin('Martin','mailtest','Abcd1234',function(err, user){
+//    console.log(user)
+//})
 
 //facade.comparePW('Dennis','Abcd1234',function(err, res){
 //    console.log(res);
@@ -42,9 +42,11 @@ facade.createAdmin('Martin','mailtest','Abcd1234',function(err, user){
 //    console.log(airline)
 //});
 
-//facade.get_Departure_Date('BER',1431512436091,function(err,flights){
-//    console.log(flights)
-//})
+facade.get_Departure_Date('JKA',1431512436091,function(err,flights){
+    console.log(err)
+    console.log(flights)
+})
+
 //var customer =[{
 //    firstName: 'Dennis',
 //    lastName : 'Jensen',
