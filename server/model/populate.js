@@ -42,10 +42,10 @@ var facade = require('./Facade');
 //    console.log(airline)
 //});
 
-facade.get_Departure_Date('JKA',1431512436091,function(err,flights){
-    console.log(err)
-    console.log(flights)
-})
+//facade.get_Departure_Date('JKA',1431512436091,function(err,flights){
+//    console.log(err)
+//    console.log(flights)
+//})
 
 //var customer =[{
 //    firstName: 'Dennis',
