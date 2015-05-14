@@ -109,7 +109,7 @@ function getServerUrls(callback) {
 function createServer(name, url, callback) {
     console.log('name= ' + name)
     console.log('url= ' + url)
-    var newServer = new airline({
+    var newServer = new server({
         name: name,
         url: url
     });
@@ -151,7 +151,7 @@ function post_reservation_flightID(name, flightId, customer, callback) {
 }
 
 function get_Departure_Date(departure, date, callback) {
-    getAirlineUrls(function (err, servers) {
+    getServerUrls(function (err, servers) {
         if (err) {
             callback(err)
         } else {
@@ -269,10 +269,10 @@ function delete_Reservation(name, reservationId, callback) {
 
 module.exports = {
     createUser: createUser,
-    getAirlineUrls: getAirlineUrls,
+    getServerUrls: getServerUrls,
     findUser: findUser,
     comparePW: comparePW,
-    createAirline: createAirline,
+    createServer: createServer,
     updateUserTickets: updateUserTickets,
     removeUserTickets: removeUserTickets,
     get_Departure_Date: get_Departure_Date,
