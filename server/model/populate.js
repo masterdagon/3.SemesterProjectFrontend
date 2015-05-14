@@ -27,21 +27,21 @@ var facade = require('./Facade');
 //    console.log(user);
 //})
 
-//facade.createAirline('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-//
-//facade.createAirline('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-//
-//facade.createAirline('gruppe 7','http://Airline7-team007.rhcloud.com/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-//
+facade.createServer('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
+facade.createServer('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
+facade.createServer('gruppe 7','http://Airline7-team007.rhcloud.com/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
+
 //facade.get_Departure_Date('JKA',1431512436091,function(err,flights){
 //    if(err){
 //        console.log(err)
@@ -67,10 +67,10 @@ var facade = require('./Facade');
 //    console.log(err)
 //    console.log(data)
 //
-facade.delete_Reservation('gruppe 7',552,function(err,reserv){
-    console.log(err)
-    console.log(reserv)
-})
+//facade.delete_Reservation('gruppe 7',552,function(err,reserv){
+//    console.log(err)
+//    console.log(reserv)
+//})
 //
 //})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
 //    console.log(flights)
