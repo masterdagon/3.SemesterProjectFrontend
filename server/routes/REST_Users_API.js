@@ -18,6 +18,20 @@ router.get('/:departure/:date'),function(req,res){
             res.end(JSON.stringify(array));
         }
     })
-}
+};
+
+router.get('/:departure/:arrival/:date',function(req,res){
+    var departure = req.params.departure;
+    var arrival = req.params.arrival;
+    var date = req.params.date;
+    facade.get_Departure_Arrival_Date(departure,arrival,date,function(err,array){
+        if(err){
+
+        }else{
+            res.header("Content-type","application/json");
+            res.end(JSON.stringify(array));
+        }
+    })
+});
 
 module.exports = router;
