@@ -16,6 +16,7 @@ function createUser(userName, email, pw, callback) {
                 userName: userName,
                 email: email,
                 pw: hash,
+                role: 'user',
                 tickets: []
             });
             newuser.save(function (err) {
@@ -28,6 +29,28 @@ function createUser(userName, email, pw, callback) {
         });
     });
 }
+
+function createAdmin(userName, email, pw, callback) {
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(pw, salt, function (err, hash) {
+            var newuser = new user({
+                userName: userName,
+                email: email,
+                pw: hash,
+                role: 'admin',
+                tickets: []
+            });
+            newuser.save(function (err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(err, newuser)
+                }
+            });
+        });
+    });
+}
+
 function removeUserTickets(userName, ticketID, callback) {
     user.findOneAndUpdate({userName: userName},
         {$pull: {tickets: {_id: ticketID}}}, function (err, data) {
