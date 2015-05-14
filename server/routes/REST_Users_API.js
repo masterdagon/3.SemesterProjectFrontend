@@ -34,4 +34,17 @@ router.get('/:departure/:arrival/:date',function(req,res){
     })
 });
 
+router.get('/:name/:reservationID',function(req,res){
+    var rID = req.params.reservationID;
+    var name = req.params.name;
+    facade.get_Reservation(name,rID,function(err,json){
+        if(err){
+
+        }else{
+            res.header("Content-type","application/json");
+            res.end(JSON.stringify(json));
+        }
+    })
+});
+
 module.exports = router;
