@@ -160,10 +160,10 @@ function get_Departure_Date(departure, date, callback) {
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
                         var flight = {name: airline.name, flights: JSON.parse(body)};
-                        storage.push(flight);
                         if(flight.flights.length > 0){
                             storage.push(flight);
                         }
+
                     }
                     count++;
                     if (count == airlines.length) {
