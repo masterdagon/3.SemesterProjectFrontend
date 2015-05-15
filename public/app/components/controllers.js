@@ -45,7 +45,7 @@ angular.module('myAppRename.controllers', []).
           delete $window.sessionStorage.token;
           $scope.isAuthenticated = false;
 
-          $scope.error = 'You failed to login. Invalid User or Password';
+          $scope.error = data;
         });
     };
 

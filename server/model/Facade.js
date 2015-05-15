@@ -113,7 +113,7 @@ function comparePW(userName, pw, callback) {
                 callback({code: 404, message: 'cant find User', description:'the user do not exist'})
             }else{
                 bcrypt.compare(pw, foundUser.pw, function (err, res) {
-                    callback(err, res);
+                    callback(null, res,foundUser);
                 })
             }
         }

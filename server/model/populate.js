@@ -7,11 +7,11 @@ var facade = require('./Facade');
 //    console.log(user)
 //})
 
-facade.updateVerified('Dennis',function(err,user){
-    console.log(user)
-})
+//facade.updateVerified('Dennis',function(err,user){
+//    console.log(user)
+//})
 
-//facade.createAdmin('Martin','mailtest','Abcd1234',function(err, user){
+//facade.createUser('Martin','mailtest','Abcd1234',function(err, user){
 //    console.log(user)
 //})
 
