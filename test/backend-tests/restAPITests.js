@@ -13,74 +13,151 @@ var nock = require("nock");
 var url = "http://test.com";
 
 describe('REST API for /userApi', function () {
-  //Start the Server before the TESTS
-  before(function (done) {
+    //Start the Server before the TESTS
+    before(function (done) {
 
-    testServer = app.listen(testPort, function () {
-      console.log("Server is listening on: " + testPort);
-      done();
-    })
-    .on('error',function(err){
-        console.log(err);
-      });
-  });
-
-  beforeEach(function(done){
-    user.remove({},function(){
-        var newuser = {
-            userName : "Bilbo",
-            email : "123@gmail.com",
-            pw : "testpw",
-            role : "user",
-            tickets : "[]"
-        };
-        user.create(newuser,function(err){
+        testServer = app.listen(testPort, function () {
+            console.log("Server is listening on: " + testPort);
+            done();
         })
-    })
-      server.remove({},function(){
-          var newserver = {
-              name : "Testserver",
-              url : url+"/"
-          };
-          server.create(newserver,function(err){
-              done();
-          })
-      })
-  });
+            .on('error', function (err) {
+                console.log(err);
+            });
+    });
 
-  after(function(){  //Stop server after the test
-    //Uncomment the line below to completely remove the database, leaving the mongoose instance as before the tests
-    mongoose.connection.db.dropDatabase();
-    testServer.close();
-  });
+    beforeEach(function (done) {
+        user.remove({}, function () {
+            var newuser = {
+                userName: "Bilbo",
+                email: "123@gmail.com",
+                pw: "testpw",
+                role: "user",
+                tickets: "[]",
+                verified: "true"
+            };
+            user.create(newuser, function (err) {
+            })
+        })
+        server.remove({}, function () {
+            var newserver = {
+                name: "Testserver",
+                url: url + "/"
+            };
+            server.create(newserver, function (err) {
+                done();
+            })
+        })
+    });
 
-  it("GET: userApi/f/:departure/:date", function (done) {
-      var options = {allowUnmocked: true};
-      var local = nock("http://localhost:"+testPort,options)
-          .get("/test")
-          .reply(200,"OK!");
-      var couchdb = nock(url)
-          .get('/BER/1')
-          .reply(200,[{
-              airline:"Air Berlin",
-              price:"1",
-              flightId:"1",
-              takeOffDate:"2",
-              landingDate:"2",
-              depature:"BER",
-              destination:"CPH",
-              seats:20,
-              availableseats:20,
-              bookingCode:true
-          }]);
-    http.get("http://localhost:"+testPort+"/userApi/f/BER/1",function(res){
-      res.setEncoding("utf8");//response data is now a string
-      res.on("data",function(chunk){
-          console.log("chunk: " + chunk)
-        var json = JSON.parse(chunk);
-          json[0].flights[0].airline.should.equal("Air Berlin");
-        done();
-      });
-    })
-  });
+    after(function () {  //Stop server after the test
+        //Uncomment the line below to completely remove the database, leaving the mongoose instance as before the tests
+        mongoose.connection.db.dropDatabase();
+        testServer.close();
+    });
+
+    it("GET: userApi/f/:departure/:date", function (done) {
+        var options = {allowUnmocked: true};
+        var local = nock("http://localhost:" + testPort, options)
+            .get("/test")
+            .reply(200, "OK!");
+        var couchdb = nock(url)
+            .get('/BER/1')
+            .reply(200, [{
+                airline: "Air Berlin",
+                price: "1",
+                flightId: "1",
+                takeOffDate: "2",
+                landingDate: "2",
+                depature: "BER",
+                destination: "CPH",
+                seats: 20,
+                availableseats: 20,
+                bookingCode: true
+            }]);
+        http.get("http://localhost:" + testPort + "/userApi/f/BER/1", function (res) {
+            res.setEncoding("utf8");//response data is now a string
+            res.on("data", function (chunk) {
+                console.log("chunk: " + chunk)
+                var json = JSON.parse(chunk);
+                json[0].flights[0].airline.should.equal("Air Berlin");
+                done();
+            });
+        })
+    });
+
+    it("GET: userApi/f/:departure/arrival/:date", function (done) {
+        var options = {allowUnmocked: true};
+        var local = nock("http://localhost:" + testPort, options)
+            .get("/test")
+            .reply(200, "OK!");
+        var couchdb = nock(url)
+            .get('/BER/CPH/1')
+            .reply(200, [{
+                airline: "Air Berlin",
+                price: "1",
+                flightId: "1",
+                takeOffDate: "2",
+                landingDate: "2",
+                depature: "BER",
+                destination: "CPH",
+                seats: 20,
+                availableseats: 20,
+                bookingCode: true
+            }]);
+        http.get("http://localhost:" + testPort + "/userApi/f/BER/CPH/1", function (res) {
+            res.setEncoding("utf8");//response data is now a string
+            res.on("data", function (chunk) {
+                console.log("chunk: " + chunk)
+                var json = JSON.parse(chunk);
+                json[0].flights[0].airline.should.equal("Air Berlin");
+                done();
+            });
+        })
+    });
+
+    it("GET: userApi/r/:name/:reservationID", function (done) {
+        var options = {allowUnmocked: true};
+        var local = nock("http://localhost:" + testPort, options)
+            .get("/test")
+            .reply(200, "OK!");
+        var couchdb = nock(url)
+            .get('/1')
+            .reply(200, {
+                test : "test"
+            });
+        http.get("http://localhost:" + testPort + "/userApi/r/Testserver/1", function (res) {
+            res.setEncoding("utf8");//response data is now a string
+            res.on("data", function (chunk) {
+                console.log("chunk: " + chunk)
+                var json = JSON.parse(chunk);
+                json.test.should.equal("test");
+                done();
+            });
+        })
+    });it("DELETE: userApi/r/:name/:reservationID", function (done) {
+        var options = {allowUnmocked: true};
+        var local = nock("http://localhost:" + testPort, options)
+            .get("/test")
+            .reply(200, "OK!");
+        var couchdb = nock(url)
+            .delete('/1')
+            .reply(200, {
+                test : "test"
+            });
+        var httpOptions = {
+            host: "http://localhost",
+            port: 9999,
+            path: "/userApi/r/Testserver/1",
+            method: "DELETE"
+        }
+        http.request(httpOptions, function (res) {
+            res.setEncoding("utf8");//response data is now a string
+            res.on("data", function (chunk) {
+                console.log("chunk: " + chunk)
+                var json = JSON.parse(chunk);
+                json.test.should.equal("test");
+                done();
+            });
+        })
+    });
 });
