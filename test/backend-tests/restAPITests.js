@@ -60,7 +60,7 @@ describe('REST API for /userApi', function () {
           .get("/test")
           .reply(200,"OK!");
       var couchdb = nock(url)
-          .get(url+'/BER/1')
+          .get('/BER/1')
           .reply(200,[{
               airline:"Air Berlin",
               price:"1",
@@ -78,7 +78,7 @@ describe('REST API for /userApi', function () {
       res.on("data",function(chunk){
           console.log("chunk: " + chunk)
         var json = JSON.parse(chunk);
-          json[0].airline.should.equal("Air Berlin");
+          json[0].flights[0].airline.should.equal("Air Berlin");
         done();
       });
     })
