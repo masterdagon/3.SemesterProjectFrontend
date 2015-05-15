@@ -53,6 +53,7 @@ var UserSchema = new mongoose.Schema({
   email: {type: String, unique: true},
   pw: String,
   role: String,
+  verified: Boolean,
   tickets: [{
       airline: String,
       flightInstanceID: String,
