@@ -60,7 +60,7 @@ describe('REST API for /userApi', function () {
           .get("/test")
           .reply(200,"OK!");
       var couchdb = nock(url)
-          .get(url+'/BER/1')
+          .get(url+'/userApi/BER/1')
           .reply(200,[{
               airline:"Air Berlin",
               price:"1",
