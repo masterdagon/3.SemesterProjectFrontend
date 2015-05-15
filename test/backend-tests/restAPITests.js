@@ -134,7 +134,9 @@ describe('REST API for /userApi', function () {
                 done();
             });
         })
-    });it("DELETE: userApi/r/:name/:reservationID", function (done) {
+    });
+
+    it("DELETE: userApi/r/:name/:reservationID", function (done) {
         var options = {allowUnmocked: true};
         var local = nock("http://localhost:" + testPort, options)
             .get("/test")
@@ -145,11 +147,11 @@ describe('REST API for /userApi', function () {
                 test : "test"
             });
         var httpOptions = {
-            host: "http://localhost",
-            port: 9999,
+            host: "localhost",
+            port: testPort,
             path: "/userApi/r/Testserver/1",
             method: "DELETE"
-        }
+        };
         http.request(httpOptions, function (res) {
             res.setEncoding("utf8");//response data is now a string
             res.on("data", function (chunk) {

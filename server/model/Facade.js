@@ -288,6 +288,7 @@ function get_Reservation(name, reservationId, callback) {
 }
 
 function delete_Reservation(name, reservationId, callback) {
+    console.log("delete_reservation running")
     server.findOne({name: name}, function (err, server) {
         if(!err){
             if (!server) {
