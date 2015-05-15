@@ -10,7 +10,7 @@ var mongoose = require("mongoose");
 var user = mongoose.model("User");
 var server = mongoose.model('Server');
 var nock = require("nock");
-var url = "http://test.com";
+var url = "http://test.com/";
 
 describe('REST API for /userApi', function () {
   //Start the Server before the TESTS

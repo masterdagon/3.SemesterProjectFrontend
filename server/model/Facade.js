@@ -203,7 +203,9 @@ function get_Departure_Date(departure, date, callback) {
             var storage = [];
             var count = 0;
             servers.forEach(function (server) {
+
                 var path = server.url + departure + "/" + date;
+                console.log("Path: " + path)
                 request(path, function (err, res, body) {
                     if(err){
                         callback(err)
