@@ -75,26 +75,36 @@ router.get('/', function(req, res) {
 
 router.post('/authenticate', function (req, res) {
         facade.comparePW(req.body.username, req.body.password,function(err,bol,user){
-            if (bol && user.verified) {
-                console.log(bol)
-                var profile = {
-                    username: user.userName,
-                    role: user.role,
-                    id: user._id
-                };
-                // We are sending the profile inside the token
-                if(user.role == 'user'){
-                    var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, {expiresInMinutes: 60 * 5});
-                }
-                if(user.role == 'admin'){
-                    var token = jwt.sign(profile, require("../security/secrets").secretTokenAdmin, { expiresInMinutes: 60*5 });
-                }
-                res.json({token: token});
-                return;
-            }
-            else{
+            if(err){
                 res.status(401).send('Wrong user or password');
                 return;
+            }else{
+                if(user.verified){
+                    if (bol) {
+                        console.log(bol)
+                        var profile = {
+                            username: user.userName,
+                            role: user.role,
+                            id: user._id
+                        };
+                        // We are sending the profile inside the token
+                        if(user.role == 'user'){
+                            var token = jwt.sign(profile, require("../security/secrets").secretTokenUser, {expiresInMinutes: 60 * 5});
+                        }
+                        if(user.role == 'admin'){
+                            var token = jwt.sign(profile, require("../security/secrets").secretTokenAdmin, { expiresInMinutes: 60*5 });
+                        }
+                        res.json({token: token});
+                        return;
+                    }
+                    else{
+                        res.status(401).send('Wrong user or password');
+                        return;
+                    }
+                }else{
+                    res.status(401).send('the user is not authenticate please locate email and confirm your user');
+                    return;
+                }
             }
         })
 });
