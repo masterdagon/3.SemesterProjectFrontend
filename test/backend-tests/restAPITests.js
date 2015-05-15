@@ -10,7 +10,6 @@ var mongoose = require("mongoose");
 var user = mongoose.model("User");
 var server = mongoose.model('Server');
 var nock = require("nock");
-var couchdb;
 var url = "http://test.com";
 
 describe('REST API for /userApi', function () {
@@ -58,7 +57,9 @@ describe('REST API for /userApi', function () {
   it("GET: userApi/f/:departure/:date", function (done) {
       var options = {allowUnmocked: true};
       var local = nock("http://localhost:"+testPort,options)
-      var couchdb = nock('http://test.com')
+          .get("/test")
+          .reply(200,"OK!");
+      var couchdb = nock(url)
           .get(url+'/BER/1')
           .reply(200,[{
               airline:"Air Berlin",
