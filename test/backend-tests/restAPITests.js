@@ -10,7 +10,7 @@ var mongoose = require("mongoose");
 var user = mongoose.model("User");
 var server = mongoose.model('Server');
 var nock = require("nock");
-var url = "http://test.com/";
+var url = "http://test.com";
 
 describe('REST API for /userApi', function () {
   //Start the Server before the TESTS
@@ -40,7 +40,7 @@ describe('REST API for /userApi', function () {
       server.remove({},function(){
           var newserver = {
               name : "Testserver",
-              url : "http://test.com"
+              url : url+"/"
           };
           server.create(newserver,function(err){
               done();
@@ -60,7 +60,7 @@ describe('REST API for /userApi', function () {
           .get("/test")
           .reply(200,"OK!");
       var couchdb = nock(url)
-          .get(url+'/userApi/BER/1')
+          .get(url+'/BER/1')
           .reply(200,[{
               airline:"Air Berlin",
               price:"1",
@@ -76,6 +76,7 @@ describe('REST API for /userApi', function () {
     http.get("http://localhost:"+testPort+"/userApi/f/BER/1",function(res){
       res.setEncoding("utf8");//response data is now a string
       res.on("data",function(chunk){
+          console.log("chunk: " + chunk)
         var json = JSON.parse(chunk);
           json[0].airline.should.equal("Air Berlin");
         done();
