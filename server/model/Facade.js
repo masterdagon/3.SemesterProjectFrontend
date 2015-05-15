@@ -17,6 +17,7 @@ function createUser(userName, email, pw, callback) {
                 email: email,
                 pw: hash,
                 role: 'user',
+                verified: false,
                 tickets: []
             });
             newuser.save(function (err) {
@@ -30,6 +31,20 @@ function createUser(userName, email, pw, callback) {
     });
 }
 
+function updateVerified(userName,callback){
+    user.findOneAndUpdate({userName: userName},{verified: true},function(err,user){
+        if(err){
+            callback(err)
+        }else{
+            if(!user){
+                callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+            }else{
+                callback(null,user)
+            }
+        }
+    })
+}
+
 function createAdmin(userName, email, pw, callback) {
     bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(pw, salt, function (err, hash) {
@@ -38,6 +53,7 @@ function createAdmin(userName, email, pw, callback) {
                 email: email,
                 pw: hash,
                 role: 'admin',
+                verified: true,
                 tickets: []
             });
             newuser.save(function (err) {
@@ -110,9 +126,24 @@ function findUser(userName, callback) {
             callback(err)
         } else {
             if(!theUser){
-                callback(null, theUser)
-            }else{
                 callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+
+            }else{
+                callback(null, theUser)
+            }
+        }
+    })
+}
+
+function findUserById(ID, callback) {
+    user.findById(ID, function (err, theUser) {
+        if (err) {
+            callback(err)
+        } else {
+            if(!theUser){
+                callback({code: 404, message: 'cant find User', description:'the user do not exist'})
+            }else{
+                callback(null, theUser)
             }
         }
     })
@@ -293,6 +324,8 @@ module.exports = {
     get_Reservation: get_Reservation,
     post_reservation_flightID: post_reservation_flightID,
     get_Reservation: get_Reservation,
-    delete_Reservation: delete_Reservation
+    delete_Reservation: delete_Reservation,
+    updateVerified: updateVerified,
+    findUserById: findUserById
 };
 
