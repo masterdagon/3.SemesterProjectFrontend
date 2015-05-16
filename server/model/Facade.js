@@ -184,7 +184,8 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                             callback(err);
                         }else{
                             if (res.statusCode == 200) {
-                                callback(null, JSON.parse(body));
+                                console.log(body)
+                                callback(null, body);
                             } else {
                                 callback(JSON.parse(body));
                             }
@@ -329,7 +330,6 @@ module.exports = {
     get_Departure_Arrival_Date: get_Departure_Arrival_Date,
     get_Reservation: get_Reservation,
     post_reservation_flightID: post_reservation_flightID,
-    get_Reservation: get_Reservation,
     delete_Reservation: delete_Reservation,
     updateVerified: updateVerified,
     findUserById: findUserById
