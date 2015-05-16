@@ -169,7 +169,7 @@ describe('REST API for /userApi', function () {
         var couchdb = nock(url)
             .post('/1')
             .reply(200, {
-                test : "test"
+                "test" : "test"
             });
         request({
             method: "POST",
@@ -180,8 +180,7 @@ describe('REST API for /userApi', function () {
                 console.log(err)
             }else{
                 console.log(body);
-                var data = JSON.parse(body);
-                data.test.should.equal("test");
+                body.test.should.equal("test");
                 done();
             }
         });
