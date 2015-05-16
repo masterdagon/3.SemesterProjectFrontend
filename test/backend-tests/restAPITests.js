@@ -180,7 +180,7 @@ describe('REST API for /userApi', function () {
                 console.log(err)
             }else{
                 console.log(body);
-                //var data = JSON.parse(body);
+                var data = JSON.parse(body);
                 body.test.should.equal("test");
                 done();
             }
