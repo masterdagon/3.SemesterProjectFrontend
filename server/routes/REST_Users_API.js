@@ -93,6 +93,7 @@ router.post('/r/:name/:flightID',function(req,res){
 });
 
 router.delete('/r/:name/:reservationID',function(req,res){
+    console.log('tester')
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);
         res.end("Error: "+global.mongo_error+" database not available)");

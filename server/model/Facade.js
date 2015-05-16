@@ -20,11 +20,15 @@ function createUser(userName, email, pw, callback) {
                 verified: false,
                 tickets: []
             });
-            newuser.save(function (err) {
+            newuser.save(function (err,user) {
                 if (err) {
                     callback(err);
                 } else {
-                    callback(err, newuser)
+                    if(!user){
+                        callback({code: 404, message: 'User already exist', description:'already exist'})
+                    }else{
+                        callback(null, user)
+                    }
                 }
             });
         });
@@ -288,7 +292,6 @@ function get_Reservation(name, reservationId, callback) {
 }
 
 function delete_Reservation(name, reservationId, callback) {
-    console.log("delete_reservation running")
     server.findOne({name: name}, function (err, server) {
         if(!err){
             if (!server) {
