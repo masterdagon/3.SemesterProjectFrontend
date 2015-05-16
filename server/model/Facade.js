@@ -292,11 +292,8 @@ function get_Reservation(name, reservationId, callback) {
 }
 
 function delete_Reservation(name, reservationId, callback) {
-    console.log('test')
     server.findOne({name: name}, function (err, server) {
-        console.log('test')
         if(!err){
-            console.log('test1')
             if (!server) {
                 callback({code: 404, message: 'Invalid ReservationID', description:'the reservation could not be found' })
             } else {
@@ -314,7 +311,6 @@ function delete_Reservation(name, reservationId, callback) {
                 })
             }
         }else{
-            console.log('err')
             callback(err)
         }
 
