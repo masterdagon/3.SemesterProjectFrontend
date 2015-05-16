@@ -147,20 +147,43 @@ describe('REST API for /userApi', function () {
             .reply(200, {
                 test : "test"
             });
-        var httpOptions = {
-            host: "http:",
-            port: "//localhost:" + testPort,
-            path: "/userApi/r/Testserver/1",
-            method: "DELETE"
-        };
-        http.request(httpOptions, function (res) {
-            res.setEncoding("utf8");//response data is now a string
-            res.on("data", function (chunk) {
-                console.log("chunk: " + chunk)
-                var json = JSON.parse(chunk);
-                json.test.should.equal("test");
+        request({
+            method: "DELETE",
+            url: "http://localhost:9999/userApi/r/Testserver/1"
+        },function(err,res,body){
+            if(err){
+                console.log(err)
+            }else{
+                var data = JSON.parse(body);
+                data.test.should.equal("test");
                 done();
+            }
+        });
+    });
+
+    it("POST: userApi/r/:name/:flightID", function (done) {
+        var options = {allowUnmocked: true};
+        var local = nock("http://localhost:" + testPort, options)
+            .get("/test")
+            .reply(200, "OK!");
+        var couchdb = nock(url)
+            .post('/1')
+            .reply(200, {
+                test : "test"
             });
-        })
+        request({
+            method: "POST",
+            url: "http://localhost:9999/userApi/r/Testserver/1",
+            json: {reservationID:"1",flightID: "1",Passengers:[{firstName:"Test",lastName:"Test",city:"Test",country:"Test",street:"Test"}],totalPrice:25}
+        },function(err,res,body){
+            if(err){
+                console.log(err)
+            }else{
+                console.log(body);
+                //var data = JSON.parse(body);
+                body.test.should.equal("test");
+                done();
+            }
+        });
     });
 });
