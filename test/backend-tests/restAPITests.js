@@ -11,6 +11,7 @@ var user = mongoose.model("User");
 var server = mongoose.model('Server');
 var nock = require("nock");
 var url = "http://test.com";
+var request = require('request');
 
 describe('REST API for /userApi', function () {
     //Start the Server before the TESTS
@@ -147,8 +148,8 @@ describe('REST API for /userApi', function () {
                 test : "test"
             });
         var httpOptions = {
-            host: "localhost",
-            port: testPort,
+            host: "http:",
+            port: "//localhost:" + testPort,
             path: "/userApi/r/Testserver/1",
             method: "DELETE"
         };
