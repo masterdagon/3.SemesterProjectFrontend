@@ -15,32 +15,33 @@ var rand,mailOptions,host,link;
 
 router.post('/send',function(req,res){
     facade.createUser(req.body.userName,req.body.email,req.body.pw,function(err,user){
-        host=req.get('host');
         console.log(user)
-        link="http://"+req.get('host')+"/verify?id="+user._id;
-        mailOptions={
-            to : user.email,
-            subject : "Please confirm your Email account",
-            html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
-        }
-        console.log(mailOptions);
-        smtpTransport.sendMail(mailOptions, function(error, response){
-            if(error){
-                console.log(error);
-                res.end("error");
-            }else{
-                console.log("Message sent: " + response.message);
-                res.end("sent");
+        if(user != undefined){
+            host=req.get('host');
+            console.log(host);
+            link="http://"+req.get('host')+"/verify?id="+user._id;
+            mailOptions={
+                to : user.email,
+                subject : "Please confirm your Email account",
+                html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
             }
-        });
-
+            console.log(mailOptions);
+            smtpTransport.sendMail(mailOptions, function(error, response){
+                if(error){
+                    console.log(error);
+                    res.end("error");
+                }else{
+                    console.log("Message sent: " + response.message);
+                    res.end("sent");
+                }
+            });
+        }else{
+            res.end("The user already exist");
+        }
     })
 });
 
 router.get('/verify',function(req,res){
-    console.log(req.protocol+":/"+req.get('host'));
-    if((req.protocol+"://"+req.get('host'))==("http://"+host))
-    {
         console.log("Domain is matched. Information is from Authentic email");
         facade.findUserById(req.query.id,function(err,user){
             console.log(err)
@@ -49,7 +50,7 @@ router.get('/verify',function(req,res){
             {
                 facade.updateVerified(user.userName,function(err,updatedUser){
                     console.log("email is verified");
-                    res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+                    res.end("<h1>Email "+user.email+" is been Successfully verified");
                 })
             }
             else
@@ -60,11 +61,7 @@ router.get('/verify',function(req,res){
             }
         })
 
-    }
-    else
-    {
-        res.end("<h1>Request is from unknown source");
-    }
+
 });
 
 /* GET home page. */

@@ -20,11 +20,15 @@ function createUser(userName, email, pw, callback) {
                 verified: false,
                 tickets: []
             });
-            newuser.save(function (err) {
+            newuser.save(function (err,user) {
                 if (err) {
                     callback(err);
                 } else {
-                    callback(err, newuser)
+                    if(!user){
+                        callback({code: 404, message: 'User already exist', description:'already exist'})
+                    }else{
+                        callback(null, user)
+                    }
                 }
             });
         });
@@ -288,8 +292,11 @@ function get_Reservation(name, reservationId, callback) {
 }
 
 function delete_Reservation(name, reservationId, callback) {
+    console.log('test')
     server.findOne({name: name}, function (err, server) {
+        console.log('test')
         if(!err){
+            console.log('test1')
             if (!server) {
                 callback({code: 404, message: 'Invalid ReservationID', description:'the reservation could not be found' })
             } else {
@@ -307,6 +314,7 @@ function delete_Reservation(name, reservationId, callback) {
                 })
             }
         }else{
+            console.log('err')
             callback(err)
         }
 

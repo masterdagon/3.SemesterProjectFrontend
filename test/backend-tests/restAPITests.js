@@ -145,10 +145,9 @@ describe('REST API for /userApi', function () {
                 test : "test"
             });
         var httpOptions = {
-            host: "http://localhost",
-            port: 9999,
-            path: "/userApi/r/Testserver/1",
-            method: "DELETE"
+            host: "http:",
+            port: "//localhost:"+9999,
+            path: "/userApi/r/Testserver/1"
         }
         http.request(httpOptions, function (res) {
             res.setEncoding("utf8");//response data is now a string
