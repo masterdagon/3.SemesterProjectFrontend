@@ -11,6 +11,7 @@ var user = mongoose.model("User");
 var server = mongoose.model('Server');
 var nock = require("nock");
 var url = "http://test.com";
+var request = require('request');
 
 describe('REST API for /userApi', function () {
     //Start the Server before the TESTS
@@ -173,14 +174,14 @@ describe('REST API for /userApi', function () {
         request({
             method: "POST",
             url: "http://localhost:9999/userApi/r/Testserver/1",
-            json: {reservationID:"1",flightID: "1",Passengers:[{firstName:"Test",lastName:"Test",city:"Test",country:"Test",street:"Test"}],totalPrice:25}
+            json: {"reservationID":"1","flightID": "1","Passengers":[{"firstName":"Test","lastName":"Test","city":"Test","country":"Test","street":"Test"}],"totalPrice":25}
         },function(err,res,body){
             if(err){
                 console.log(err)
             }else{
                 console.log(body);
-                //var data = JSON.parse(body);
-                body.test.should.equal("test");
+                var data = JSON.parse(body);
+                data.test.should.equal("test");
                 done();
             }
         });
