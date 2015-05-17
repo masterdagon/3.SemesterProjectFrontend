@@ -227,7 +227,7 @@ describe('facade for db', function () {
             var couchdb = nock(url)
                 .get('/1')
                 .reply(200, {
-                    test: "test"
+                    "test": "test"
                 });
             facade.createServer('testGroup', url+"/", function (err, server) {
                 console.log("SERVER: " + server);
@@ -258,26 +258,16 @@ describe('facade for db', function () {
     //    })
     //})
     //
-    describe('delete_Reservation', function () {
-        var testReservation = null;
-        var error = null
-        before(function (done) {
-            var couchdb = nock(url)
-                .delete('/12345')
-                .reply(200, {
-                    "test" : "test"
-                });
-            facade.delete_Reservation('testGroup', 12345, function (err, res) {
-                error = err;
-                testReservation = res
-                done()
-            })
-        });
-        it('', function () {
-            console.log(error)
-            console.log(testReservation)
-        })
-    });
+    //describe('delete_Reservation', function () {
+    //    var testServer = null
+    //    before(function (done) {
+    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
+    //        })
+    //    })
+    //    it('', function () {
+    //
+    //    })
+    //})
 
     describe('updateVerified', function () {
         var testUser = null;
