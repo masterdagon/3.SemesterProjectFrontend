@@ -192,7 +192,7 @@ describe('facade for db', function () {
         it('get_Departure_Date returns array of flights size 1 with airline = Air Berlin', function () {
             console.log(flights)
             flights.length.should.equal(1);
-            flights[0].airline.should.equal('Air Berlin');
+            flights[0].flights[0].airline.should.equal('Air Berlin');
         })
     })
     //
