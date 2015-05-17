@@ -258,16 +258,26 @@ describe('facade for db', function () {
     //    })
     //})
     //
-    //describe('delete_Reservation', function () {
-    //    var testServer = null
-    //    before(function (done) {
-    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-    //        })
-    //    })
-    //    it('', function () {
-    //
-    //    })
-    //})
+    describe('delete_Reservation', function () {
+        var testReservation = null;
+        var error = null
+        before(function (done) {
+            var couchdb = nock(url)
+                .delete('/12345')
+                .reply(200, {
+                    "test" : "test"
+                });
+            facade.delete_Reservation('testGroup', 12345, function (err, res) {
+                error = err;
+                testReservation = res
+                done()
+            })
+        });
+        it('', function () {
+            console.log(error)
+            console.log(testReservation)
+        })
+    });
 
     describe('updateVerified', function () {
         var testUser = null;
