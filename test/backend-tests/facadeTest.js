@@ -207,17 +207,32 @@ describe('facade for db', function () {
     //    })
     //})
     //
-    //describe('get_Reservation', function () {
-    //    var testServer = null
-    //    before(function (done) {
-    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-    //        })
-    //    })
-    //    it('', function () {
-    //
-    //    })
-    //})
-    //
+    describe('get_Reservation', function () {
+        before(function (done) {
+            var reservation = null;
+            var couchdb = nock(url)
+                .get('/1')
+                .reply(200, [{
+                    "test": "test"
+                }]);
+            facade.createServer('testGroup', url, function (err, server) {
+                console.log("SERVER: " + server);
+                facade.get_Reservation("testGroup",1,function(err,res){
+                    console.log("RESERVATION: " + res);
+                    reservation = res;
+                    done;
+                })
+            })
+
+
+        })
+        it('FACADE: get_reservation', function () {
+            var result = JSON.parse(reservation);
+            result.test.should.equal("test");
+        })
+
+    })
+
     //describe('post_reservation_flightID', function () {
     //    var testServer = null
     //    before(function (done) {
