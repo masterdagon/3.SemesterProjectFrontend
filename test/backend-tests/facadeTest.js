@@ -47,17 +47,17 @@ describe('facade for db', function () {
                     newuser.save(function (err, user) {
                         bilboID = user._id
                         bilboTicketID = user.tickets[0]._id
+                        server.remove({}, function () {
+                            var newserver = new server({
+                                name: "Testserver",
+                                url: url + "/"
+                            });
+                            newserver.save(function (err) {
+                                done();
+                            })
+                        })
                     });
                 })
-            })
-        })
-        server.remove({}, function () {
-            var newserver = new server({
-                name: "Testserver",
-                url: url + "/"
-            });
-            newserver.save(function (err) {
-                done();
             })
         })
     });
@@ -190,7 +190,6 @@ describe('facade for db', function () {
             })
         })
         it('get_Departure_Date returns array of flights size 1 with airline = Air Berlin', function () {
-            console.log(error)
             console.log(flights)
             flights.length.should.equal(1);
             flights[0].airline.should.equal('Air Berlin');
