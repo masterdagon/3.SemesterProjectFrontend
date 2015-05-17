@@ -166,10 +166,11 @@ describe('facade for db', function () {
     })
 
     describe('get_Departure_Date', function () {
-        var flights = null
+        var flights = null;
+        var error = null
         before(function (done) {
             var couchdb = nock(url)
-                .get('/BER/1')
+                .get('/BER/2')
                 .reply(200, [{
                     airline: "Air Berlin",
                     price: "1",
@@ -183,11 +184,14 @@ describe('facade for db', function () {
                     bookingCode: true
                 }]);
             facade.get_Departure_Date('BER','2', function (err, flight) {
+                error = err
                 flights = flight;
                 done()
             })
         })
         it('get_Departure_Date returns array of flights size 1 with airline = Air Berlin', function () {
+            console.log(error)
+            console.log(flights)
             flights.length.should.equal(1);
             flights[0].airline.should.equal('Air Berlin');
         })

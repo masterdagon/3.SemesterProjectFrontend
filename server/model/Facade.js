@@ -210,6 +210,7 @@ function get_Departure_Date(departure, date, callback) {
             servers.forEach(function (server) {
 
                 var path = server.url + departure + "/" + date;
+                console.log(path)
                 console.log("Path: " + path)
                 request(path, function (err, res, body) {
                     if(err){
