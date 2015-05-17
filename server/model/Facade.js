@@ -217,7 +217,7 @@ function get_Departure_Date(departure, date, callback) {
                         callback(err)
                     }else {
                         if (res.statusCode == 200) {
-                            var flight = {name: server.name, flights: body};
+                            var flight = {name: server.name, flights: JSON.parse(body)};
                             if (flight.flights.length > 0) {
                                 storage.push(flight);
                             }

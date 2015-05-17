@@ -3,7 +3,7 @@ global.SKIP_AUTHENTICATION = true;  //Skip security
 
 var should = require("should");
 var app = require("../../server/app");
-var facade = require("../../server/model/Facade")
+var facade = require("../../server/model/Facade");
 var testPort = 9999;
 var testServer;
 var mongoose = require("mongoose");
@@ -45,14 +45,14 @@ describe('facade for db', function () {
                         verified: false
                     });
                     newuser.save(function (err, user) {
-                        bilboID = user._id
-                        bilboTicketID = user.tickets[0]._id
+                        bilboID = user._id;
+                        bilboTicketID = user.tickets[0]._id;
                         server.remove({}, function () {
                             var newserver = new server({
                                 name: "Testserver",
                                 url: url + "/"
                             });
-                            newserver.save(function (err) {
+                            newserver.save(function () {
                                 done();
                             })
                         })
@@ -69,48 +69,48 @@ describe('facade for db', function () {
     });
 
     describe('createUser', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.createUser('test', 'email', 'test', function (err, user) {
-                testUser = user
+                testUser = user;
                 done()
             })
-        })
+        });
         it('createUser userName should equal test and role = user', function () {
-            testUser.userName.should.equal('test')
+            testUser.userName.should.equal('test');
             testUser.role.should.equal('user')
         })
-    })
+    });
 
     describe('createAdmin', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.createAdmin('testAdmin', 'email', 'test', function (err, user) {
-                testUser = user
+                testUser = user;
                 done()
             })
-        })
+        });
         it('createAdmin userName should equal testAdmin, and role = admin', function () {
-            testUser.userName.should.equal('testAdmin')
+            testUser.userName.should.equal('testAdmin');
             testUser.role.should.equal('admin')
         })
-    })
+    });
 
     describe('findUser', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.findUser('Bilbo', function (err, user) {
-                testUser = user
+                testUser = user;
                 done()
             })
-        })
+        });
         it('findUser with userName Bilbo', function () {
             testUser.userName.should.equal('Bilbo')
         })
-    })
+    });
 
     describe('comparePW', function () {
-        var testUser = null
+        var testUser = null;
         var bool = false;
         before(function (done) {
             facade.comparePW('Bilbo', 'testpw', function (err, bol, user) {
@@ -118,56 +118,55 @@ describe('facade for db', function () {
                 bool = bol;
                 done()
             })
-        })
+        });
         it('compare PW with userName Bilbo and password testpw', function () {
             bool.should.equal(true);
             testUser.userName.should.equal('Bilbo')
         })
-    })
+    });
 
     describe('createServer', function () {
-        var testServer = null
+        var testServer = null;
         before(function (done) {
             facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-                testServer = server
+                testServer = server;
                 done()
             })
-        })
+        });
         it('createServer with name testGroup, and url = www.test.dk', function () {
-            testServer.name.should.equal('testGroup')
+            testServer.name.should.equal('testGroup');
             testServer.url.should.equal('www.test.dk')
         })
-    })
+    });
 
     describe('updateUserTickets', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.updateUserTickets('Bilbo','testAir','testid',1234, function (err, user) {
                 testUser = user;
                 done()
             })
-        })
+        });
         it('if updateUserTickets is succes then it returns userName Bilbo', function () {
             testUser.userName.should.equal('Bilbo');
         })
-    })
+    });
 
     describe('removeUserTickets', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.removeUserTickets('Bilbo',bilboTicketID, function (err, user) {
                 testUser = user;
                 done()
             })
-        })
+        });
         it('if removeUserTickets is succes then it returns userName Bilbo', function () {
             testUser.userName.should.equal('Bilbo');
         })
-    })
+    });
 
     describe('get_Departure_Date', function () {
-        var flights = null;
-        var error = null
+        var f = null;
         before(function (done) {
             var couchdb = nock(url)
                 .get('/BER/2')
@@ -184,28 +183,43 @@ describe('facade for db', function () {
                     bookingCode: true
                 }]);
             facade.get_Departure_Date('BER','2', function (err, flight) {
-                error = err
-                flights = flight;
+                f = flight;
                 done()
             })
-        })
+        });
         it('get_Departure_Date returns array of flights size 1 with airline = Air Berlin', function () {
-            console.log(flights)
-            flights.length.should.equal(1);
-            flights[0].flights[0].airline.should.equal('Air Berlin');
+            f.length.should.equal(1);
+            f[0].flights[0].airline.should.equal('Air Berlin');
         })
-    })
-    //
-    //describe('get_Departure_Arrival_Date', function () {
-    //    var testServer = null
-    //    before(function (done) {
-    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-    //        })
-    //    })
-    //    it('', function () {
-    //
-    //    })
-    //})
+    });
+
+    describe('get_Departure_Arrival_Date', function () {
+        var f = null;
+        before(function (done) {
+            var couchdb = nock(url)
+                .get('/BER/CPH/2')
+                .reply(200, [{
+                    airline: "Air Berlin",
+                    price: "1",
+                    flightId: "1",
+                    takeOffDate: "2",
+                    landingDate: "2",
+                    depature: "BER",
+                    destination: "CPH",
+                    seats: 20,
+                    availableseats: 20,
+                    bookingCode: true
+                }]);
+            facade.get_Departure_Arrival_Date('BER','CPH','2', function (err, flight) {
+                f = flight;
+                done()
+            })
+        });
+        it('get_Depature_Arrival_Date should return array of flights lengt 1 and airline = Air Berlin', function () {
+            f.length.should.equal(1);
+            f[0].flights[0].airline.should.equal('Air Berlin');
+        })
+    });
     //
     describe('get_Reservation', function () {
         before(function (done) {
@@ -256,26 +270,26 @@ describe('facade for db', function () {
     //})
 
     describe('updateVerified', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.updateVerified('Bilbo',function (err, user) {
-                testUser = user
+                testUser = user;
                 done()
             })
-        })
+        });
         it('UpdateVerified of Bilbo should return userName Bilbo', function () {
             testUser.userName.should.equal('Bilbo');
         })
-    })
+    });
 
     describe('findUserById', function () {
-        var testUser = null
+        var testUser = null;
         before(function (done) {
             facade.findUserById(bilboID, function (err, user) {
-                testUser = user
+                testUser = user;
                 done()
             })
-        })
+        });
         it('find user by id should return userName bilbo from bilbosId', function () {
             testUser.userName.should.equal('Bilbo')
         })
