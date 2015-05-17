@@ -281,7 +281,7 @@ function get_Reservation(name, reservationId, callback) {
                 var path = server.url + reservationId;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        callback(null, JSON.parse(body));
+                        callback(null, body);
                     } else {
                         callback(JSON.parse(body));
                     }
