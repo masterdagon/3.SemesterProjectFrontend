@@ -226,15 +226,15 @@ describe('facade for db', function () {
             var reservation = null;
             var couchdb = nock(url)
                 .get('/1')
-                .reply(200, [{
-                    "test": "test"
-                }]);
-            facade.createServer('testGroup', url, function (err, server) {
+                .reply(200, {
+                    test: "test"
+                });
+            facade.createServer('testGroup', url+"/", function (err, server) {
                 console.log("SERVER: " + server);
                 facade.get_Reservation("testGroup",1,function(err,res){
                     console.log("RESERVATION: " + res);
                     reservation = res;
-                    done;
+                    done();
                 })
             })
 
