@@ -234,7 +234,7 @@ describe('facade for db', function () {
                 facade.get_Reservation("testGroup",1,function(err,res){
                     console.log("RESERVATION: " + res);
                     reservation = res;
-                    done;
+                    done();
                 })
             })
 
