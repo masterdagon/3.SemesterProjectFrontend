@@ -281,10 +281,9 @@ function get_Reservation(name, reservationId, callback) {
                 var path = server.url + reservationId;
                 request(path, function (err, res, body) {
                     if (!err && res.statusCode == 200) {
-                        console.log('this is nock body = '+body)
                         callback(null, JSON.parse(body));
                     } else {
-                        callback(body);
+                        callback(JSON.parse(body));
                     }
                 })
             }
