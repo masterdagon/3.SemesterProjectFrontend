@@ -49,7 +49,7 @@ describe('facade for db', function () {
                         bilboTicketID = user.tickets[0]._id;
                         server.remove({}, function () {
                             var newserver = new server({
-                                name: "Testserver",
+                                name: "testServer",
                                 url: url + "/"
                             });
                             newserver.save(function () {
@@ -220,29 +220,24 @@ describe('facade for db', function () {
             f[0].flights[0].airline.should.equal('Air Berlin');
         })
     });
-    //
+
     describe('get_Reservation', function () {
+        var reservation = null;
+        var error = null;
         before(function (done) {
-            var reservation = null;
             var couchdb = nock(url)
-                .get('/1')
-                .reply(200, [{
+                .get('/12345')
+                .reply(200, {
                     "test": "test"
-                }]);
-            facade.createServer('testGroup', url, function (err, server) {
-                console.log("SERVER: " + server);
-                facade.get_Reservation("testGroup",1,function(err,res){
+                });
+                facade.get_Reservation("testServer",12345,function(err,res){
                     console.log("RESERVATION: " + res);
                     reservation = res;
                     done();
                 })
-            })
-
-
         })
         it('FACADE: get_reservation', function () {
-            var result = JSON.parse(reservation);
-            result.test.should.equal("test");
+            reservation.test.should.equal("test");
         })
 
     })
@@ -267,15 +262,14 @@ describe('facade for db', function () {
                 .reply(200, {
                     "test" : "test"
                 });
-            facade.delete_Reservation('testGroup', 12345, function (err, res) {
+            facade.delete_Reservation('testServer', 12345, function (err, res) {
                 error = err;
                 testReservation = res
                 done()
             })
         });
         it('', function () {
-            console.log(error)
-            console.log(testReservation)
+            testReservation.test.should.equal('test');
         })
     });
 
