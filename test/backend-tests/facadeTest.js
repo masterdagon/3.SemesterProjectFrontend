@@ -235,9 +235,6 @@ describe('facade for db', function () {
                 reservation = res;
                 done();
             })
-
-
-
     })
     it('FACADE: get_reservation', function () {
         var result = reservation;
