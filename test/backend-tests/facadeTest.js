@@ -142,7 +142,7 @@ describe('facade for db', function () {
     describe('updateUserTickets', function () {
         var testUser = null;
         before(function (done) {
-            facade.updateUserTickets('Bilbo','testAir','testid',1234, function (err, user) {
+            facade.updateUserTickets('Bilbo', 'testAir', 'testid', 1234, function (err, user) {
                 testUser = user;
                 done()
             })
@@ -155,7 +155,7 @@ describe('facade for db', function () {
     describe('removeUserTickets', function () {
         var testUser = null;
         before(function (done) {
-            facade.removeUserTickets('Bilbo',bilboTicketID, function (err, user) {
+            facade.removeUserTickets('Bilbo', bilboTicketID, function (err, user) {
                 testUser = user;
                 done()
             })
@@ -182,7 +182,7 @@ describe('facade for db', function () {
                     availableseats: 20,
                     bookingCode: true
                 }]);
-            facade.get_Departure_Date('BER','2', function (err, flight) {
+            facade.get_Departure_Date('BER', '2', function (err, flight) {
                 f = flight;
                 done()
             })
@@ -210,7 +210,7 @@ describe('facade for db', function () {
                     availableseats: 20,
                     bookingCode: true
                 }]);
-            facade.get_Departure_Arrival_Date('BER','CPH','2', function (err, flight) {
+            facade.get_Departure_Arrival_Date('BER', 'CPH', '2', function (err, flight) {
                 f = flight;
                 done()
             })
@@ -222,76 +222,76 @@ describe('facade for db', function () {
     });
     //
     describe('get_Reservation', function () {
+        var reservation = null;
         before(function (done) {
-            var reservation = null;
+
             var couchdb = nock(url)
                 .get('/1')
                 .reply(200, {
-                    "test": "test"
+                    test: "test"
                 });
-            facade.createServer('testGroup', url+"/", function (err, server) {
-                console.log("SERVER: " + server);
-                facade.get_Reservation("testGroup",1,function(err,res){
-                    console.log("RESERVATION: " + res);
-                    reservation = res;
-                    done();
-                })
+            facade.get_Reservation("Testserver", 1, function (err, res) {
+                console.log("RESERVATION: " + res);
+                reservation = res;
+                done();
             })
 
 
-        })
-        it('FACADE: get_reservation', function () {
-            var result = JSON.parse(reservation);
-            result.test.should.equal("test");
-        })
 
     })
+    it('FACADE: get_reservation', function () {
+        var result = reservation;
+        result.test.should.equal("test");
+    })
 
-    //describe('post_reservation_flightID', function () {
-    //    var testServer = null
-    //    before(function (done) {
-    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-    //        })
-    //    })
-    //    it('', function () {
-    //
-    //    })
-    //})
-    //
-    //describe('delete_Reservation', function () {
-    //    var testServer = null
-    //    before(function (done) {
-    //        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
-    //        })
-    //    })
-    //    it('', function () {
-    //
-    //    })
-    //})
+})
 
-    describe('updateVerified', function () {
-        var testUser = null;
-        before(function (done) {
-            facade.updateVerified('Bilbo',function (err, user) {
-                testUser = user;
-                done()
-            })
-        });
-        it('UpdateVerified of Bilbo should return userName Bilbo', function () {
-            testUser.userName.should.equal('Bilbo');
+//describe('post_reservation_flightID', function () {
+//    var testServer = null
+//    before(function (done) {
+//        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
+//        })
+//    })
+//    it('', function () {
+//
+//    })
+//})
+//
+//describe('delete_Reservation', function () {
+//    var testServer = null
+//    before(function (done) {
+//        facade.createServer('testGroup', 'www.test.dk', function (err, server) {
+//        })
+//    })
+//    it('', function () {
+//
+//    })
+//})
+
+describe('updateVerified', function () {
+    var testUser = null;
+    before(function (done) {
+        facade.updateVerified('Bilbo', function (err, user) {
+            testUser = user;
+            done()
         })
     });
-
-    describe('findUserById', function () {
-        var testUser = null;
-        before(function (done) {
-            facade.findUserById(bilboID, function (err, user) {
-                testUser = user;
-                done()
-            })
-        });
-        it('find user by id should return userName bilbo from bilbosId', function () {
-            testUser.userName.should.equal('Bilbo')
-        })
+    it('UpdateVerified of Bilbo should return userName Bilbo', function () {
+        testUser.userName.should.equal('Bilbo');
     })
 });
+
+describe('findUserById', function () {
+    var testUser = null;
+    before(function (done) {
+        facade.findUserById(bilboID, function (err, user) {
+            testUser = user;
+            done()
+        })
+    });
+    it('find user by id should return userName bilbo from bilbosId', function () {
+        testUser.userName.should.equal('Bilbo')
+    })
+})
+})
+;
