@@ -295,10 +295,7 @@ describe('facade for db', function () {
             testUser.userName.should.equal('Bilbo');
         })
     });
-    it('UpdateVerified of Bilbo should return userName Bilbo', function () {
-        testUser.userName.should.equal('Bilbo');
-    })
-});
+
 
 describe('findUserById', function () {
     var testUser = null;
@@ -311,6 +308,4 @@ describe('findUserById', function () {
     it('find user by id should return userName bilbo from bilbosId', function () {
         testUser.userName.should.equal('Bilbo')
     })
-})
-})
-;
+});
