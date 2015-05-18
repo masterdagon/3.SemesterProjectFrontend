@@ -230,21 +230,19 @@ describe('facade for db', function () {
                 .reply(200, {
                     test: "test"
                 });
-            facade.get_Reservation("Testserver", 1, function (err, res) {
+            facade.get_Reservation("testServer", 1, function (err, res) {
                 console.log("RESERVATION: " + res);
                 reservation = res;
                 done();
             })
 
 
+        })
+        it('FACADE: get_reservation', function () {
+            reservation.test.should.equal("test");
+        })
 
     })
-    it('FACADE: get_reservation', function () {
-        var result = reservation;
-        result.test.should.equal("test");
-    })
-
-})
     //describe('post_reservation_flightID', function () {
     //    var testServer = null
     //    before(function (done) {
@@ -263,7 +261,7 @@ describe('facade for db', function () {
             var couchdb = nock(url)
                 .delete('/12345')
                 .reply(200, {
-                    "test" : "test"
+                    "test": "test"
                 });
             facade.delete_Reservation('testServer', 12345, function (err, res) {
                 error = err;
@@ -279,7 +277,7 @@ describe('facade for db', function () {
     describe('updateVerified', function () {
         var testUser = null;
         before(function (done) {
-            facade.updateVerified('Bilbo',function (err, user) {
+            facade.updateVerified('Bilbo', function (err, user) {
                 testUser = user;
                 done()
             })
@@ -290,15 +288,17 @@ describe('facade for db', function () {
     });
 
 
-describe('findUserById', function () {
-    var testUser = null;
-    before(function (done) {
-        facade.findUserById(bilboID, function (err, user) {
-            testUser = user;
-            done()
+    describe('findUserById', function () {
+        var testUser = null;
+        before(function (done) {
+            facade.findUserById(bilboID, function (err, user) {
+                testUser = user;
+                done()
+            })
+        });
+        it('find user by id should return userName bilbo from bilbosId', function () {
+            testUser.userName.should.equal('Bilbo')
         })
     });
-    it('find user by id should return userName bilbo from bilbosId', function () {
-        testUser.userName.should.equal('Bilbo')
-    })
+
 });
