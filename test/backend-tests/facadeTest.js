@@ -222,28 +222,21 @@ describe('facade for db', function () {
     });
 
     describe('get_Reservation', function () {
+        var reservation = null;
         before(function (done) {
-            var reservation = null;
+
             var couchdb = nock(url)
                 .get('/1')
-                .reply(200, [{
-                    "test": "test"
-                }]);
-            facade.createServer('testGroup', url, function (err, server) {
-                console.log("SERVER: " + server);
-                facade.get_Reservation("testGroup",1,function(err,res){
-                    console.log("RESERVATION: " + res);
-                    reservation = res;
-                    done();
-                })
+                .reply(200, {
+                    test: "test"
+                });
+            facade.get_Reservation("Testserver", 1, function (err, res) {
+                console.log("RESERVATION: " + res);
+                reservation = res;
+                done();
             })
 
 
-        })
-        it('FACADE: get_reservation', function () {
-            var result = JSON.parse(reservation);
-            result.test.should.equal("test");
-        })
 
     })
     it('FACADE: get_reservation', function () {
