@@ -1,16 +1,25 @@
 <container>
     <form name="form" class="input-group col-xs-4" novalidate>
-        Date: <input class="form-control" type="date" name="time" ng-model="dDate">
-        <span ng-show="!dDate"> Please select date</span>
-        <br>
-        From: <input class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
-        <span ng-show="!departure"> Please select airport</span>
-        <br>
-        <input type="checkbox" ng-model="more" name="more">
-        Destination: <input ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
-        <span ng-show="!arrival&&more"> Please select airport</span>
-        <br>
-        <input type="submit" value="Search" ng-click="search()">
+            <div class="control-group">
+                <div class="controls">
+                    <label class="control-label" for="time">Please select a date</label>
+                    <input id="time" class="form-control" type="date" name="time" ng-model="dDate">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="departure">Please enter departure airport</label>
+                    <input id="departure" class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="ar">Arrival</label>
+                    <input id="ar" type="checkbox" ng-model="more" name="more">
+                    <label ng-show="more" class="control-label" for="arrival">Please enter arrival airport</label>
+                    <input id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
+                </div>
+                <div class="controls">
+                    <input type="submit" value="Search" ng-click="search()">
+                </div>
+            </div>
+        </div>
     </form>
     <div >
     {{error}}
