@@ -3,20 +3,24 @@
             <div class="control-group">
                 <div class="controls">
                     <label class="control-label" for="time">Date</label>
+                    <span ng-show="checkDate">- Please select date</span>
                     <input id="time" class="form-control" type="date" name="time" ng-model="dDate">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="departure">Departure</label>
+                    <label class="control-label" for="departure">From</label>
+                    <span ng-show="checkDeparture">- Please select airport</span>
                     <input id="departure" class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="ar">Arrival</label>
+                    <label class="control-label" for="ar">Destination</label>
                     <input id="ar" type="checkbox" ng-model="more" name="more">
-                    <label ng-show="more" class="control-label" for="arrival">Please enter arrival airport</label>
+                    <span ng-show="checkArrival && more">- Please select airport</span>
                     <input id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
                 </div>
                 <div class="controls">
+                    <p style="text-align: center;">
                     <input type="submit" value="Search" ng-click="search()">
+                    </p>
                 </div>
             </div>
         </div>

@@ -10,10 +10,25 @@ angular.module('airportApp.departureDate', ['ngRoute'])
     }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
         $scope.search = function () {
-            if (!$scope.more) {
+            if(!$scope.dDate){
+                $scope.checkDate = true;
+            }else{
+                $scope.checkDate = false;
+            }
+            if(!$scope.departure){
+                $scope.checkDeparture = true;
+            }else{
+                $scope.checkDeparture = false;
+            }
+            if(!$scope.arrival && $scope.more){
+                $scope.checkArrival = true;
+            }else{
+                $scope.checkArrival = false;
+            }
+            if (!$scope.more && !$scope.checkDate && !$scope.checkDeparture) {
                 departureDate($scope.departure,$scope.dDate);
             }
-            if($scope.more){
+            if($scope.more && !$scope.checkDate && !$scope.checkDeparture && !$scope.checkArrival){
                 departureArrivalDate($scope.departure,$scope.arrival,$scope.dDate);
             }
         };
