@@ -9,7 +9,7 @@
         <input type="checkbox" ng-model="more" name="more">Destination: <input ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
         <div ng-show="!arrival&&more"> Please enter arrival airport</div>
         <br>
-        <input type="submit" ng-click="search()">
+        <input type="submit" value="Search" ng-click="search()">
     </form>
     <div >
     {{error}}
