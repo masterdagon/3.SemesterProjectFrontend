@@ -1,19 +1,19 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myAppRename', [
+angular.module('airportApp', [
   'ngRoute',
-  'myAppRename.controllers',
-  'myAppRename.directives',
-  'myAppRename.services',
-  'myAppRename.factories',
-  'myAppRename.filters',
-  'myAppRename.view1',
-  'myAppRename.view2',
-  'myAppRename.view3'
+  'airportApp.controllers',
+  'airportApp.directives',
+  'airportApp.services',
+  'airportApp.factories',
+  'airportApp.filters',
+  'airportApp.home',
+  'airportApp.view2',
+  'airportApp.view3'
 ]).
 config(['$routeProvider', function($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({redirectTo: '/home'});
 }])
 .config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');

@@ -187,7 +187,7 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                                 console.log(body)
                                 callback(null, body);
                             } else {
-                                callback(JSON.parse(body));
+                                callback(body);
                             }
                         }
                     }

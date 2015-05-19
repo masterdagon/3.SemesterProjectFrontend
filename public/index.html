@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myAppRename" ng-controller="AppCtrl">
+<html ng-app="airportApp" ng-controller="AppCtrl">
 <head>
   <meta charset="utf8"/>
   <title>{{title}}</title>
@@ -23,7 +23,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a class="active" href="#/view1">view1</a></li>
+          <li><a class="active" href="#/home">home</a></li>
           <!--<li><a href="#/view2" ng-show="isUser">Users only (students)</a></li>-->
           <li><a href="#/view2">Users only </a></li>
           <!--<li><a href="#/view3" ng-show="isAdmin">Admins only (teachers)</a></li>-->
@@ -59,9 +59,9 @@
 <script src="vendor/angular/angular.js"></script>
 <script src="vendor/angular-route/angular-route.js"></script>
 <script src="app/app.js"></script>
-<script src="app/view1/view1.js"></script>
-<script src="app/view2/view2.js"></script>
-<script src="app/view3/view3.js"></script>
+<script src="app/AllViews/home.js"></script>
+<script src="app/UserViews/view2.js"></script>
+<script src="app/AdminViews/view3.js"></script>
 <script src="app/components/controllers.js"></script>
 <script src="app/components/directives.js"></script>
 <script src="app/components/factories.js"></script>

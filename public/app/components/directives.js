@@ -2,7 +2,7 @@
 
 /* Directives */
 
-angular.module('myAppRename.directives', []).
+angular.module('airportApp.directives', []).
   directive('angularLinks', function () {
     return {
       restrict: 'AE',
