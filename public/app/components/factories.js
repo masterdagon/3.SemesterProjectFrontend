@@ -28,7 +28,31 @@ angular.module('airportApp.factories', []).
         return $q.reject(rejection);
       }
     };
-  });
+  })
+.factory('userFactory', function ($http) {
+        var urlBase = '/apiUser';
+        var userFactory = {};
 
+        userFactory.getDepatureDate = function (departure,date) {
+            return $http.get(urlBase+'/f/'+departure+'/'+date);
+        };
 
-;
+        userFactory.getDepatureDateArival = function (title) {
+            return $http.get(urlBase +'/f/'+departure+'/'+arrival+'/'+date);
+        };
+
+        userFactory.getReservation = function (name,rID) {
+            return $http.get(urlBase+'/r/'+name+'/'+rID);
+        };
+
+        userFactory.postReservation = function (name,flightID,passengers) {
+            return $http.post(urlBase + '/r/'+name+'/'+flightID,passengers);
+        };
+
+        userFactory.deleteReservation = function (name,rID) {
+            return $http.delete(urlBase + '/r/'+name+'/'+rID);
+        };
+
+        return userFactory;
+    });
+
