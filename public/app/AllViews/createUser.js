@@ -9,8 +9,8 @@ angular.module('airportApp.createUser', ['ngRoute'])
         });
     }])
     .controller('createUserCtrl',['$scope','indexFactory', function($scope,indexFactory) {
-        console.log('test');
-        $scope.title='test';
+        $scope.CheckUserNameError =false
+        $scope.CheckUserNameSucces =false
 
         $scope.saveUser = function(){
             indexFactory.saveUser($scope.newUser)
