@@ -10,9 +10,10 @@ angular.module('airportApp', [
     'airportApp.filters',
     'airportApp.home',
     'airportApp.createUser',
+    'airportApp.departureDate',
     'airportApp.view2',
-    'airportApp.view3',
-    'airportApp.departureDate'
+    'airportApp.view3'
+
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/home'});

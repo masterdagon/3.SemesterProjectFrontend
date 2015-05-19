@@ -1,17 +1,15 @@
-/**
- * Created by Muggi on 19-05-2015.
- */
+
 'use strict';
 
-app = angular.module('airportApp.departureDate', ['ngRoute'])
+angular.module('airportApp.departureDate', ['ngRoute'])
 
-app.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/departuredate', {
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/DepartureDate', {
         templateUrl: 'app/UserViews/DepartureDate.html',
         controller: 'DepartureDateCtrl'
     });
 }])
-app.controller('DepartureDateCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('DepartureDateCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.departureDate = function(departure,departureDate){
         $http({
             method: 'GET',
