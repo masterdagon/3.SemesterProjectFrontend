@@ -1,10 +1,24 @@
 
 <div class="col-md-3">
     <form class="form-horizontal" name="form" role="form">
-        <div class="form-group has-feedback">
-            <label class="control-label col-sm-3" for="userName">userName</label>
+        <div ng-show="!CheckUserNameError && !CheckUserNameSucces" class="form-group has-feedback">
+            <label class="control-label col-sm-3" for="userName2">userName</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="userName" ng-model="newUser.userName" id="userName" aria-describedby="userNameStatus">
+                <input type="text" class="form-control" name="userName" ng-model="newUser.userName" id="userName1" aria-describedby="userNameStatus">
+            </div>
+        </div>
+        <div ng-show="CheckUserNameError" class="form-group has-error has-feedback">
+            <label class="control-label col-sm-3" for="userName1">userName</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="userName" ng-model="newUser.userName" id="userName2" aria-describedby="userNameStatus">
+                <span class="help-inline">Username is taken</span>
+            </div>
+        </div>
+        <div ng-show="CheckUserNameSucces" class="form-group has-success has-feedback">
+            <label class="control-label col-sm-3" for="userName1">userName</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="userName" ng-model="newUser.userName" id="userName2" aria-describedby="userNameStatus">
+                <span class="help-inline">Username is taken</span>
             </div>
         </div>
         <div class="form-group has-feedback">
@@ -14,15 +28,20 @@
                 <span ng-show="form.uEmail.$error.email" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
         </div>
-        <div class="form-group has-feedback">
+        <div class="form-group has-success has-error has-feedback">
             <label class="control-label col-sm-3" for="pw">Password</label>
             <div class="col-sm-9">
                 <input class="form-control" type="password" name="pw" ng-model="newUser.pw" id="pw">
             </div>
         </div>
+        <div class="form-group has-error has-feedback">
+            <label class="control-label" for="url">Url</label>
+            <input name="url" required="required" id="url" class="form-control" type="text">
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="button" value="Save" ng-click="saveUser()">
+                <button type="button" class="btn btn-primary" ng-click="saveUser()">Save User</button>
             </div>
         </div>
     </form>
