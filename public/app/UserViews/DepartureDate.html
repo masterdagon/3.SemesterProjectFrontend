@@ -1,36 +1,48 @@
 <container>
     <form name="form" class="input-group col-xs-4" novalidate>
-            <div class="control-group">
-                <div class="controls">
-                    <label class="control-label" for="time">Date</label>
-                    <span ng-show="checkDate">- Please select date</span>
-                    <input id="time" class="form-control" type="date" name="time" ng-model="dDate">
-                </div>
-                <div class="controls">
-                    <label class="control-label" for="departure">From</label>
-                    <span ng-show="checkDeparture">- Please select airport</span>
-                    <input id="departure" class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
-                </div>
-                <div class="controls">
-                    <label class="control-label" for="ar">Destination</label>
-                    <input id="ar" type="checkbox" ng-model="more" name="more">
-                    <span ng-show="checkArrival && more">- Please select airport</span>
-                    <input id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
-                </div>
-                <div class="controls">
-                    <p style="text-align: center;">
+        <div class="control-group">
+            <div class="controls">
+                <label class="control-label" for="time">Date</label>
+                <span ng-show="checkDate">- Please select date</span>
+                <input id="time" class="form-control" type="date" name="time" ng-model="dDate">
+            </div>
+            <div class="controls">
+                <label class="control-label" for="departure">From</label>
+                <span ng-show="checkDeparture">- Please select airport</span>
+                <input id="departure" class="form-control" type="text" placeholder="Airport" name="airportD"
+                       ng-model="departure">
+            </div>
+            <div class="controls">
+                <label class="control-label" for="ar">Destination</label>
+                <input id="ar" type="checkbox" ng-model="more" name="more">
+                <span ng-show="checkArrival && more">- Please select airport</span>
+                <input id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport"
+                       name="airportA" ng-model="arrival">
+            </div>
+            <div class="controls">
+                <p style="text-align: center;">
                     <input type="submit" value="Search" ng-click="search()">
-                    </p>
-                </div>
+                </p>
             </div>
         </div>
+        </div>
     </form>
-    <div >
-    {{error}}
-    <ul ng-repeat="hit in info">
-    <li>
-    {{hit}}
-    </li>
-    </ul>
+    <div>
+        {{error}}
+        <ul ng-repeat="hit in info">
+            <!--<p>{{hit}}</p>-->
+            <li ng-repeat="flight in hit.flights">
+                <ul>
+                    <li><h5>Airline: <small>{{flight.airline}}</small></h5></li>
+                    <li><h5>From: <small>{{flight.depature}}</small></h5></li>
+                    <li><h5>To: <small>{{flight.destination}}</small></h5></li>
+                    <li><h5>Price: <small>{{flight.price}}</small></h5></li>
+                    <li><h5>Available seats: <small>{{flight.availableSeats}}</small></h5></li>
+                    <div ng-show="flight.bookingCode">
+                        <input type="submit" value="Booking" ng-click="reservepage">
+                    </div>
+                </ul>
+            </li>
+        </ul>
     </div>
 </container>
