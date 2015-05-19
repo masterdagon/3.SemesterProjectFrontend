@@ -1,18 +1,19 @@
 <container>
-Departure Date:
-<div class="input-group">
-    <input class="form-control" type="date" name="time" ng-model="dDate">
-    <input class="form-control" type="text" placeholder="Airport" name="airport" ng-model="departure">
-    <div class="input-group-btn">
-<button class="btn btn-default" type="submit" ng-click="departureDate(departure,dDate)">Search</button>
-    </div>
-</div>
-<div >
+    <form name="form" class="input-group" novalidate>
+        Date: <input class="form-control" type="date" name="time" ng-model="dDate">
+        <br>
+        From: <input class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
+        <br>
+        <input type="checkbox" ng-model="more" name="more">Destination: <input ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
+        <br>
+        <input type="submit" ng-click="search()">
+    </form>
+    <div >
     {{error}}
-<ul ng-repeat="hit in info">
+    <ul ng-repeat="hit in info">
     <li>
-        {{hit}}
+    {{hit}}
     </li>
-</ul>
-</div>
+    </ul>
+    </div>
 </container>
