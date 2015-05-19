@@ -14,6 +14,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 var rand,mailOptions,host,link;
 
 router.post('/send',function(req,res){
+    console.log(req.body)
     facade.createUser(req.body.userName,req.body.email,req.body.pw,function(err,user){
         console.log(user)
         if(user != undefined){

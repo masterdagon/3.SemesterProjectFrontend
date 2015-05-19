@@ -54,5 +54,16 @@ angular.module('airportApp.factories', []).
         };
 
         return userFactory;
-    });
+    })
+    .factory('indexFactory', function ($http) {
+        var urlBase = '/';
+        var userFactory = {};
+
+        userFactory.saveUser = function (user) {
+            return $http.post(urlBase+'send',user);
+        };
+
+
+        return userFactory;
+    })
 
