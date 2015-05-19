@@ -1,23 +1,22 @@
 
 <div class="col-md-3">
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" name="form" role="form">
         <div class="form-group has-feedback">
             <label class="control-label col-sm-3" for="userName">userName</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="userName" ng-model="newUser.userName" id="userName" aria-describedby="userNameStatus">
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="userName3Status" class="sr-only">(success)</span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Email </label>
-            <div class="col-sm-8">
-                <input class="form-control" type="email" name="email" ng-model="newUser.email" id="email">
+        <div class="form-group has-feedback">
+            <label class="control-label col-sm-3" for="email">Email </label>
+            <div class="col-sm-9">
+                <input class="form-control" type="email" name="uEmail" ng-model="newUser.email" id="email">
+                <span ng-show="form.uEmail.$error.email" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="pw">Password</label>
-            <div class="col-sm-8">
+        <div class="form-group has-feedback">
+            <label class="control-label col-sm-3" for="pw">Password</label>
+            <div class="col-sm-9">
                 <input class="form-control" type="password" name="pw" ng-model="newUser.pw" id="pw">
             </div>
         </div>
