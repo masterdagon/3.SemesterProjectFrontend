@@ -63,6 +63,10 @@ angular.module('airportApp.factories', []).
             return $http.post(urlBase+'send',user);
         };
 
+        userFactory.checkUserEmail = function (user,email) {
+            return $http.post(urlBase+'check',{userName:user , email:email});
+        };
+
 
         return userFactory;
     })
