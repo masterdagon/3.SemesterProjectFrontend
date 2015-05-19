@@ -30,7 +30,7 @@ angular.module('airportApp.factories', []).
     };
   })
 .factory('userFactory', function ($http) {
-        var urlBase = '/apiUser';
+        var urlBase = '/userApi';
         var userFactory = {};
 
         userFactory.getDepartureDate = function (departure,date) {

@@ -10,7 +10,7 @@ angular.module('airportApp.departureDate', ['ngRoute'])
     });
 }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
-    $scope.departureDate = function(departure,departureDate){
+    $scope.departureDate = function(departure,dDate){
         var date = new Date(dDate);
         var ms = date.getTime();
         userFactory.getDepartureDate(departure,ms)
