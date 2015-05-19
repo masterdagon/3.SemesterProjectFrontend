@@ -116,6 +116,10 @@ router.get('/partials/:partialName', function(req, res) {
   res.render('partials/' + name);
 });
 
+router.get('/jpg', function(req, res){
+
+})
+
 module.exports = router;
 
 

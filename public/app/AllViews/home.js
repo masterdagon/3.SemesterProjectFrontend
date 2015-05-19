@@ -8,5 +8,6 @@ angular.module('airportApp.home', ['ngRoute'])
   });
 }])
 
-.controller('homeCtrl', function() {
+.controller('homeCtrl', function($scope) {
+
 });

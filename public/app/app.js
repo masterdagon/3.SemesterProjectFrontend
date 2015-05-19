@@ -9,6 +9,7 @@ angular.module('airportApp', [
   'airportApp.factories',
   'airportApp.filters',
   'airportApp.home',
+  'airportApp.createUser',
   'airportApp.view2',
   'airportApp.view3'
 ]).
