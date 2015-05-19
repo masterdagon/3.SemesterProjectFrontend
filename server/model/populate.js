@@ -79,3 +79,7 @@ var facade = require('./Facade');
 //})facade.get_Departure_Date('BER',1431512436091,function(err,flights){
 //    console.log(flights)
 //});
+
+facade.createUser('user','masterdagon@hotmail.com','user',function(){
+
+})
