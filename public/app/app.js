@@ -2,23 +2,24 @@
 
 // Declare app level module which depends on views, and components
 angular.module('airportApp', [
-  'ngRoute',
-  'airportApp.controllers',
-  'airportApp.directives',
-  'airportApp.services',
-  'airportApp.factories',
-  'airportApp.filters',
-  'airportApp.home',
-  'airportApp.createUser',
-  'airportApp.view2',
-  'airportApp.view3'
+    'ngRoute',
+    'airportApp.controllers',
+    'airportApp.directives',
+    'airportApp.services',
+    'airportApp.factories',
+    'airportApp.filters',
+    'airportApp.home',
+    'airportApp.createUser',
+    'airportApp.view2',
+    'airportApp.view3',
+    'airportApp.departureDate'
 ]).
-config(['$routeProvider', function($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/home'});
-}])
-.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-  });
+    config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.otherwise({redirectTo: '/home'});
+    }])
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    });
 
 
 
