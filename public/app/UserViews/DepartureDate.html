@@ -1,10 +1,13 @@
 <container>
     <form name="form" class="input-group" novalidate>
         Date: <input class="form-control" type="date" name="time" ng-model="dDate">
+        <div ng-show="!dDate"> Please select a date</div>
         <br>
         From: <input class="form-control" type="text" placeholder="Airport" name="airportD" ng-model="departure">
+        <div ng-show="!departure"> Please enter departure airport</div>
         <br>
         <input type="checkbox" ng-model="more" name="more">Destination: <input ng-show="more" class="form-control" type="text" placeholder="Airport" name="airportA" ng-model="arrival">
+        <div ng-show="!arrival&&more"> Please enter arrival airport</div>
         <br>
         <input type="submit" ng-click="search()">
     </form>
