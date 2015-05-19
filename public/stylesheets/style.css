@@ -1,7 +1,12 @@
+html{
+}
+
 body {
-    background-image: url('sky2.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background: url(sky2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
