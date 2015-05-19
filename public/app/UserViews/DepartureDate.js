@@ -11,7 +11,9 @@ angular.module('airportApp.departureDate', ['ngRoute'])
 }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
     $scope.departureDate = function(departure,departureDate){
-        userFactory.getDepartureDate(departure,departureDate)
+        var date = new Date(dDate);
+        var ms = date.getTime();
+        userFactory.getDepartureDate(departure,ms)
             .success(function (data, status, headers, config) {
                 $scope.info = data;
                 $scope.error = null;

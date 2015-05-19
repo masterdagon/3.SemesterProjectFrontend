@@ -1,9 +1,10 @@
+<container>
 Departure Date:
 <div class="input-group">
-    <input class="form-control" type="datetime-local" name="time" ng-model="dDate">
+    <input class="form-control" type="date" name="time" ng-model="dDate">
     <input class="form-control" type="text" placeholder="Airport" name="airport" ng-model="departure">
     <div class="input-group-btn">
-<button class="btn btn-default" type="submit" ng-click="departureDate(departure,dDate)"></button>
+<button class="btn btn-default" type="submit" ng-click="departureDate(departure,dDate)">Search</button>
     </div>
 </div>
 <div >
@@ -13,3 +14,4 @@ Departure Date:
     </li>
 </ul>
 </div>
+</container>
