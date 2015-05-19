@@ -10,10 +10,13 @@ angular.module('airportApp.departureDate', ['ngRoute'])
     });
 }])
     .controller('DepartureDateCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.departureDate = function(departure,departureDate){
+    $scope.departureDate = function(departure,dDate){
+        console.log("DATE:" + dDate)
+        var date = new Date(dDate);
+        var ms = date.getTime();
         $http({
             method: 'GET',
-            url: 'userApi/f/' + departure + "/" + departureDate
+            url: 'userApi/f/' + departure + "/" + ms
         })
             .success(function (data, status, headers, config) {
                 $scope.info = data;
