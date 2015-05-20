@@ -16,6 +16,7 @@ var rand,mailOptions,host,link;
 
 router.post('/check',function(req,res){
     facade.checkUserEmail(req.body.userName,req.body.email,function(err,check){
+        console.log(check)
         if (err) {
             res.status(404);
             res.end(JSON.stringify(err));
