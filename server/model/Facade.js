@@ -260,6 +260,7 @@ function get_Departure_Date(departure, date, callback) {
                             if (storage.length > 0) {
                                 callback(null, storage);
                             } else {
+                                console.log(body);
                                 callback(JSON.parse(body));
                             }
                         }

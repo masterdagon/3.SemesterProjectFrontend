@@ -5,7 +5,7 @@
     <div>
         <span>Amount of travellers:</span>
         <select ng-model="number" convert-to-number>
-            <option value="1" selected="selected">1</option>
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -19,10 +19,9 @@
         <span><button type="button" ng-click="getNumberOfTravellers(number)">Go!</button></span>
     </div>
 
-    <div ng-repeat="x in array">
-        <p>ng-repeat count: {{x}}</p>
-
-        <form name="form" class="input-group col-xs-5" novalidate>
+    <div >
+        <form ng-repeat="x in array" class="input-group col-xs-5" novalidate>
+            <h3>Passenger:</h3>
             <div class="control-group">
                 <div class="controls">
                     <h4>First Name</h4>
@@ -51,11 +50,15 @@
                 </div>
 
                 <div class="controls">
-                    <p style="text-align: center;">
-                        <input type="submit" value="Reserve" ng-click="reserve()">
-                    </p>
+
                 </div>
             </div>
         </form>
+        <div ng-show="number && array.length > 0">
+            <p>
+                <button type="button" ng-click="reserve()">Book tickets</button>
+            </p>
+
+        </div>
     </div>
 </div>

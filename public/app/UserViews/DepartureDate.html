@@ -9,14 +9,14 @@
             <div class="controls">
                 <label class="control-label" for="departure">From</label>
                 <span ng-show="checkDeparture">- Please select airport</span>
-                <input id="departure" class="form-control" type="text" placeholder="Airport" name="airportD"
+                <input autocomplete="on" id="departure" class="form-control" type="text" placeholder="Airport" name="airportD"
                        ng-model="departure">
             </div>
             <div class="controls">
                 <label class="control-label" for="ar">Destination</label>
                 <input id="ar" type="checkbox" ng-model="more" name="more">
                 <span ng-show="checkArrival && more">- Please select airport</span>
-                <input id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport"
+                <input autocomplete="on" id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport"
                        name="airportA" ng-model="arrival">
             </div>
             <div class="controls">
