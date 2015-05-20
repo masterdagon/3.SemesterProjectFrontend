@@ -19,7 +19,6 @@ angular.module('airportApp.createUser', ['ngRoute'])
 
 
         $scope.saveUser = function(){
-            console.log($scope.newUser)
             $scope.CheckUserNameError = false
             $scope.CheckUserNameSucces = false
             $scope.CheckEmailError= false
@@ -62,7 +61,8 @@ angular.module('airportApp.createUser', ['ngRoute'])
                     }
                     indexFactory.checkUserEmail($scope.newUser.userName,$scope.newUser.email)
                         .success(function (data, status, headers, config) {
-                            console.log(data.userName)
+                            console.log('user = '+data.userName)
+                            console.log('email = '+data.email)
                             if(data.userName){
                                 $scope.CheckUserNameError = "userName already exist try again";
                                 $scope.CheckUserNameSucces = false
@@ -70,7 +70,7 @@ angular.module('airportApp.createUser', ['ngRoute'])
                                 $scope.CheckUserNameError = false;
                                 $scope.CheckUserNameSucces = true
                             }
-                            if(data.userName){
+                            if(data.email){
                                 $scope.CheckEmailError= "email already exist try again";
                                 $scope.CheckEmailSucces = false
                             }else{
@@ -94,6 +94,7 @@ angular.module('airportApp.createUser', ['ngRoute'])
 
                         })
                         .error(function (data, status, headers, config) {
+                            console.log('error')
                             if (status == 401) {
                                 $scope.error = "You are not authenticated to request these data";
                                 return;
