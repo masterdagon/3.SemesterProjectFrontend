@@ -64,14 +64,14 @@ angular.module('airportApp.createUser', ['ngRoute'])
                         .success(function (data, status, headers, config) {
                             console.log(data.userName)
                             if(data.userName){
-                                $scope.CheckUserNameError = true;
+                                $scope.CheckUserNameError = "userName already exist try again";
                                 $scope.CheckUserNameSucces = false
                             }else{
                                 $scope.CheckUserNameError = false;
                                 $scope.CheckUserNameSucces = true
                             }
                             if(data.userName){
-                                $scope.CheckEmailError= true;
+                                $scope.CheckEmailError= "email already exist try again";
                                 $scope.CheckEmailSucces = false
                             }else{
                                 $scope.CheckEmailError= false;
