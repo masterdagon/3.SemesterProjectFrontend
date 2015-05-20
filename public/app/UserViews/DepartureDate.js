@@ -7,8 +7,29 @@ angular.module('airportApp.departureDate', ['ngRoute'])
             templateUrl: 'app/UserViews/DepartureDate.html',
             controller: 'DepartureDateCtrl'
         });
+        $routeProvider.when('/booking',{
+            templateUrl: 'app/UserViews/booking.html',
+            controller: 'DepartureDateCtrl'
+        })
     }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
+        $scope.array = new Array(1);
+        $scope.array[0] = 1;
+        $scope.getNumberOfTravellers = function(num){
+            $scope.array = new Array(num);
+            for(var i = 0; i<$scope.array.length;i++){
+                $scope.array[i]=i+1;
+            }
+        };
+
+        $scope.booking = function(name,flightId){
+            console.log("NAME: " + name);
+            console.log("FLIGHTID : " + flightId);
+            window.location = '#/booking';
+            $scope.chosenServerName = name;
+            $scope.chosenFlightId = flightId;
+        };
+
         $scope.search = function () {
             if(!$scope.dDate){
                 $scope.checkDate = true;

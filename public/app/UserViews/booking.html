@@ -1,0 +1,59 @@
+<div class="container">
+    Name : {{chosenServerName}}
+    <br>
+    FlightId : {{chosenFlightId}}
+    <div>
+    <select ng-model="number" convert-to-number>
+        <option value="1" selected="selected">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+        <span><button type="button" ng-click="getNumberOfTravellers(number)">Go!</button></span>
+    </div>
+
+    <div ng-repeat="x in array">
+        <form  name="form" class="input-group col-xs-5" novalidate>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="control-label" for="firstName">First Name</label>
+                    <input id="firstName" class="form-control" type="text" placeholder="First Name" name="firstName"
+                           ng-model="passenger.{{x}}.firstName">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="lastName">Last Name</label>
+                    <input id="lastName" class="form-control" type="text" placeholder="Last name"
+                           name="passenger.lastName"
+                           ng-model="passenger.{{x}}.lastName">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="street">Street</label>
+                    <input id="street" class="form-control" type="text" placeholder="Street" name="street"
+                           ng-model="passenger.{{x}}.street">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="city">City</label>
+                    <input id="city" class="form-control" type="text" placeholder="City" name="city"
+                           ng-model="passenger.{{x}}.city">
+                </div>
+                <div class="controls">
+                    <label class="control-label" for="country">Country</label>
+                    <input id="country" class="form-control" type="text" placeholder="Country" name="country"
+                           ng-model="passenger.{{x}}.country">
+                </div>
+
+                <div class="controls">
+                    <p style="text-align: center;">
+                        <input type="submit" value="Reserve" ng-click="reserve()">
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

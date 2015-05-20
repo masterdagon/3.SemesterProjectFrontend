@@ -29,19 +29,42 @@
     </form>
     <div ng-show="error">
         {{error.message}}
-        </div>
+    </div>
     <div ng-show="info">
         <ul ng-repeat="hit in info">
-            <!--<p>{{hit}}</p>-->
+            <p>{{hit.name}}</p>
             <li ng-repeat="flight in hit.flights">
+                <p>{{flight.flightId}}</p>
                 <ul>
-                    <li><h5>Airline: <small>{{flight.airline}}</small></h5></li>
-                    <li><h5>From: <small>{{flight.depature}}</small></h5></li>
-                    <li><h5>To: <small>{{flight.destination}}</small></h5></li>
-                    <li><h5>Price: <small>{{flight.price}}</small></h5></li>
-                    <li><h5>Available seats: <small>{{flight.availableSeats}}</small></h5></li>
+                    <li>
+                        <h5>Airline:
+                            <small>{{flight.airline}}</small>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>From:
+                            <small>{{flight.depature}}</small>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>To:
+                            <small>{{flight.destination}}</small>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>Price:
+                            <small>{{flight.price}}</small>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>Available seats:
+                            <small>{{flight.availableSeats}}</small>
+                        </h5>
+                    </li>
                     <div ng-show="flight.bookingCode">
-                        <input type="submit" value="Booking" ng-click="reservepage">
+
+                        <input type="submit" value="Booking" ng-click="booking(hit.name,flight.flightId)">
+
                     </div>
                 </ul>
             </li>
