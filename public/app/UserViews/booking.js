@@ -11,6 +11,7 @@ angular.module('airportApp.booking', ['ngRoute'])
     .controller('bookingCTRL', ['$scope','$routeParams','userFactory', function ($scope, $routeParams ,userFactory) {
         $scope.chosenServerName = $routeParams.name;
         $scope.chosenFlightId = $routeParams.flightId;
+        $scope.customers=[];
 
         $scope.getNumberOfTravellers = function(num){
             $scope.array = [];
