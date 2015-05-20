@@ -10,9 +10,11 @@ var server = mongoose.model('Server');
 var request = require('request');
 
 
-function checkUserEmail(userName,email, callback){
+function checkUserEmail(checkUserName,checkEmail, callback){
     var check = {userName:false , email:false};
-    user.findOne({userName: {$regex: new RegExp('^'+ userName + '$', "i")}},function(err,us){
+    var userName = checkUserName;
+    var email = checkEmail.toLowerCase();
+    user.findOne({userName: userName},function(err,us){
         console.log(us)
         if(err){
             callback(err)
@@ -22,7 +24,7 @@ function checkUserEmail(userName,email, callback){
             }else{
                 check.userName = true
             }
-            user.findOne({email: {$regex: new RegExp('^'+ email + '$', "i")}},function(err,use){
+            user.findOne({email: email},function(err,use){
                 console.log(use)
                 if(err){
                     callback(err)
@@ -44,7 +46,7 @@ function createUser(userName, email, pw, callback) {
         bcrypt.hash(pw, salt, function (err, hash) {
             var newuser = new user({
                 userName: userName,
-                email: email,
+                email: email.toLowerCase(),
                 pw: hash,
                 role: 'user',
                 verified: false,
@@ -84,7 +86,7 @@ function createAdmin(userName, email, pw, callback) {
         bcrypt.hash(pw, salt, function (err, hash) {
             var newuser = new user({
                 userName: userName,
-                email: email,
+                email: email.toLowerCase(),
                 pw: hash,
                 role: 'admin',
                 verified: true,

@@ -19,52 +19,89 @@ angular.module('airportApp.createUser', ['ngRoute'])
 
 
         $scope.saveUser = function(){
-            if($scope.newUser.pw.length >7){
-                $scope.CheckPWError= false
-                $scope.CheckPWSucces = true
-            }else{
-                $scope.CheckPWError= true
-                $scope.CheckPWSucces = false
-            }
-            indexFactory.checkUserEmail($scope.newUser.userName,$scope.newUser.email)
-                .success(function (data, status, headers, config) {
-                    console.log(data.userName)
-                    if(data.userName){
-                        $scope.CheckUserNameError = true
-                        $scope.CheckUserNameSucces = false
-                    }else{
-                        $scope.CheckUserNameError = false
-                        $scope.CheckUserNameSucces = true
-                    }
-                    if(data.userName){
-                        $scope.CheckEmailError= true
-                        $scope.CheckEmailSucces = false
-                    }else{
-                        $scope.CheckEmailError= false
-                        $scope.CheckEmailSucces = true
-                    }
-                    if($scope.CheckPWSucces && $scope.CheckEmailSucces && $scope.CheckUserNameSucces ){
-                        indexFactory.saveUser($scope.newUser)
-                            .success(function (data, status, headers, config) {
-                                $scope.info = data;
-                                $scope.error = null;
-                            }).
-                            error(function (data, status, headers, config) {
-                                if (status == 401) {
-                                    $scope.error = "You are not authenticated to request these data";
-                                    return;
-                                }
-                                $scope.error = data;
-                            });
-                    }
+            console.log($scope.newUser)
+            $scope.CheckUserNameError = false
+            $scope.CheckUserNameSucces = false
+            $scope.CheckEmailError= false
+            $scope.CheckEmailSucces = false
+            $scope.CheckPWError= false
+            $scope.CheckPWSucces = false
 
-            })
-                .error(function (data, status, headers, config) {
-                    if (status == 401) {
-                        $scope.error = "You are not authenticated to request these data";
-                        return;
+            if($scope.newUser == undefined){
+                $scope.CheckUserNameError = "UserName must be filled out"
+                $scope.CheckEmailError = "Email is not a valid email"
+                $scope.CheckPWError = "password must be at least 8 characters long"
+            }else{
+                if($scope.newUser.userName == undefined || $scope.newUser.email == undefined || $scope.newUser.pw == undefined){
+                    if($scope.newUser.userName == undefined){
+                        $scope.CheckUserNameError = "UserName must be filled out"
                     }
-                    $scope.error = data;
-                });
+                    if($scope.newUser.email == undefined){
+                        $scope.CheckEmailError = "Email is not a valid email"
+                    }
+                    if($scope.newUser.pw == undefined){
+                        $scope.CheckPWError = "password must be at least 8 characters long"
+                    }
+                }else if($scope.newUser.userName == "" || $scope.newUser.email == "" || $scope.newUser.pw.length < 7){
+                    if($scope.newUser.userName == ""){
+                        $scope.CheckUserNameError = "UserName must be filled out"
+                    }
+                    if($scope.newUser.email == ""){
+                        $scope.CheckEmailError = "Email is not a valid email"
+                    }
+                    if($scope.newUser.pw.length < 8){
+                        $scope.CheckPWError = "password must be at least 8 characters long"
+                    }
+                }else{
+                    if($scope.newUser.pw.length >7){
+                        $scope.CheckPWError= false;
+                        $scope.CheckPWSucces = true
+                    }else{
+                        $scope.CheckPWError= true;
+                        $scope.CheckPWSucces = false
+                    }
+                    indexFactory.checkUserEmail($scope.newUser.userName,$scope.newUser.email)
+                        .success(function (data, status, headers, config) {
+                            console.log(data.userName)
+                            if(data.userName){
+                                $scope.CheckUserNameError = true;
+                                $scope.CheckUserNameSucces = false
+                            }else{
+                                $scope.CheckUserNameError = false;
+                                $scope.CheckUserNameSucces = true
+                            }
+                            if(data.userName){
+                                $scope.CheckEmailError= true;
+                                $scope.CheckEmailSucces = false
+                            }else{
+                                $scope.CheckEmailError= false;
+                                $scope.CheckEmailSucces = true
+                            }
+                            if($scope.CheckPWSucces && $scope.CheckEmailSucces && $scope.CheckUserNameSucces ){
+                                indexFactory.saveUser($scope.newUser)
+                                    .success(function (data, status, headers, config) {
+                                        $scope.info = data;
+                                        $scope.error = null;
+                                    }).
+                                    error(function (data, status, headers, config) {
+                                        if (status == 401) {
+                                            $scope.error = "You are not authenticated to request these data";
+                                            return;
+                                        }
+                                        $scope.error = data;
+                                    });
+                            }
+
+                        })
+                        .error(function (data, status, headers, config) {
+                            if (status == 401) {
+                                $scope.error = "You are not authenticated to request these data";
+                                return;
+                            }
+                            $scope.error = data;
+                        });
+                }
+            }
+
         }
     }]);
