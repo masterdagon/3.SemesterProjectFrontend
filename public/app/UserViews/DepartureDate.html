@@ -62,9 +62,7 @@
                         </h5>
                     </li>
                     <div ng-show="flight.bookingCode">
-                        <li>
-                        <a href="#/booking/{{hit.name}}/{{flight.flightId}}">Booking</a>
-                        </li>
+                        <button type="button" ng-click="booking(hit.name,flight.flightId)">Booking</button>
                     </div>
                 </ul>
             </li>
