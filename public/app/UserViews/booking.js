@@ -20,8 +20,12 @@ angular.module('airportApp.booking', ['ngRoute'])
             console.log($scope.array);
         };
 
-        $scope.reserve = function(){
-            console.log($scope.passengers)
+        $scope.reserve = function(customers,serverName,flightId){
+            var payload = {
+                passengers : customers
+            };
+            console.log(payload);
+            console.log("SERVERNAME: " + serverName + " - FLIGHTID: " + flightId);
         }
 
     }]);

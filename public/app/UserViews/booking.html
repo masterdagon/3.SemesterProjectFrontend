@@ -26,27 +26,27 @@
                 <div class="controls">
                     <h4>First Name</h4>
                     <input class="form-control" type="text" placeholder="First Name"
-                           ng-model="passengers[x].firstName">
+                           ng-model="customers[x].firstName">
                 </div>
                 <div class="controls">
                     <h4>Last Name</h4>
                     <input class="form-control" type="text" placeholder="Last name"
-                           ng-model="passengers[x].lastName">
+                           ng-model="customers[x].lastName">
                 </div>
                 <div class="controls">
                     <h4>Street</h4>
                     <input class="form-control" type="text" placeholder="Street"
-                           ng-model="passengers[x].street">
+                           ng-model="customers[x].street">
                 </div>
                 <div class="controls">
                     <h4>City</h4>
                     <input class="form-control" type="text" placeholder="City"
-                           ng-model="passengers[x].city">
+                           ng-model="customers[x].city">
                 </div>
                 <div class="controls">
                     <h4>Country</h4>
                     <input class="form-control" type="text" placeholder="Country"
-                           ng-model="passengers[x].country">
+                           ng-model="customers[x].country">
                 </div>
 
                 <div class="controls">
@@ -56,7 +56,7 @@
         </form>
         <div ng-show="number && array.length > 0">
             <p>
-                <button type="button" ng-click="reserve()">Book tickets</button>
+                <button type="button" ng-click="reserve(customers,chosenServerName,chosenFlightId)">Book tickets</button>
             </p>
 
         </div>
