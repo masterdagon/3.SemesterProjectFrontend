@@ -15,21 +15,19 @@ function checkUserEmail(checkUserName,checkEmail, callback){
     var userName = checkUserName;
     var email = checkEmail.toLowerCase();
     user.findOne({userName: userName},function(err,us){
-        console.log(us)
         if(err){
             callback(err)
         }else{
-            if(us==null){
+            if(us==null || us== undefined ){
                 check.userName = false
             }else{
                 check.userName = true
             }
             user.findOne({email: email},function(err,use){
-                console.log(use)
                 if(err){
                     callback(err)
                 }else{
-                    if(use==null){
+                    if(use==null || use == undefined){
                         check.email = false
                     }else{
                         check.email = true

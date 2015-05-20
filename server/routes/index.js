@@ -19,7 +19,7 @@ router.post('/check',function(req,res){
         console.log(check)
         if (err) {
             res.status(404);
-            res.end(JSON.stringify(err));
+            res.end(JSON.stringify(check));
         } else {
             res.header("Content-type", "application/json");
             res.end(JSON.stringify(check));
