@@ -13,15 +13,6 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         //})
     }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
-        $scope.array = new Array(1);
-        $scope.array[0] = 1;
-        $scope.getNumberOfTravellers = function(num){
-            $scope.array = new Array(num);
-            for(var i = 0; i<$scope.array.length;i++){
-                $scope.array[i]=i+1;
-            }
-        };
-
         $scope.booking = function(name,flightId){
             window.location = '#/booking/'+name+'/'+flightId;
         };
