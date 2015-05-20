@@ -13,6 +13,19 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 var rand,mailOptions,host,link;
 
+
+router.post('/check',function(req,res){
+    facade.checkUserEmail(req.body.userName,req.body.email,function(err,check){
+        if (err) {
+            res.status(404);
+            res.end(JSON.stringify(err));
+        } else {
+            res.header("Content-type", "application/json");
+            res.end(JSON.stringify(check));
+        }
+    })
+});
+
 router.post('/send',function(req,res){
     console.log(req.body)
     facade.createUser(req.body.userName,req.body.email,req.body.pw,function(err,user){
