@@ -27,8 +27,10 @@
         </div>
         </div>
     </form>
-    <div>
-        {{error}}
+    <div ng-show="error">
+        {{error.message}}
+        </div>
+    <div ng-show="info">
         <ul ng-repeat="hit in info">
             <!--<p>{{hit}}</p>-->
             <li ng-repeat="flight in hit.flights">

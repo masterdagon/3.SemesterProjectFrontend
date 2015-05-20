@@ -47,6 +47,7 @@ angular.module('airportApp.departureDate', ['ngRoute'])
                         return;
                     }
                     $scope.error = data;
+                    $scope.info = null;
                 });
         }
 
