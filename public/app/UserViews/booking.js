@@ -15,7 +15,7 @@ angular.module('airportApp.booking', ['ngRoute'])
         $scope.getNumberOfTravellers = function(num){
             $scope.array = new Array(num);
             for(var i = 0; i<$scope.array.length;i++){
-                $scope.array[i]=i+1;
+                $scope.array[i]=i;
             }
         };
 
