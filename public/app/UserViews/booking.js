@@ -12,8 +12,6 @@ angular.module('airportApp.booking', ['ngRoute'])
         $scope.chosenServerName = $routeParams.name;
         $scope.chosenFlightId = $routeParams.flightId;
 
-        $scope.array = new Array(1);
-        $scope.array[0] = 1;
         $scope.getNumberOfTravellers = function(num){
             $scope.array = new Array(num);
             for(var i = 0; i<$scope.array.length;i++){

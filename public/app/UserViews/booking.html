@@ -4,49 +4,49 @@
     FlightId : {{chosenFlightId}}
     <div>
         <span>Amount of travellers:</span>
-    <select ng-model="number" convert-to-number>
-        <option value="1" selected="selected">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
+        <select ng-model="number" convert-to-number>
+            <option value="1" selected="selected">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
         <span><button type="button" ng-click="getNumberOfTravellers(number)">Go!</button></span>
     </div>
 
     <div ng-repeat="x in array">
         <p>ng-repeat count: {{x}}</p>
-        <form  name="form" class="input-group col-xs-5" novalidate>
+
+        <form name="form" class="input-group col-xs-5" novalidate>
             <div class="control-group">
                 <div class="controls">
-                    <label class="control-label" for="firstName">First Name</label>
-                    <input id="firstName" class="form-control" type="text" placeholder="First Name" name="firstName"
+                    <h4>First Name</h4>
+                    <input class="form-control" type="text" placeholder="First Name"
                            ng-model="passengers[x].firstName">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="lastName">Last Name</label>
-                    <input id="lastName" class="form-control" type="text" placeholder="Last name"
-                           name="passenger.lastName"
+                    <h4>Last Name</h4>
+                    <input class="form-control" type="text" placeholder="Last name"
                            ng-model="passengers[x].lastName">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="street">Street</label>
-                    <input id="street" class="form-control" type="text" placeholder="Street" name="street"
+                    <h4>Street</h4>
+                    <input class="form-control" type="text" placeholder="Street"
                            ng-model="passengers[x].street">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="city">City</label>
-                    <input id="city" class="form-control" type="text" placeholder="City" name="city"
+                    <h4>City</h4>
+                    <input class="form-control" type="text" placeholder="City"
                            ng-model="passengers[x].city">
                 </div>
                 <div class="controls">
-                    <label class="control-label" for="country">Country</label>
-                    <input id="country" class="form-control" type="text" placeholder="Country" name="country"
+                    <h4>Country</h4>
+                    <input class="form-control" type="text" placeholder="Country"
                            ng-model="passengers[x].country">
                 </div>
 
