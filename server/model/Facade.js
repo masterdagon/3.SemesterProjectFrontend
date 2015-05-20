@@ -9,6 +9,36 @@ var user = mongoose.model('User');
 var server = mongoose.model('Server');
 var request = require('request');
 
+
+function checkUserEmail(userName,email, callback){
+    var check = {userName:false , email:false};
+    user.findOne({userName: {$regex: new RegExp('^'+ userName + '$', "i")}},function(err,us){
+        console.log(us)
+        if(err){
+            callback(err)
+        }else{
+            if(us==null){
+                check.userName = false
+            }else{
+                check.userName = true
+            }
+            user.findOne({email: {$regex: new RegExp('^'+ email + '$', "i")}},function(err,use){
+                console.log(use)
+                if(err){
+                    callback(err)
+                }else{
+                    if(use==null){
+                        check.email = false
+                    }else{
+                        check.email = true
+                    }
+                    callback(null,check);
+                }
+            })
+        }
+    })
+}
+
 function createUser(userName, email, pw, callback) {
     bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(pw, salt, function (err, hash) {
@@ -333,6 +363,7 @@ module.exports = {
     post_reservation_flightID: post_reservation_flightID,
     delete_Reservation: delete_Reservation,
     updateVerified: updateVerified,
-    findUserById: findUserById
+    findUserById: findUserById,
+    checkUserEmail: checkUserEmail
 };
 

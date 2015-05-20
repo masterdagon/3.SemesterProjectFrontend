@@ -7,10 +7,10 @@ angular.module('airportApp.departureDate', ['ngRoute'])
             templateUrl: 'app/UserViews/DepartureDate.html',
             controller: 'DepartureDateCtrl'
         });
-        $routeProvider.when('/booking',{
-            templateUrl: 'app/UserViews/booking.html',
-            controller: 'DepartureDateCtrl'
-        })
+        //$routeProvider.when('/booking/:name/:flightid',{
+        //    templateUrl: 'app/UserViews/booking.html',
+        //    controller: 'DepartureDateCtrl'
+        //})
     }])
     .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
         $scope.array = new Array(1);

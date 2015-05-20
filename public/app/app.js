@@ -10,6 +10,7 @@ angular.module('airportApp', [
     'airportApp.filters',
     'airportApp.home',
     'airportApp.createUser',
+    'airportApp.booking',
     'airportApp.departureDate',
     'airportApp.view2',
     'airportApp.view3'
