@@ -23,12 +23,12 @@ angular.module('airportApp.booking', ['ngRoute'])
 
         $scope.reserve = function(customers,serverName,flightId){
             var payload = {
-                passengers : customers
+                Passengers : customers
             };
-            for(var x = 0; x < payload.passengers.length;x++){
-                console.log(payload.passengers[x].firstName);
-            }
-            console.log("SERVERNAME: " + serverName + " - FLIGHTID: " + flightId);
+            //for(var x = 0; x < payload.passengers.length;x++){
+            //    console.log(payload.passengers[x].firstName);
+            //}
+            //console.log("SERVERNAME: " + serverName + " - FLIGHTID: " + flightId);
             userFactory.postReservation(serverName,flightId,payload)
                 .success(function (data, status, headers, config) {
                     $scope.reservation = data;

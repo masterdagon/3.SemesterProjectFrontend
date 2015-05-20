@@ -256,8 +256,10 @@ function get_Departure_Date(departure, date, callback) {
                         count++;
                         if (count == servers.length) {
                             if (storage.length > 0) {
+                                count=0
                                 callback(null, storage);
                             } else {
+                                console.log(res)
                                 console.log(body);
                                 callback(JSON.parse(body));
                             }
