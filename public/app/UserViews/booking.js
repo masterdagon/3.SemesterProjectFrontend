@@ -25,7 +25,10 @@ angular.module('airportApp.booking', ['ngRoute'])
             var payload = {
                 passengers : customers
             };
-            console.log(payload);
+            for(var x = 0; x < payload.passengers.length;x++){
+                console.log(payload.passengers[x].firstName);
+            }
+
             console.log("SERVERNAME: " + serverName + " - FLIGHTID: " + flightId);
         }
 
