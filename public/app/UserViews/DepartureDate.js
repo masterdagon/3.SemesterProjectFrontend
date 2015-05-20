@@ -23,11 +23,7 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         };
 
         $scope.booking = function(name,flightId){
-            console.log("NAME: " + name);
-            console.log("FLIGHTID : " + flightId);
-            window.location = '#/booking';
-            $scope.chosenServerName = name;
-            $scope.chosenFlightId = flightId;
+            window.location = '#/booking/'+name+'/'+flightId;
         };
 
         $scope.search = function () {
