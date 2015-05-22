@@ -1,68 +1,85 @@
 <div class="back">
-<div class="container">
-    Name : {{chosenServerName}}
-    <br>
-    FlightId : {{chosenFlightId}}
-    <div>
-        <span>Amount of travellers:</span>
-        <select ng-model="number" convert-to-number>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <span><button type="button" ng-click="getNumberOfTravellers(number)">Go!</button></span>
-    </div>
+    <div class="container">
+        <div ng-show="!booked">
+            <h2>Booking</h2>
 
-    <div>
-        <form ng-repeat="x in array" class="input-group col-xs-5" novalidate>
-            <h3>Passenger:</h3>
-            <div class="control-group">
-                <div class="controls">
-                    <h4>First Name</h4>
-                    <input class="form-control" type="text" placeholder="First Name"
-                           ng-model="customers[x].firstName"> <span ng-show="check[x].firstName">Please enter first name</span>
-                </div>
-                <div class="controls">
-                    <h4>Last Name</h4>
-                    <input class="form-control" type="text" placeholder="Last name"
-                           ng-model="customers[x].lastName"> <span ng-show="!check[x].lastName">Please enter last name</span>
-                </div>
-                <div class="controls">
-                    <h4>Street</h4>
-                    <input class="form-control" type="text" placeholder="Street"
-                           ng-model="customers[x].street"><span ng-show="!check[x].street">Please enter street</span>
-                </div>
-                <div class="controls">
-                    <h4>City</h4>
-                    <input class="form-control" type="text" placeholder="City"
-                           ng-model="customers[x].city"><span ng-show="!check[x].city">Please enter city</span>
-                </div>
-                <div class="controls">
-                    <h4>Country</h4>
-                    <input class="form-control" type="text" placeholder="Country"
-                           ng-model="customers[x].country"><span ng-show="!check[x].country">Please enter country</span>
-                </div>
+            <div>
+                <span>Amount of travellers:</span>
+                <select ng-model="number" convert-to-number>
+                    <option value="1" selected="selected">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <span><button type="button" ng-click="getNumberOfTravellers(number)">Go!</button></span>
+            </div>
 
-                <div class="controls">
+            <div>
+                <form ng-repeat="x in array" class="input-group col-xs-5" novalidate>
+                    <h3>Passenger {{x+1}}:</h3>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <h4>First Name</h4> <span class="redtext" ng-show="check[x].firstName">Please enter first name</span>
+                            <input class="form-control" type="text" placeholder="First Name"
+                                   ng-model="customers[x].firstName">
+                        </div>
+                        <div class="controls">
+                            <h4>Last Name</h4><span class="redtext"
+                                                    ng-show="check[x].lastName">Please enter last name</span>
+                            <input class="form-control" type="text" placeholder="Last name"
+                                   ng-model="customers[x].lastName">
+                        </div>
+                        <div class="controls">
+                            <h4>Street</h4><span class="redtext" ng-show="check[x].street">Please enter street</span>
+                            <input class="form-control" type="text" placeholder="Street"
+                                   ng-model="customers[x].street">
+                        </div>
+                        <div class="controls">
+                            <h4>City</h4><span class="redtext" ng-show="check[x].city">Please enter city</span>
+                            <input class="form-control" type="text" placeholder="City"
+                                   ng-model="customers[x].city">
+                        </div>
+                        <div class="controls">
+                            <h4>Country</h4><span class="redtext" ng-show="check[x].country">Please enter country</span>
+                            <input class="form-control" type="text" placeholder="Country"
+                                   ng-model="customers[x].country">
+                        </div>
+
+                        <div class="controls">
+
+                        </div>
+                    </div>
+                </form>
+                <div ng-show="number && array.length > 0">
+                    <p>
+                        <button type="button" ng-click="check(customers,chosenServerName,chosenFlightId)">Book tickets
+                        </button>
+                    </p>
 
                 </div>
             </div>
-        </form>
-        <div ng-show="number && array.length > 0">
-            <p>
-                <button type="button" ng-click="check(customers,chosenServerName,chosenFlightId)">Book tickets</button>
-            </p>
 
         </div>
+        <div ng-show="booked">
+            <h2>Reservation
+                <small>You have made the following reservation for flight {{chosenFlightId}}:</small>
+            </h2>
+            <ul>
+                <li ng-repeat="passenger in reservation.Passengers">Traveller:
+                    <ul>
+                        <li>Name: {{passenger.firstName}} {{passenger.lastName}}</li>
+                        <li>Address: {{passenger.street}}, {{passenger.city}}, {{passenger.country}}</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>{{error}}</p>
+        </div>
     </div>
-    <p>{{reservation}}</p>
-    <p>{{error}}</p>
-</div>
 </div>
