@@ -29,42 +29,40 @@
     <div ng-show="error">
         {{error.message}}
     </div>
-    <accordion close-others="oneAtATime">
-        <accordion-group heading="{{hit.name}}" ng-repeat="hit in info">
-            <accordion-group heading="{{flight.flightId}}" ng-repeat="flight in hit.flights">
-                <ul>
-                    <li>
-                        <h5>Airline:
-                            <small>{{flight.airline}}</small>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>From:
-                            <small>{{flight.depature}}</small>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>To:
-                            <small>{{flight.destination}}</small>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>Price:
-                            <small>{{flight.price}}</small>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>Available seats:
-                            <small>{{flight.availableSeats}}</small>
-                        </h5>
-                    </li>
-                    <div ng-show="flight.bookingCode">
-                        <button type="button" ng-click="booking(hit.name,flight.flightId)">Booking</button>
-                    </div>
-                </ul>
-        </accordion-group>
-        </accordion-group>
-    </accordion>
+    <div ng-repeat="hit in info">
+    <div class="panel panel-primary" ng-repeat="flight in hit.flights">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{flight.airline}}</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>
+                    <h5>From:
+                        <small>{{flight.depature}}</small>
+                    </h5>
+                </li>
+                <li>
+                    <h5>To:
+                        <small>{{flight.destination}}</small>
+                    </h5>
+                </li>
+                <li>
+                    <h5>Price:
+                        <small>{{flight.price}}</small>
+                    </h5>
+                </li>
+                <li>
+                    <h5>Available seats:
+                        <small>{{flight.availableSeats}}</small>
+                    </h5>
+                </li>
+                <div ng-show="flight.bookingCode">
+                    <button type="button" ng-click="booking(hit.name,flight.flightId)">Booking</button>
+                </div>
+            </ul>
+        </div>
+    </div>
+    </div>
     <!--<div ng-show="info">-->
         <!--<ul ng-repeat="hit in info">-->
             <!--<p>{{hit.name}}</p>-->
