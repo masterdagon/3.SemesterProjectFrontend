@@ -21,6 +21,47 @@ angular.module('airportApp.booking', ['ngRoute'])
             console.log($scope.array);
         };
 
+        $scope.check = function(customers,serverName,flightId){
+            $scope.check = [];
+            for(var x = 0; x<$scope.array.length;x++){
+
+                if(customers[x].firstName){
+                    $scope.check[x].firstName = (false);
+                }else{
+                    $scope.check[x].firstName = (true);
+                }
+                if(customers[x].lastName){
+                    $scope.check[x].lastName = (false);
+                }else{
+                    $scope.check[x].lastName = (true);
+                }
+                if(customers[x].street){
+                    $scope.check[x].street = (false);
+                }else{
+                    $scope.check[x].street = (true);
+                }
+                if(customers[x].city){
+                    $scope.check[x].city = (false);
+                }else{
+                    $scope.check[x].city = (true);
+                }
+                if(customers[x].country){
+                    $scope.check[x].country = (false);
+                }else{
+                    $scope.check[x].country = (true);
+                }
+            }
+            for(var i = 0; i<$scope.check.length;i++){
+                var count = 0;
+               if(!$scope.check[i].firstName && !$scope.check[i].lastName && !$scope.check[i].street && !$scope.check[i].city && !$scope.check[i].country){
+                   count++;
+               }
+                if(count == $scope.check.length){
+                    $scope.reserve(customers,serverName,flightId)
+                }
+            }
+        };
+
         $scope.reserve = function(customers,serverName,flightId){
             var payload = {
                 Passengers : customers
