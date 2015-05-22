@@ -22,7 +22,7 @@ angular.module('airportApp.booking', ['ngRoute'])
             console.log($scope.array);
         };
 
-        $scope.check = function(customers,serverName,flightId){
+        $scope.checker = function(customers,serverName,flightId){
             if(check){
                 check = [];
             }

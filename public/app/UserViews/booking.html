@@ -26,28 +26,27 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <h4>First Name</h4> <span class="redtext" ng-show="check[x].firstName">Please enter first name</span>
+                            <h4>First Name <small><span class="redtext" ng-show="check[x].firstName">Please enter first name!</span><small></small></h4>
                             <input class="form-control" type="text" placeholder="First Name"
                                    ng-model="customers[x].firstName">
                         </div>
                         <div class="controls">
-                            <h4>Last Name</h4><span class="redtext"
-                                                    ng-show="check[x].lastName">Please enter last name</span>
+                            <h4>Last Name <small><span class="redtext" ng-show="check[x].lastName">Please enter last name!</span></small></h4>
                             <input class="form-control" type="text" placeholder="Last name"
                                    ng-model="customers[x].lastName">
                         </div>
                         <div class="controls">
-                            <h4>Street</h4><span class="redtext" ng-show="check[x].street">Please enter street</span>
+                            <h4>Street <small><span class="redtext" ng-show="check[x].street">Please enter street!</span></small></h4>
                             <input class="form-control" type="text" placeholder="Street"
                                    ng-model="customers[x].street">
                         </div>
                         <div class="controls">
-                            <h4>City</h4><span class="redtext" ng-show="check[x].city">Please enter city</span>
+                            <h4>City <small><span class="redtext" ng-show="check[x].city">Please enter city!</span></small></h4>
                             <input class="form-control" type="text" placeholder="City"
                                    ng-model="customers[x].city">
                         </div>
                         <div class="controls">
-                            <h4>Country</h4><span class="redtext" ng-show="check[x].country">Please enter country</span>
+                            <h4>Country <small><span class="redtext" ng-show="check[x].country">Please enter country!</span></small></h4>
                             <input class="form-control" type="text" placeholder="Country"
                                    ng-model="customers[x].country">
                         </div>
@@ -59,7 +58,7 @@
                 </form>
                 <div ng-show="number && array.length > 0">
                     <p>
-                        <button type="button" ng-click="check(customers,chosenServerName,chosenFlightId)">Book tickets
+                        <button type="button" ng-click="checker(customers,chosenServerName,chosenFlightId)">Book tickets
                         </button>
                     </p>
 

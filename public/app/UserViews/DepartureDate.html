@@ -3,19 +3,19 @@
         <div class="control-group">
             <div class="controls">
                 <label class="control-label" for="time">Date</label>
-                <span ng-show="checkDate">- Please select date</span>
+                <span class="redtext" ng-show="checkDate"> Please select date!</span>
                 <input id="time" class="form-control" type="date" name="time" ng-model="dDate">
             </div>
             <div class="controls">
                 <label class="control-label" for="departure">From</label>
-                <span ng-show="checkDeparture">- Please select airport</span>
+                <span class="redtext" ng-show="checkDeparture"> Please select airport!</span>
                 <input autocomplete="on" id="departure" class="form-control" type="text" placeholder="Airport" name="airportD"
                        ng-model="departure">
             </div>
             <div class="controls">
                 <label class="control-label" for="ar">Destination</label>
                 <input id="ar" type="checkbox" ng-model="more" name="more">
-                <span ng-show="checkArrival && more">- Please select airport</span>
+                <span class="redtext" ng-show="checkArrival && more"> Please select airport!</span>
                 <input autocomplete="on" id="arrival" ng-show="more" class="form-control" type="text" placeholder="Airport"
                        name="airportA" ng-model="arrival">
             </div>
