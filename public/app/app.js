@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('airportApp', [
     'ngRoute',
+    'ui.bootstrap',
     'airportApp.controllers',
     'airportApp.directives',
     'airportApp.services',

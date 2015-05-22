@@ -1,6 +1,10 @@
 html{
 }
 
+.back{
+    background-color: #ffffff;
+}
+
 body {
     background: url(sky2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
