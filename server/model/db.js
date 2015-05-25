@@ -21,7 +21,8 @@ if( typeof global.TEST_DATABASE != "undefined" ) {
   dbURI = global.TEST_DATABASE;
 }
 else{
-  dbURI = 'mongodb://localhost/SemesterProject';
+  //dbURI = 'mongodb://localhost/SemesterProject';
+    dbURI = 'mongodb://team007:team007@ds039311.mongolab.com:39311/muggiman'
 }
 
 mongoose.connect(dbURI);
