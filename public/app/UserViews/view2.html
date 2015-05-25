@@ -5,7 +5,7 @@
         <li>Reservation id: {{x.ReservationsID}}</li>
         <div style="margin-left:auto; margin-right:auto;">
             <button class="btn btn-primary"
-                    ng-click="getReservation(x.airline,x.ReservationsID)">Show reservation
+                    ng-click="getReservation(x.airline,x.ReservationsID)">Show details
             </button>
             <button class="btn btn-primary"
                     ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation
@@ -17,10 +17,10 @@
         <ul>
             <li>Reservation ID: {{reservation.reservationID}}</li>
             <li>Flight ID: {{reservation.flightID}}</li>
-            <p>Passengers:</p>
+            <li>Passengers:
             <ul ng-repeat="passenger in reservation.Passengers">
-                <li>Name: {{passenger.firstName}} {{passenger.lastName}} Address: {{passenger.street}}, {{passenger.city}}, {{passenger.country}}</li>
-            </ul>
+                <li>Name: {{passenger.firstName}} {{passenger.lastName}} - Address: {{passenger.street}}, {{passenger.city}}, {{passenger.country}}</li>
+            </ul></li>
             <li>Price: {{reservation.totalPrice}}</li>
             <li>Total price: {{totallyPrice}}</li>
         </ul>
