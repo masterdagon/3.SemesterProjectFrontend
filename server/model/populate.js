@@ -35,6 +35,11 @@ var facade = require('./Facade');
 //    console.log(err)
 //    console.log(airline)
 //});
+
+facade.createServer('gruppe 5','http://libertyjet-team05.rhcloud.com/api/flights/',function(err,airline){
+    console.log(err)
+    console.log(airline)
+});
 //
 //facade.createServer('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
 //    console.log(err)
@@ -80,6 +85,6 @@ var facade = require('./Facade');
 //    console.log(flights)
 //});
 
-facade.createUser('user','masterdagon@hotmail.com','user',function(){
-
-})
+//facade.createUser('user','masterdagon@hotmail.com','user',function(){
+//
+//})
