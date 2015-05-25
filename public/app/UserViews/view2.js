@@ -10,6 +10,7 @@ angular.module('airportApp.view2', ['ngRoute'])
     }])
     .controller('View2Ctrl', ['$scope', '$http', 'userFactory','$routeParams', function ($scope, $http, userFactory,$routeParams) {
         var username = $routeParams.username;
+        $scope.username = username
         userFactory.getUser(username)
             .success(function (data, status, headers, config) {
                 $scope.user = data;
@@ -20,21 +21,5 @@ angular.module('airportApp.view2', ['ngRoute'])
                     $scope.error = "You are not authenticated to request these data";
                     return;
                 }
-            });
-
-        $http({
-            method: 'GET',
-            url: 'userApi/test'
-        })
-            .success(function (data, status, headers, config) {
-                $scope.info = data;
-                $scope.error = null;
-            }).
-            error(function (data, status, headers, config) {
-                if (status == 401) {
-                    $scope.error = "You are not authenticated to request these data";
-                    return;
-                }
-                $scope.error = data;
             });
     }]);
