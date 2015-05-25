@@ -71,7 +71,7 @@ router.get('/r/:name/:reservationID',function(req,res){
     }
 });
 
-router.post('/r/:name/:flightID/:userName',function(req,res){
+router.post('/r/:name/:flightID',function(req,res){
     if(typeof global.mongo_error !== "undefined"){
         res.status(500);
         res.end("Error: "+global.mongo_error+" database not available)");
@@ -80,8 +80,7 @@ router.post('/r/:name/:flightID/:userName',function(req,res){
         var fID = req.params.flightID;
         var name = req.params.name;
         var customers = req.body;
-        var userName = req.params.userName;
-        facade.post_reservation_flightID(name, fID, customers,userName, function (err, json) {
+        facade.post_reservation_flightID(name, fID, customers, function (err, json) {
             if (err) {
                 res.status(404);
                 res.end(JSON.stringify(err));
