@@ -19,6 +19,7 @@ angular.module('airportApp.view2', ['ngRoute'])
                     $scope.notickets = false;
                 }else{
                     $scope.notickets = true;
+
                 }
             }).
             error(function (data, status, headers, config) {
@@ -27,6 +28,21 @@ angular.module('airportApp.view2', ['ngRoute'])
                     return;
                 }
             });
+
+        $scope.back = function(){
+            $scope.showReservation = false;
+        };
+
+        $scope.getReservation = function(servername, rID){
+            $scope.showReservation = true;
+            userFactory.getReservation(servername,rID)
+                .success(function (data, status, headers, config) {
+                    $scope.reservation=data;
+                    $scope.totallyPrice = $scope.reservation.Passengers.length * $scope.reservation.totalPrice;
+                }).
+                error(function (data, status, headers, config) {
+                });
+        };
 
         $scope.deleteReservation = function(name,rId,userName,tId){
             userFactory.deleteReservation(name,rId,userName,tId)

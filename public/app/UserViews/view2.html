@@ -1,12 +1,35 @@
 <div class="container">
     <h2>Reservations</h2>
-    <ul ng-repeat="x in user.tickets" ng-show='notickets'>
+    <ul ng-repeat="x in user.tickets" ng-show='notickets && !showReservation'>
         <li>Flight id: {{x.flightInstanceID}}</li>
         <li>Reservation id: {{x.ReservationsID}}</li>
-        <button class="btn btn-primary" ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation</button>
-
+        <div style="margin-left:auto; margin-right:auto;">
+            <button class="btn btn-primary"
+                    ng-click="getReservation(x.airline,x.ReservationsID)">Show reservation
+            </button>
+            <button class="btn btn-primary"
+                    ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation
+            </button>
+        </div>
     </ul>
-<p ng-show='!notickets'> You have no reservations</p>
+    <p ng-show='!notickets && !showReservation'> You have no reservations</p>
+    <div ng-show="showReservation">
+        <ul>
+            <li>Reservation ID: {{reservation.reservationID}}</li>
+            <li>Flight ID: {{reservation.flightID}}</li>
+            <p>Passengers:</p>
+            <ul ng-repeat="passenger in reservation.Passengers">
+                <li>Name: {{passenger.firstName}} {{passenger.lastName}} Address: {{passenger.street}}, {{passenger.city}}, {{passenger.country}}</li>
+            </ul>
+            <li>Price: {{reservation.totalPrice}}</li>
+            <li>Total price: {{totallyPrice}}</li>
+        </ul>
+        <div>
+        <button class="btn btn-primary"
+                ng-click="back()">Back
+        </button>
+            </div>
+    </div>
 </div>
 
 
