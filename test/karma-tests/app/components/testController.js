@@ -7,17 +7,6 @@ describe("AppCtrl", function () {
 
     beforeEach(module('airportApp.controllers'));
 
-    beforeEach(module({
-        //userFactory: {
-        //    setUser: function () {
-        //    },
-        //    getUser: function () {
-        //
-        //    }
-        //}
-
-    }));
-
     beforeEach(inject(function ($controller, $rootScope, $httpBackend, $location) {
         location = $location;
         httpBackend = $httpBackend;
@@ -25,7 +14,7 @@ describe("AppCtrl", function () {
         $controller("AppCtrl", {$scope: scope});
     }));
 
-    it("should work", function () {
+    it("title and username", function () {
         expect(scope.title).toBe("Semester Project");
         expect(scope.username).toBe("");
     });
