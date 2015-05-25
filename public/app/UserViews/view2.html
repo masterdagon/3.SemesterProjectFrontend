@@ -1,19 +1,30 @@
 <div class="container">
     <h2>Reservations</h2>
-    <ul ng-repeat="x in user.tickets" ng-show='notickets && !showReservation'>
-        <li>Flight ID: {{x.flightInstanceID}}</li>
-        <li>Reservation ID: {{x.ReservationsID}}</li>
-        <div style="margin-left:auto; margin-right:auto;">
-            <button class="btn btn-primary"
-                    ng-click="getReservation(x.airline,x.ReservationsID)">Show details
-            </button>
-            <button class="btn btn-primary"
-                    ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation
-            </button>
+    <div class="panel panel-primary" ng-repeat="x in user.tickets" ng-show='notickets && !showReservation'>
+        <div class="panel-heading">
+            <h3 class="panel-title"></h3>
         </div>
-    </ul>
+        <div class="panel-body">
+            <ul>
+                <li>Flight ID: {{x.flightInstanceID}}</li>
+                <li>Reservation ID: {{x.ReservationsID}}</li>
+                <div style="margin-left:auto; margin-right:auto;">
+                    <button class="btn btn-primary"
+                            ng-click="getReservation(x.airline,x.ReservationsID)">Show details
+                    </button>
+                    <button class="btn btn-primary"
+                            ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation
+                    </button>
+                </div>
+            </ul>
+            </div>
+            </div>
     <p ng-show='!notickets && !showReservation'> You have no reservations</p>
-    <div ng-show="showReservation">
+    <div class="panel panel-primary" ng-show="showReservation">
+        <div class="panel-heading">
+            <h3 class="panel-title"></h3>
+        </div>
+        <div class="panel-body">
         <ul>
             <li>Reservation ID: {{reservation.reservationID}}</li>
             <li>Flight ID: {{reservation.flightID}}</li>
@@ -31,5 +42,4 @@
             </div>
     </div>
 </div>
-
-
+</div>
