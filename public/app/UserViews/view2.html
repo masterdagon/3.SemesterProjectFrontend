@@ -1,11 +1,11 @@
 <div class="container">
-    <p>
-        {{username}}
-    </p>
-    <p>
-        {{user}}
-    </p>
+    <ul ng-repeat="x in user.tickets" ng-show='notickets'>
+        <li>Flight id: {{x.flightInstanceID}}</li>
+        <li>Reservation id: {{x.ReservationsID}}</li>
+        <button ng-click="deleteReservation(x.airline,x.ReservationsID,user.userName,x._id)">Delete reservation</button>
 
+    </ul>
+<p ng-show='!notickets'> You have no reservations</p>
 </div>
 
 
