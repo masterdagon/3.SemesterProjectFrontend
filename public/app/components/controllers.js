@@ -65,13 +65,9 @@ angular.module('airportApp.controllers', []).
       $scope.isAdmin =false;
       $scope.isUser = false;
       delete $window.sessionStorage.token;
-      $location.path("/view1");
+      $location.path("/home");
     }
   })
-
-  .controller('MyCtrl2', function ($scope) {
-    // write MyCtrl2 here
-  });
 
 
 
