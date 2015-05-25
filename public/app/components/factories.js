@@ -2,16 +2,7 @@
 
 /* Factories */
 
-angular.module('airportApp.factories', []).
-  factory('InfoFactory', function () {
-    var info = "Hello World from a Factory";
-    var getInfo = function getInfo(){
-      return info;
-    }
-    return {
-      getInfo: getInfo
-    }
-  })
+angular.module('airportApp.factories', [])
   .factory('authInterceptor', function ($rootScope, $q, $window) {
     return {
       request: function (config) {
