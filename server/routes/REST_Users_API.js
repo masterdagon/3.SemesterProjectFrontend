@@ -113,4 +113,19 @@ router.delete('/r/:name/:reservationID',function(req,res){
     }
 });
 
+router.get('/u/:name',function(req,res){
+    var username = req.params.name;
+    facade.findUser(username,function(err,user){
+        if(err) {
+            res.status(404);
+            res.end(JSON.stringify(err))
+        }
+            else{
+            res.header("Content-type", "application/json");
+            res.end(JSON.stringify(user));
+            }
+
+    })
+})
+
 module.exports = router;

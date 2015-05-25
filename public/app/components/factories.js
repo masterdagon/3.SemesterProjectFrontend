@@ -33,6 +33,10 @@ angular.module('airportApp.factories', []).
         var urlBase = '/userApi';
         var userFactory = {};
 
+        userFactory.getUser = function(username){
+            return $http.get(urlbase + "/u/" + username)
+        }
+
         userFactory.getDepartureDate = function (departure,date) {
             return $http.get(urlBase+'/f/'+departure+'/'+date);
         };
