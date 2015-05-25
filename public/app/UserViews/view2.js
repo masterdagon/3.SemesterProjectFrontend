@@ -15,6 +15,11 @@ angular.module('airportApp.view2', ['ngRoute'])
             .success(function (data, status, headers, config) {
                 $scope.user = data;
                 $scope.error = null;
+                if($scope.user.tickets.length ==0){
+                    $scope.notickets = false;
+                }else{
+                    $scope.notickets = true;
+                }
             }).
             error(function (data, status, headers, config) {
                 if (status == 401) {
@@ -22,4 +27,34 @@ angular.module('airportApp.view2', ['ngRoute'])
                     return;
                 }
             });
+
+        $scope.deleteReservation = function(name,rId,userName,tId){
+            userFactory.deleteReservation(name,rId,userName,tId)
+                .success(function (data, status, headers, config) {
+                    $scope.error = null;
+                    $scope.user = null;
+                    userFactory.getUser(username)
+                        .success(function (data, status, headers, config) {
+                            $scope.user = data;
+                            $scope.error = null;
+                            if($scope.user.tickets.length ==0){
+                                $scope.notickets = false;
+                            }else{
+                                $scope.notickets = true;
+                            }
+                        }).
+                        error(function (data, status, headers, config) {
+                            if (status == 401) {
+                                $scope.error = "You are not authenticated to request these data";
+                                return;
+                            }
+                        });
+                }).
+                error(function (data, status, headers, config) {
+                    if (status == 401) {
+                        $scope.error = "You are not authenticated to request these data";
+                        return;
+                    }
+                });
+        }
     }]);

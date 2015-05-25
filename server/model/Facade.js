@@ -214,7 +214,7 @@ function post_reservation_flightID(name, flightId, customer, userName, callback)
                             callback(err);
                         }else{
                             if (res.statusCode == 200) {
-                                updateUserTickets(userName,flightId,body.reservationID,function(err,data){
+                                updateUserTickets(userName,name,flightId,body.reservationID,function(err,data){
                                     callback(null, body);
                                 })
                             } else {
@@ -327,7 +327,7 @@ function get_Reservation(name, reservationId, callback) {
     });
 }
 
-function delete_Reservation(name, reservationId, callback) {
+function delete_Reservation(name, reservationId,userName,ticketID, callback) {
     server.findOne({name: name}, function (err, server) {
         if(!err){
             if (!server) {
@@ -339,6 +339,7 @@ function delete_Reservation(name, reservationId, callback) {
                         callback(err)
                     }else{
                         if (!err && res.statusCode == 200) {
+                            removeUserTickets(userName,ticketID)
                             callback(null, JSON.parse(body))
                         } else {
                             callback(JSON.parse(body));
