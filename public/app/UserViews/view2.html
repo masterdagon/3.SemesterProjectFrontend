@@ -1,8 +1,8 @@
 <div class="container">
     <h2>Reservations</h2>
     <ul ng-repeat="x in user.tickets" ng-show='notickets && !showReservation'>
-        <li>Flight id: {{x.flightInstanceID}}</li>
-        <li>Reservation id: {{x.ReservationsID}}</li>
+        <li>Flight ID: {{x.flightInstanceID}}</li>
+        <li>Reservation ID: {{x.ReservationsID}}</li>
         <div style="margin-left:auto; margin-right:auto;">
             <button class="btn btn-primary"
                     ng-click="getReservation(x.airline,x.ReservationsID)">Show details
