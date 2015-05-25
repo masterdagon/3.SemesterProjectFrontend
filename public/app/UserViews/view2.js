@@ -38,7 +38,7 @@ angular.module('airportApp.view2', ['ngRoute'])
             userFactory.getReservation(servername,rID)
                 .success(function (data, status, headers, config) {
                     $scope.reservation=data;
-                    $scope.totallyPrice = $scope.reservation.Passengers.length * $scope.reservation.totalPrice;
+                    $scope.price = $scope.reservation.totalPrice / $scope.reservation.Passengers.length;
                 }).
                 error(function (data, status, headers, config) {
                 });
