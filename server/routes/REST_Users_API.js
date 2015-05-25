@@ -114,6 +114,7 @@ router.delete('/r/:name/:reservationID',function(req,res){
 });
 
 router.get('/u/:name',function(req,res){
+    console.log('get user rest api working')
     var username = req.params.name;
     facade.findUser(username,function(err,user){
         if(err) {

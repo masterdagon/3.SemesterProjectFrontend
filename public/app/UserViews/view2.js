@@ -8,7 +8,7 @@ angular.module('airportApp.view2', ['ngRoute'])
             controller: 'View2Ctrl'
         });
     }])
-    .controller('View2Ctrl', ['$scope', '$http', 'userFactory','$routeParams', function ($scope, $http, userFactory,$routeParams) {
+    .controller('View2Ctrl', ['$scope', '$http', 'userFactory', '$routeParams', function ($scope, $http, userFactory, $routeParams) {
         var username = $routeParams.username;
         userFactory.getUser(username)
             .success(function (data, status, headers, config) {
@@ -21,6 +21,7 @@ angular.module('airportApp.view2', ['ngRoute'])
                     return;
                 }
             });
+
 
         $http({
             method: 'GET',
