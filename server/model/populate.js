@@ -31,17 +31,17 @@ var facade = require('./Facade');
 //    console.log(user);
 //})
 
-//facade.createServer('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
-//    console.log(err)
-//    console.log(airline)
-//});
-
-facade.createServer('gruppe 5','http://libertyjet-team05.rhcloud.com/api/flights/',function(err,airline){
+facade.createServer('gruppe 1','http://smsproject-schultz.rhcloud.com/smsSemProject/api/flights/',function(err,airline){
     console.log(err)
     console.log(airline)
 });
 //
 //facade.createServer('gruppe 3','http://semesterproject-testnikolai1.rhcloud.com/SemesterProjectFligths/api/flights/',function(err,airline){
+//    console.log(err)
+//    console.log(airline)
+//});
+//
+//facade.createServer('gruppe 5','http://libertyjet-team05.rhcloud.com/api/flights/',function(err,airline){
 //    console.log(err)
 //    console.log(airline)
 //});
