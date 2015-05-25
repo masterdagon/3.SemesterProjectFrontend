@@ -1,7 +1,8 @@
 angular.module('airportApp.controllers', []).
   controller('AppCtrl', function ($scope, $http, $window,$location) {
+        autoSubmit($window.sessionStorage.token)
 
-    function url_base64_decode(str) {
+        function url_base64_decode(str) {
       var output = str.replace('-', '+').replace('_', '/');
       switch (output.length % 4) {
         case 0:
@@ -17,15 +18,6 @@ angular.module('airportApp.controllers', []).
       }
       return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
     }
-
-
-    $scope.title = "Semester Project";
-    $scope.username = "";
-    $scope.isAuthenticated = false;
-    $scope.isAdmin = false;
-    $scope.isUser = false;
-    $scope.message = '';
-    $scope.error = null;
 
     $scope.submit = function () {
       $http
@@ -47,6 +39,25 @@ angular.module('airportApp.controllers', []).
 
           $scope.error = data;
         });
+    };
+
+    function autoSubmit (token) {
+        $scope.title = "Semester Project";
+        $scope.username = "";
+        $scope.isAuthenticated = false;
+        $scope.isAdmin = false;
+        $scope.isUser = false;
+        $scope.message = '';
+        $scope.error = null;
+      if(token != undefined){
+          $scope.isAuthenticated = true;
+          var encodedProfile = token.split('.')[1];
+          var profile = JSON.parse(url_base64_decode(encodedProfile));
+          $scope.username = profile.username;
+          $scope.isAdmin = profile.role == "admin";
+          $scope.isUser = !$scope.isAdmin;
+          $scope.error = null;
+      }
     };
 
     $scope.logout = function () {
