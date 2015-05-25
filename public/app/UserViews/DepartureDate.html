@@ -21,7 +21,7 @@
             </div>
             <div class="controls">
                 <p style="text-align: center;">
-                    <input type="submit" value="Search" ng-click="search()">
+                    <input class="btn btn-primary" type="submit" value="Search" ng-click="search()">
                 </p>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     </h5>
                 </li>
                 <div ng-show="flight.bookingCode">
-                    <button type="button" ng-click="booking(hit.name,flight.flightId)">Booking</button>
+                    <button class="btn btn-primary" type="button" ng-click="booking(hit.name,flight.flightId)">Booking</button>
                 </div>
             </ul>
         </div>
