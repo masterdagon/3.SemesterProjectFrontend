@@ -3,12 +3,13 @@
 angular.module('airportApp.booking', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/booking/:name/:flightId',{
+        $routeProvider.when('/booking/:name/:flightId/:userName',{
             templateUrl: 'app/UserViews/booking.html',
             controller: 'bookingCTRL'
         })
     }])
     .controller('bookingCTRL', ['$scope','$routeParams','userFactory', function ($scope, $routeParams ,userFactory) {
+        $scope.user = $routeParams.userName;
         $scope.chosenServerName = $routeParams.name;
         $scope.chosenFlightId = $routeParams.flightId;
         $scope.customers=[];
@@ -82,7 +83,7 @@ angular.module('airportApp.booking', ['ngRoute'])
             //    console.log(payload.passengers[x].firstName);
             //}
             //console.log("SERVERNAME: " + serverName + " - FLIGHTID: " + flightId);
-            userFactory.postReservation(serverName,flightId,payload)
+            userFactory.postReservation(serverName,flightId,payload,$scope.user)
                 .success(function (data, status, headers, config) {
                     $scope.reservation = data;
                     $scope.error = null;

@@ -3,7 +3,7 @@
 angular.module('airportApp.departureDate', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/DepartureDate', {
+        $routeProvider.when('/DepartureDate/:userName', {
             templateUrl: 'app/UserViews/DepartureDate.html',
             controller: 'DepartureDateCtrl'
         });
@@ -12,9 +12,9 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         //    controller: 'DepartureDateCtrl'
         //})
     }])
-    .controller('DepartureDateCtrl', ['$scope', 'userFactory', function ($scope, userFactory) {
+    .controller('DepartureDateCtrl', ['$scope','$routeParams', 'userFactory', function ($scope,$routeParams,userFactory) {
         $scope.booking = function(name,flightId){
-            window.location = '#/booking/'+name+'/'+flightId;
+            window.location = '#/booking/'+name+'/'+flightId+'/'+$routeParams.userName;
         };
 
         $scope.search = function () {

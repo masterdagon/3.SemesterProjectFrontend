@@ -2,6 +2,7 @@
     <div class="container">
         <div ng-show="!booked">
             <h2>Booking</h2>
+            <h2>{{user}}</h2>
 
             <div>
                 <span>Amount of travellers:</span>
@@ -26,7 +27,7 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <h4>First Name <small><span class="redtext" ng-show="check[x].firstName">Please enter first name!</span><small></small></h4>
+                            <h4>First Name <small><span class="redtext" ng-show="check[x].firstName">Please enter first name!</span></small></h4>
                             <input class="form-control" type="text" placeholder="First Name"
                                    ng-model="customers[x].firstName">
                         </div>

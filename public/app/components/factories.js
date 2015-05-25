@@ -49,8 +49,8 @@ angular.module('airportApp.factories', []).
             return $http.get(urlBase+'/r/'+name+'/'+rID);
         };
 
-        userFactory.postReservation = function (name,flightID,passengers) {
-            return $http.post(urlBase + '/r/'+name+'/'+flightID,passengers);
+        userFactory.postReservation = function (name,flightID,passengers,userName) {
+            return $http.post(urlBase + '/r/'+name+'/'+flightID+'/'+userName,passengers);
         };
 
         userFactory.deleteReservation = function (name,rID) {

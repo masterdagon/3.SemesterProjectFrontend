@@ -197,7 +197,7 @@ function createServer(name, url, callback) {
     })
 }
 
-function post_reservation_flightID(name, flightId, customer, callback) {
+function post_reservation_flightID(name, flightId, customer, userName, callback) {
     server.findOne({name: name}, function (err, server) {
         if (!err) {
             if(!server){
@@ -214,8 +214,9 @@ function post_reservation_flightID(name, flightId, customer, callback) {
                             callback(err);
                         }else{
                             if (res.statusCode == 200) {
-                                console.log(body)
-                                callback(null, body);
+                                updateUserTickets(userName,flightId,body.reservationID,function(err,data){
+                                    callback(null, body);
+                                })
                             } else {
                                 callback(body);
                             }
