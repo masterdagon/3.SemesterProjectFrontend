@@ -23,7 +23,7 @@ describe("Testing Routes", function () {
             scope.$digest();
 
             expect(route.current.templateUrl).toBe('app/AllViews/createUser.html');
-            expect(route.current.controller).toBe("createUserCTRL");
+            expect(route.current.controller).toBe("createUserCtrl");
 
 
         });
@@ -37,7 +37,7 @@ describe("Testing Routes", function () {
         beforeEach(module('airportApp'));
 
         beforeEach(inject(function($route, $location, $rootScope, $httpBackend) {
-                $httpBackend.expectGET("/AllViews/home.html").respond("");
+                $httpBackend.expectGET("app/AllViews/home.html").respond("");
                 scope = $rootScope;
                 location = $location;
                 route = $route;
