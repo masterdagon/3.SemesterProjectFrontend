@@ -48,15 +48,15 @@ describe('Factory Tests',function(){
             //getUser
             httpBackend.whenGET("/userApi/u/:userName").respond("test");
             //getDepartureDate
-            httpBackend.whenGET("/userApi/f/:departure/:date").respond("true");
+            httpBackend.whenGET("/userApi/f/:departure/:date").respond("test");
             //getDepartureDateArrival
-            httpBackend.whenGET("/userApi/f/:departure/:arrival/:date").respond("true");
+            httpBackend.whenGET("/userApi/f/:departure/:arrival/:date").respond("test");
             //getReservation
-            httpBackend.whenGET("/userApi/r/:groupName/:rID").respond("true");
+            httpBackend.whenGET("/userApi/r/:groupName/:rID").respond("test");
             //postReservation
-            httpBackend.whenPOST("/userApi/r/:groupName/:flightID/:userName").respond("true");
+            httpBackend.whenPOST("/userApi/r/:groupName/:flightID/:userName").respond("test");
             //deleteReservation
-            httpBackend.whenDELETE("/userApi/r/groupName/rID").respond("true");
+            httpBackend.whenDELETE("/userApi/r/groupName/rID").respond("test");
 
         }));
         afterEach(function(){
@@ -75,20 +75,52 @@ describe('Factory Tests',function(){
             http = false;
         });
 
-        //it("saveUser",function(){
-        //    factory.saveUser("test")
-        //        .success(function(user){
-        //            expect(user).toBe("test");
-        //        });
-        //    http = true;
-        //});
-        //
-        //it("checkUserEmail",function(){
-        //    factory.checkUserEmail("test","test")
-        //        .success(function(verified){
-        //            expect(verified).toBe("true");
-        //        });
-        //    http = true;
-        //});
+        it("getUser",function(){
+            factory.getUser("userName")
+                .success(function(user){
+                    expect(user).toBe("test");
+                });
+            http = true;
+        });
+
+        it("getDepartureDate",function(){
+            factory.getDepartureDate("departure","date")
+                .success(function(flight){
+                    expect(flight).toBe("test");
+                });
+            http = true;
+        });
+
+        it("getDepartureDateArrival",function(){
+            factory.getDepartureDateArrival("departure","arrival","date")
+                .success(function(flight){
+                    expect(flight).toBe("test");
+                });
+            http = true;
+        });
+
+        it("getReservation",function(){
+            factory.getReservation("name","rID")
+                .success(function(reservation){
+                    expect(reservation).toBe("test");
+                });
+            http = true;
+        });
+
+        it("postReservation",function(){
+            factory.postReservation("name","flightID","passengers","userName")
+                .success(function(reservation){
+                    expect(reservation).toBe("test");
+                });
+            http = true;
+        });
+
+        it("deleteReservation",function(){
+            factory.deleteReservation("name","rID","userName","ticketID")
+                .success(function(reservation){
+                    expect(reservation).toBe("test");
+                });
+            http = true;
+        });
     })
 });
