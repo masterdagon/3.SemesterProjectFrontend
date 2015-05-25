@@ -34,18 +34,23 @@ angular.module('airportApp.departureDate', ['ngRoute'])
                 $scope.checkArrival = false;
             }
             if (!$scope.more && !$scope.checkDate && !$scope.checkDeparture) {
+                $scope.searching = true;
                 departureDate($scope.departure,$scope.dDate);
             }
             if($scope.more && !$scope.checkDate && !$scope.checkDeparture && !$scope.checkArrival){
+                $scope.searching = true;
                 departureArrivalDate($scope.departure,$scope.arrival,$scope.dDate);
             }
         };
 
         function departureDate(departure, dDate) {
+            $scope.info = null;
+            $scope.error = null;
             var date = new Date(dDate);
             var ms = date.getTime();
             userFactory.getDepartureDate(departure, ms)
                 .success(function (data, status, headers, config) {
+                    $scope.searching = false;
                     $scope.info = data;
                     $scope.error = null;
                 }).
@@ -60,10 +65,13 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         }
 
         function departureArrivalDate(departure,arrival, dDate) {
+            $scope.info = null;
+            $scope.error = null;
             var date = new Date(dDate);
             var ms = date.getTime();
             userFactory.getDepartureDateArrival(departure,arrival,ms)
                 .success(function (data, status, headers, config) {
+                    $scope.searching = false;
                     $scope.info = data;
                     $scope.error = null;
                 }).
