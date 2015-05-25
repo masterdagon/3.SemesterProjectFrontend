@@ -9,9 +9,8 @@
     <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body ng-controller="AppCtrl" >
-<nav class="navbar navbar-default" role="navigation">
-    <img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/airplane_takeoff-.png" align="left" height="42" width="42" >
 <div class="container">
+<nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"
             aria-expanded="false" aria-controls="navbar">
@@ -20,6 +19,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+      <img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/airplane_takeoff-.png" align="left" height="42" width="42" >
   </div>
   <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
@@ -48,8 +48,8 @@
           </button>
       </div>
   </div>
-</div>
 </nav>
+</div>
 <div class="container back">
     <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
     <div ng-view="ng-view" ng-></div>
