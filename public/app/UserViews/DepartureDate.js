@@ -42,6 +42,8 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         };
 
         function departureDate(departure, dDate) {
+            $scope.info = null;
+            $scope.error = null;
             var date = new Date(dDate);
             var ms = date.getTime();
             userFactory.getDepartureDate(departure, ms)
@@ -60,6 +62,8 @@ angular.module('airportApp.departureDate', ['ngRoute'])
         }
 
         function departureArrivalDate(departure,arrival, dDate) {
+            $scope.info = null;
+            $scope.error = null;
             var date = new Date(dDate);
             var ms = date.getTime();
             userFactory.getDepartureDateArrival(departure,arrival,ms)
