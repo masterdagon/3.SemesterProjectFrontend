@@ -15,6 +15,7 @@ angular.module('airportApp.createUser', ['ngRoute'])
         $scope.CheckEmailSucces = false
         $scope.CheckPWError= false
         $scope.CheckPWSucces = false
+        $scope.Succes = false
 
 
 
@@ -80,8 +81,13 @@ angular.module('airportApp.createUser', ['ngRoute'])
                             if($scope.CheckPWSucces && $scope.CheckEmailSucces && $scope.CheckUserNameSucces ){
                                 indexFactory.saveUser($scope.newUser)
                                     .success(function (data, status, headers, config) {
+                                        $scope.email = $scope.newUser.email
+                                        $scope.Succes = true
                                         $scope.info = data;
                                         $scope.error = null;
+                                        $scope.newUser.userName = "";
+                                        $scope.newUser.email = "";
+                                        $scope.newUser.pw ="";
                                     }).
                                     error(function (data, status, headers, config) {
                                         if (status == 401) {

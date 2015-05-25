@@ -65,7 +65,11 @@ router.get('/verify',function(req,res){
             {
                 facade.updateVerified(user.userName,function(err,updatedUser){
                     console.log("email is verified");
-                    res.end("<h1>Email "+user.email+" is been Successfully verified");
+                    res.header("Content-type", "text/html");
+                    var html = "<h4>Email "+user.email+" has been successfully verified</h4>"
+                    html += "<br>"
+                    html += "<h4><a href='http://flightsearch-team007.rhcloud.com/#/home'>back to site</a></h4>"
+                    res.end(html);
                 })
             }
             else
