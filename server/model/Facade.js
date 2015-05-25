@@ -339,8 +339,9 @@ function delete_Reservation(name, reservationId,userName,ticketID, callback) {
                         callback(err)
                     }else{
                         if (!err && res.statusCode == 200) {
-                            removeUserTickets(userName,ticketID)
-                            callback(null, JSON.parse(body))
+                            removeUserTickets(userName,ticketID,function(err,user){
+                                callback(null, JSON.parse(body))
+                            });
                         } else {
                             callback(JSON.parse(body));
                         }
