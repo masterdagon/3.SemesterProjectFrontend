@@ -46,17 +46,17 @@ describe('Factory Tests',function(){
             scope = $rootScope.$new();
             factory = userFactory;
             //getUser
-            httpBackend.whenGET("/userApi/u/:userName").respond("test");
+            httpBackend.whenGET("/userApi/u/userName").respond("test");
             //getDepartureDate
-            httpBackend.whenGET("/userApi/f/:departure/:date").respond("test");
+            httpBackend.whenGET("/userApi/f/departure/date").respond("test");
             //getDepartureDateArrival
-            httpBackend.whenGET("/userApi/f/:departure/:arrival/:date").respond("test");
+            httpBackend.whenGET("/userApi/f/departure/arrival/date").respond("test");
             //getReservation
-            httpBackend.whenGET("/userApi/r/:groupName/:rID").respond("test");
+            httpBackend.whenGET("/userApi/r/name/rID").respond("test");
             //postReservation
-            httpBackend.whenPOST("/userApi/r/:groupName/:flightID/:userName").respond("test");
+            httpBackend.whenPOST("/userApi/r/name/flightID/userName").respond("test");
             //deleteReservation
-            httpBackend.whenDELETE("/userApi/r/groupName/rID").respond("test");
+            httpBackend.whenDELETE("/userApi/r/name/rID/userName/ticketID").respond("test");
 
         }));
         afterEach(function(){
