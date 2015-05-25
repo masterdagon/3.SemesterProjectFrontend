@@ -13,7 +13,7 @@ module.exports = function(config){
       'public/app/components/*.js',
       'public/app/***/**/*.js',
       //'test/karma-tests//app/view*/**/*.js',
-      'test/karma-tests//app/components/*.js',
+      'test/karma-tests/app/components/*.js',
     ],
 
     autoWatch : true,

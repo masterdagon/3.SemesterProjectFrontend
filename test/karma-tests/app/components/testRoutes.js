@@ -17,7 +17,7 @@ describe("Testing Routes", function () {
 
 
         it('should give the given controller and html, from the path url', function () {
-
+            console.log(route)
             expect(route.current).toBeUndefined();
             location.path('/createUser');
             scope.$digest();
